@@ -8,6 +8,13 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
+    def __init__(self, email, password):
+        self.email = email
+        self.password = password
+        self.is_active = False
+        db.session.add(self)
+        db.session.commit()
+
     def __repr__(self):
         return f'<User {self.email}>'
 
@@ -15,5 +22,6 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "is_active": self.is_active
             # do not serialize the password, its a security breach
         }
