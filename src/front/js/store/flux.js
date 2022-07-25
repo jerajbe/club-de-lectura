@@ -5,6 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       // headers: {
       //   "Content-Type": "application/json",
       // },
+      rapidApiKey: "e36453dc6dmshab894b7c7625036p18eca7jsndc2159541717",
+      searchBody: null,
       loginError: null,
       token: null,
       message: null,
@@ -22,6 +24,38 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
     },
     actions: {
+      search: async (inputValue) => {
+        const options = {
+          method: "GET",
+          headers: {
+            "X-RapidAPI-Key": getStore().rapidApiKey,
+            "X-RapidAPI-Host": "hapi-books.p.rapidapi.com",
+          },
+        };
+        try {
+          const response = await fetch(
+            `https://hapi-books.p.rapidapi.com/search/${inputValue}`,
+            options
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            return false;
+          }
+          setStore({
+            searchBody: body.result,
+          });
+        } catch (error) {
+          console.error("There has an error login in");
+        }
+      },
+      syncTokenFromSessionStore: () => {
+        const token = sessionStorage.getItem("token");
+        console.log(
+          "Aplication just loaded, synching the session storage token"
+        );
+        if (token && token != "" && token != undefined)
+          setStore({ token: token });
+      },
       // Use getActions to call a function within a fuction
       exampleFunction: () => {
         getActions().changeColor(0, "green");

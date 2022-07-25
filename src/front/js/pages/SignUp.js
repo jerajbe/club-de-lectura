@@ -24,6 +24,7 @@ export const SignUp = () => {
         <h1 className="justify-content-center">Sign Up</h1>
         <form>
           <input
+            for="exampleInputEmail1"
             type={"text"}
             name={"email"}
             className="form-control"
