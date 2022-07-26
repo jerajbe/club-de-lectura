@@ -43,7 +43,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           console.log(body);
           setStore({
-            searchBody: body.result,
+            searchBody: body,
           });
         } catch (error) {
           console.error("There has an error login in");

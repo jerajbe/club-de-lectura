@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const SingleBook = (props) => {
-  const { store, actions } = useContext(Context);
   return (
     <div className="row row-cols-1 row-cols-md-3 g-4">
       <div className="col">
@@ -25,7 +24,7 @@ export const SingleBook = (props) => {
   );
 };
 
-SingleBook.PropTypes = {
+SingleBook.propTypes = {
   book_id: PropTypes.number,
   name: PropTypes.string,
   cover: PropTypes.string,

@@ -26,6 +26,7 @@ export const Search = () => {
           store.searchBody.map((book, index) => {
             return (
               <SingleBook
+                cover={book.cover}
                 key={index}
                 book_id={book.book_id}
                 name={book.name}
