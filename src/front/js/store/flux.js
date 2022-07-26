@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       //   "Content-Type": "application/json",
       // },
       rapidApiKey: "e36453dc6dmshab894b7c7625036p18eca7jsndc2159541717",
-      searchBody: null,
+      searchBody: [],
       loginError: null,
       token: null,
       message: null,
