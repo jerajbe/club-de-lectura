@@ -23,7 +23,7 @@ export const Login = () => {
 
   return (
     <div className="text-center mt-5">
-      <h1>Login</h1>
+      <h1 className="text-white h1--login">Login</h1>
       {store.token && store.token != "" && store.token != undefined ? (
         "you are logged in with" + store.token
       ) : (
@@ -40,7 +40,7 @@ export const Login = () => {
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleClick}>Login</button>
+          <button className="boton--login text-white" onClick={handleClick}>Login</button>
         </div>
       )}
       {store.loginError && <p>{store.loginError}</p>}
