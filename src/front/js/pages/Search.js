@@ -22,17 +22,21 @@ export const Search = () => {
         </div>
       </form>
       <div>
-        {store.searchBody.map((book, index) => {
-          return (
-            <SingleBook
-              key={book.book_id}
-              name={book.name}
-              year={book.year}
-              authors={book.authors}
-              rating={book.rating}
-            />
-          );
-        })}
+        {store.searchBody &&
+          store.searchBody.map((book, index) => {
+            return (
+              <SingleBook
+                key={index}
+                book_id={book.book_id}
+                name={book.name}
+                year={book.year}
+                authors={book.authors}
+                rating={book.rating}
+                url={book.url}
+                created_edit={book.created_edit}
+              />
+            );
+          })}
       </div>
     </div>
   );

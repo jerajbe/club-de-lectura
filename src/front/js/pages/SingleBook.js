@@ -6,17 +6,18 @@ import { Context } from "../store/appContext";
 export const SingleBook = (props) => {
   const { store, actions } = useContext(Context);
   return (
-    <div>
-      <div className="row row-cols-1 row-cols-md-3 g-4">
-        <div className="col">
-          <div className="card">
-            <img src={props.cover} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">{props.name}</h5>
-              <p className="card-text">{props.authors}</p>
-              <p className="card-text">{props.year}</p>
-              <p className="card-text">{props.rating}</p>
-            </div>
+    <div className="row row-cols-1 row-cols-md-3 g-4">
+      <div className="col">
+        <div className="card">
+          <img src={props.cover} className="card-img-top" alt="..." />
+          <div className="card-body">
+            <p className="card-text">{props.book_id}</p>
+            <h5 className="card-title">{props.name}</h5>
+            <p className="card-text">{props.authors}</p>
+            <p className="card-text">{props.year}</p>
+            <p className="card-text">{props.url}</p>
+            <p className="card-text">{props.rating}</p>
+            <p className="card-text">{props.created_editions}</p>
           </div>
         </div>
       </div>

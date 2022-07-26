@@ -41,6 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (response.status !== 200) {
             return false;
           }
+          console.log(body);
           setStore({
             searchBody: body.result,
           });
