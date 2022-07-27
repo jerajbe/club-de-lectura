@@ -5,6 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       // headers: {
       //   "Content-Type": "application/json",
       // },
+      favorites: [],
+      isOpen: false,
       rapidApiKey: "e36453dc6dmshab894b7c7625036p18eca7jsndc2159541717",
       searchBody: [],
       loginError: null,
@@ -24,6 +26,27 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
     },
     actions: {
+      deleteFavoriteElement: async (element) => {
+        const store = getStore();
+        setStore({
+          favorites: [...store.favorites].filter((x) => x != element),
+        });
+      },
+      addFavoriteElement: async (element) => {
+        const store = getStore();
+        const search = store.favorites.find((x) => x == element);
+        console.log(search, element);
+        if (search == undefined) {
+          setStore({
+            favorites: [...store.favorites, element],
+          });
+        }
+      },
+      toggleModal: async () => {
+        this.setState({
+          isOpen: !this.state.isOpen,
+        });
+      },
       search: async (inputValue) => {
         const options = {
           method: "GET",
