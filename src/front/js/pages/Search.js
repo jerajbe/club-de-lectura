@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import { CarouselHome } from "./CarouselHome";
 import { SingleBook } from "./SingleBook";
 
 export const Search = () => {
@@ -39,6 +40,7 @@ export const Search = () => {
             );
           })}
       </div>
+      <CarouselHome />
     </div>
   );
 };

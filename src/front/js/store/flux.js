@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       isOpen: false,
       rapidApiKey: "e36453dc6dmshab894b7c7625036p18eca7jsndc2159541717",
       searchBody: [],
+      bestsBooks: [],
       loginError: null,
       token: null,
       message: null,
@@ -70,6 +71,31 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
         } catch (error) {
           console.error("There has an error login in");
+        }
+      },
+      mostPopular: async () => {
+        const options = {
+          method: "GET",
+          headers: {
+            "X-RapidAPI-Key": getStore().rapidApiKey,
+            "X-RapidAPI-Host": "hapi-books.p.rapidapi.com",
+          },
+        };
+        try {
+          const response = await fetch(
+            `https://hapi-books.p.rapidapi.com/month/${Date.prototype.getFullYear()}/${Date.prototype.getMonth()}`,
+            options
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            return false;
+          }
+          console.log(body);
+          setStore({
+            bestsBooks: body,
+          });
+        } catch (error) {
+          console.error("There has an error loading 15 most popular books");
         }
       },
       syncTokenFromSessionStore: () => {
