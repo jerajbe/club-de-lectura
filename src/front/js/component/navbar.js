@@ -7,7 +7,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="container">
-        <span className="navbar-brand mb-0 h1">React Boilerplate</span>
+        <span className="navbar-brand mb-0 h1">Club de Lectura</span>
         <div className="ml-auto">
           {/* renderizado condicional cuando esta iniciada la sesion */}
           {!store.token ? (
