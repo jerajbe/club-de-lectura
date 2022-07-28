@@ -32,7 +32,7 @@ export const DetailedBook = (props) => {
   );
 };
 
-SingleBook.propTypes = {
+DetailedBook.propTypes = {
   book_id: PropTypes.number,
   name: PropTypes.string,
   cover: PropTypes.string,

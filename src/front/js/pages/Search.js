@@ -29,7 +29,6 @@ export const Search = () => {
               <SingleBook
                 cover={book.cover}
                 key={index}
-                book_id={book.book_id}
                 name={book.name}
                 year={book.year}
                 authors={book.authors}

@@ -8,6 +8,7 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+from sqlalchemy.orm import relationship
 
 #Create flask app
 api = Blueprint('app', __name__)
@@ -44,3 +45,28 @@ def handle_users():
     ), 400
     new_user = User(email, password)
     return jsonify(new_user.serialize()), 201
+
+@api.route('/users/favorites', methods=['GET'])
+def get_favorites():
+    books = FavoriteBooks.query.all()
+    favorites_books = list(map(
+        lambda favorite_books: favorite_books.serialize(),
+        books
+    ))
+    return jsonify(favorites_books), 200
+
+@api.route('/books/<int:book_id>', methods=["GET"])
+def list_single_book(book_id):
+    book = Book.query.filter_by(id=book_id).one_or_none()
+    return jsonify(book.serialize())
+
+@api.route('/users/favorite/books/<int:book_id>', methods=['POST'])
+def add_favorite_user_planet(book_id):
+    body = request.json
+    favorite = FavoriteBooks(
+            user_id = body["users_id"] if "users_id" in body else None, 
+            book_id = body["book_id"] if "book_id" in body else None
+        )
+    db.session.add(favorite)
+    db.session.commit()
+    return jsonify(favorite.serialize()), 201
