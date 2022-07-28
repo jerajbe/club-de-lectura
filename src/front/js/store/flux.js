@@ -83,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const response = await fetch(
-            `https://hapi-books.p.rapidapi.com/month/${Date.prototype.getFullYear()}/${Date.prototype.getMonth()}`,
+            `https://hapi-books.p.rapidapi.com/month/2022/3`,
             options
           );
           const body = await response.json();

@@ -9,21 +9,14 @@ export const CarouselHome = () => {
       className="carousel slide"
       data-bs-ride="false"
     >
-      <div className="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="0"
-          className="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-      </div>
       <div className="carousel-inner">
         {store.bestsBooks &&
           store.bestsBooks.map((book, index) => {
             return (
-              <div className="carousel-item" key={index}>
+              <div
+                className={`carousel-item ${index < 1 ? "active" : " "}`}
+                key={index}
+              >
                 <img src={book.cover} className="d-block w-100" alt="..." />
                 <div className="carousel-caption d-none d-md-block">
                   <h5>{book.name}</h5>
