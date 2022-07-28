@@ -22,7 +22,7 @@ export const SingleBook = (props) => {
         <img className="card-img-top" src={props.cover} alt="Card image cap" />
         <div className="card-body">
           {props.name && <h5 className="card-title">{props.name}</h5>}
-          {props.gender && <p className="card-text">{props.authors}</p>}
+          {props.authors && <p className="card-text">{props.authors}</p>}
           {/* <Link to={`/people/${props.uid}`} className="btn btn-primary">{"DATA BANK"}</Link>{" "} */}
           <i
             style={{

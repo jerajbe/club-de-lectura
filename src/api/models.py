@@ -39,6 +39,7 @@ class FavoriteBooks(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user = db.relationship("User", back_populates="favorite_books")
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    book_id = db.Column(db.Integer, db.ForeignKey("book.id"))
     book = db.relationship("Book", back_populates="favorite_books")
 
 def __init__(self, user_id, book_id):
@@ -62,7 +63,6 @@ class Book(db.Model):
     authors = db.Column(db.String(250), nullable=False)
     cover = db.Column(db.String(250), nullable=False)
     year = db.Column(db.String(250), nullable=False)
-    favorite_books_id = db.Column(db.Integer, db.ForeignKey("favorite_books.id"))
     favorite_books = db.relationship("FavoriteBooks", back_populates="book")
 
 def serialize(self):

@@ -1,3 +1,25 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDcuucqChoFO-oXV3tt4gQdkiZgGkOFrzY",
+  authDomain: "club-de-lectura-64ef7.firebaseapp.com",
+  projectId: "club-de-lectura-64ef7",
+  storageBucket: "club-de-lectura-64ef7.appspot.com",
+  messagingSenderId: "669564016100",
+  appId: "1:669564016100:web:818700685d16babb3d63f1",
+  measurementId: "G-BQ0BWZG4GJ",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -7,7 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // },
       favorites: [],
       isOpen: false,
-      rapidApiKey: "e36453dc6dmshab894b7c7625036p18eca7jsndc2159541717",
+      rapidApiKey: "2bbe72fbccmsh6793c5e8593d9fdp11e794jsn1087e08285d2",
       searchBody: [],
       bestsBooks: [],
       loginError: null,
