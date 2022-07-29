@@ -27,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // headers: {
       //   "Content-Type": "application/json",
       // },
+      searchGoogle: [],
       favorites: [],
       isOpen: false,
       rapidApiKey: "2bbe72fbccmsh6793c5e8593d9fdp11e794jsn1087e08285d2",
@@ -148,6 +149,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         } catch (error) {
           console.error("There has an error login in");
+        }
+      },
+      googleBooks: async (nameBook) => {
+        try {
+          const response = await fetch(
+            `https://www.googleapis.com/books/v1/volumes?q=${nameBook}&key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            return false;
+          }
+          console.log(body.items);
+          setStore({
+            searchGoogle: body.items,
+          });
+        } catch (error) {
+          console.error("There has an error loading GoogleBooks in");
         }
       },
       syncTokenFromSessionStore: () => {
