@@ -10,6 +10,7 @@ import { Footer } from "./component/footer";
 import { Login } from "./pages/Login.js";
 import { Search } from "./pages/Search";
 import { SingleBook } from "./pages/SingleBook";
+import { Comments } from "./pages/Comments";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -22,6 +23,7 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Routes>
+            <Route element={<Comments />} path="/comments" />
             <Route element={<SingleBook />} path="/modal" />
             <Route element={<Search />} path="/search" />
             <Route element={<Private />} path="/private" />

@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { DetailedBook } from "./DetailedBook";
+import { Comments } from "./Comments";
 
 export const SingleBook = (props) => {
   const [show, setShow] = useState(false);
@@ -58,49 +59,7 @@ export const SingleBook = (props) => {
         </Modal.Header>
         <Modal.Body>
           <div className="modal-body " id="ModalBook">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-md-4">.col-md-4</div>
-                <div className="col-md-4 ml-auto">.col-md-4 .ml-auto</div>
-              </div>
-              <div className="row">
-                <div className="col-md-3 ml-auto">.col-md-3 .ml-auto</div>
-                <div className="col-md-2 ml-auto">.col-md-2 .ml-auto</div>
-              </div>
-              <div className="row">
-                <div className="col-md-6 ml-auto">.col-md-6 .ml-auto</div>
-              </div>
-              <div className="row">
-                <div className="col-sm-9">
-                  Level 1: .col-sm-9
-                  <div className="row">
-                    <div className="col-8 col-sm-6">
-                      Level 2: .col-8 .col-sm-6
-                    </div>
-                    <div className="col-4 col-sm-6">
-                      <i
-                        style={{
-                          color: "red",
-                          position: "relative",
-                          marginLeft: "70px",
-                          fontSize: "40px",
-                        }}
-                        onClick={() => {
-                          actions.addFavoriteElement(
-                            props.name
-                          ); /* setIsFavorite(!isFavorite)*/
-                        }}
-                        className={`fas ${
-                          isFavorite(props.name)
-                            ? "fa-heart"
-                            : "fa-heart-circle-plus"
-                        }`}
-                      ></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Comments />
           </div>
         </Modal.Body>
       </Modal>
