@@ -19,17 +19,17 @@ export const Comments = () => {
                 <i className="fa fa-pencil fa-fw"></i> Share
               </button>
               <a
-                style={{ color: "white" }}
+                style={{ color: "black" }}
                 className="btn btn-trans btn-icon fa fa-video-camera add-tooltip"
                 href="#"
               ></a>
               <a
-                style={{ color: "white" }}
+                style={{ color: "black" }}
                 className="btn btn-trans btn-icon fa fa-camera add-tooltip"
                 href="#"
               ></a>
               <a
-                style={{ color: "white" }}
+                style={{ color: "black" }}
                 className="btn btn-trans btn-icon fa fa-file add-tooltip"
                 href="#"
               ></a>
@@ -85,23 +85,23 @@ export const Comments = () => {
                       href="#"
                     >
                       <i
-                        style={{ color: "white" }}
+                        style={{ color: "black" }}
                         className="fa fa-thumbs-up"
                       ></i>
                     </a>
                     <a
-                      style={{ color: "white" }}
+                      style={{ color: "black" }}
                       className="btn btn-sm btn-default btn-hover-danger"
                       href="#"
                     >
                       <i
-                        style={{ color: "white" }}
+                        style={{ color: "black" }}
                         className="fa fa-thumbs-down"
                       ></i>
                     </a>
                   </div>
                   <a
-                    style={{ color: "white" }}
+                    style={{ color: "black" }}
                     className="btn btn-sm btn-default btn-hover-primary"
                     href="#"
                   >

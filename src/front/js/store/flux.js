@@ -1,24 +1,24 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDcuucqChoFO-oXV3tt4gQdkiZgGkOFrzY",
-  authDomain: "club-de-lectura-64ef7.firebaseapp.com",
-  projectId: "club-de-lectura-64ef7",
-  storageBucket: "club-de-lectura-64ef7.appspot.com",
-  messagingSenderId: "669564016100",
-  appId: "1:669564016100:web:818700685d16babb3d63f1",
-  measurementId: "G-BQ0BWZG4GJ",
-};
+// // Your web app's Firebase configuration
+// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDcuucqChoFO-oXV3tt4gQdkiZgGkOFrzY",
+//   authDomain: "club-de-lectura-64ef7.firebaseapp.com",
+//   projectId: "club-de-lectura-64ef7",
+//   storageBucket: "club-de-lectura-64ef7.appspot.com",
+//   messagingSenderId: "669564016100",
+//   appId: "1:669564016100:web:818700685d16babb3d63f1",
+//   measurementId: "G-BQ0BWZG4GJ",
+// };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
