@@ -7,15 +7,15 @@ export const Search = () => {
   const { store, actions } = useContext(Context);
   const [search, setSearch] = useState("");
   return (
-    <div>
+    <div className="d-flex flex-column align-items-center justify-content-center">
       <form>
-        <div className="form-group">
-          <label>Libros</label>
+        <div className="form-group d-flex justify-content-center mb-3">
           <input
             type="text"
-            className="form-control"
+            className="form-control w-100"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            placeholder="Enter your Book Name"
           ></input>
           <button type="button" onClick={(e) => actions.search(search)}>
             {"Search"}

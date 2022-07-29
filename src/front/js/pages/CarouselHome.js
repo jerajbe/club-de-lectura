@@ -6,21 +6,27 @@ export const CarouselHome = () => {
   return (
     <div
       id="carouselExampleCaptions"
-      className="carousel slide"
+      className="carousel carousel-dark slide d-flex justify-content-center w-75"
       data-bs-ride="false"
     >
-      <div className="carousel-inner">
+      <div className="carousel-inner d-flex justify-content-center h-25 w-50">
         {store.bestsBooks &&
           store.bestsBooks.map((book, index) => {
             return (
               <div
-                className={`carousel-item ${index < 1 ? "active" : " "}`}
+                className={`carousel-item w-100 me-0 ${
+                  index < 1 ? "active" : " "
+                }`}
                 key={index}
               >
-                <img src={book.cover} className="d-block w-100" alt="..." />
-                <div className="carousel-caption d-none d-md-block">
+                <img
+                  src={book.cover}
+                  className="d-flex align-self-center w-50"
+                  alt="..."
+                />
+                {/* <div className="carousel-caption d-flex">
                   <h5>{book.name}</h5>
-                </div>
+                </div> */}
               </div>
             );
           })}
