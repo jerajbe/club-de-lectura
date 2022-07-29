@@ -151,6 +151,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("There has an error login in");
         }
       },
+      carouselBook: async (nameBook) => {
+        try {
+          const response = await fetch(
+            `https://www.googleapis.com/books/v1/volumes?q=BestBooksOf2021&key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            return false;
+          }
+          console.log(body.items);
+          setStore({
+            searchGoogle: body.items,
+          });
+        } catch (error) {
+          console.error("There has an error loading GoogleBooks in");
+        }
+      },
       googleBooks: async (nameBook) => {
         try {
           const response = await fetch(

@@ -26,7 +26,7 @@ export const Home = () => {
               onChange={(e) => setSearch(e.target.value)}
               onKeyDown={searchBook}
             />
-            <button>
+            <button onClick={() => actions.googleBooks(search)}>
               <i className="fas fa-search"></i>
             </button>
           </div>

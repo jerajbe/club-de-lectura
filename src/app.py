@@ -57,7 +57,7 @@ def sitemap():
     return send_from_directory(static_file_dir, 'index.html')
 
 # any other endpoint will try to serve it like a static file
-@app.route('/<path:path>', methods=['GET'])
+@app.route('/<path:path>', methods=['GET','POST'])
 def serve_any_other_file(path):
     if not os.path.isfile(os.path.join(static_file_dir, path)):
         path = 'index.html'
