@@ -45,7 +45,7 @@ export const SingleBook = (props) => {
               }`}
             ></i>
             <Button variant="primary" onClick={() => setShow(true)}>
-              More Info
+              More Details
             </Button>
             <Modal
               show={show}
