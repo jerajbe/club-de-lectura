@@ -27,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // headers: {
       //   "Content-Type": "application/json",
       // },
+      BestBooksYear: [],
       searchGoogle: [],
       favorites: [],
       isOpen: false,
@@ -151,7 +152,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("There has an error login in");
         }
       },
-      carouselBook: async (nameBook) => {
+      carouselBook: async () => {
         try {
           const response = await fetch(
             `https://www.googleapis.com/books/v1/volumes?q=BestBooksOf2021&key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI`,
@@ -168,7 +169,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           console.log(body.items);
           setStore({
-            searchGoogle: body.items,
+            BestBooksYear: body.items,
           });
         } catch (error) {
           console.error("There has an error loading GoogleBooks in");
@@ -191,7 +192,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           console.log(body.items);
           setStore({
-            searchGoogle: body.items,
+            BestBooksYear: body.items,
           });
         } catch (error) {
           console.error("There has an error loading GoogleBooks in");

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import { CarouselHome } from "./CarouselHome";
 import { SingleBook } from "./SingleBook";
 
 export const Home = () => {
@@ -14,10 +15,10 @@ export const Home = () => {
     <>
       <div className="header fondo">
         <div className="row1">
-          <h1>Welcome to Lectur's Club</h1>
+          <h1 style={{ color: "white" }}>Welcome to Lectur's Club</h1>
         </div>
         <div className="row2">
-          <h2>Find your Book</h2>
+          <h2 style={{ color: "white" }}>Find your Book</h2>
           <div className="inputSearch">
             <input
               type="text"
@@ -34,12 +35,65 @@ export const Home = () => {
         </div>
       </div>
       <div className="container">
+        <div className="carouselHome">
+          <div
+            id="carouselExampleCaptions"
+            className="carousel carousel-dark slide d-flex justify-content-center w-75"
+            data-bs-ride="false"
+          >
+            {/* <div className="carousel-inner d-flex justify-content-center h-25 w-50">
+              {search === ""
+                ? actions.carouselBook() &&
+                  store.BestBooksYear &&
+                  store.BestBooksYear.map((book, index) => {
+                    return (
+                      <div
+                        className={`carousel-item w-100 me-0 ${
+                          index < 1 ? "active" : ""
+                        }`}
+                        key={index}
+                      >
+                        <CarouselHome
+                          cover={book.volumeInfo.imageLinks.thumbnail}
+                          key={index}
+                          name={book.volumeInfo.title}
+                        />
+                      </div>
+                    );
+                  })}
+            </div> */}
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
         <div>
-          {store.searchGoogle &&
-            store.searchGoogle.map((book, index) => {
+          {store.BestBooksYear &&
+            store.BestBooksYear.map((book, index) => {
               return (
                 <SingleBook
-                  cover={book.volumeInfo.imageLinks.smallThumbnail}
+                  // cover={book.volumeInfo.imageLinks.thumbnail}
                   key={index}
                   name={book.volumeInfo.title}
                   year={book.volumeInfo.publishedDate}

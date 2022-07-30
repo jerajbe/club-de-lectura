@@ -73,7 +73,7 @@ SingleBook.propTypes = {
   cover: PropTypes.string,
   url: PropTypes.string,
   authors: PropTypes.array,
-  rating: PropTypes.number,
-  created_editions: PropTypes.number,
-  year: PropTypes.number,
+  rating: PropTypes.string,
+  created_editions: PropTypes.string,
+  year: PropTypes.string,
 };
