@@ -40,38 +40,41 @@ export const Home = () => {
         </div>
       </div>
       <div className="container">
-        <div className="carouselHome">
-          <div
-            id="carouselExampleCaptions"
-            className="carousel carousel-dark slide d-flex justify-content-center w-75"
-            data-bs-ride="false"
-          >
-            {/* {} */}
+        {store.searchGoogle.length <= 0 ? (
+          <div className="carouselHome">
             <div
-              id="carouselExampleSlidesOnly"
-              className="carousel slide"
-              data-ride="carousel"
+              id="carouselExampleCaptions"
+              className="carousel carousel-dark slide d-flex justify-content-center w-75"
+              data-bs-ride="false"
             >
-              <div className="carousel-inner">
-                {store.bestBooksYear &&
-                  store.bestBooksYear.map((book, index) => {
-                    let thumbnail =
-                      book.volumeInfo.imageLinks &&
-                      book.volumeInfo.imageLinks.thumbnail;
-                    return (
-                      <div
-                        key={index}
-                        className={`carousel-item ${index < 1 ? "active" : ""}`}
-                      >
-                        <CarouselHome cover={thumbnail} />
-                      </div>
-                    );
-                  })}
+              {/* {} */}
+              <div
+                id="carouselExampleSlidesOnly"
+                className="carousel slide"
+                data-ride="carousel"
+              >
+                <div className="carousel-inner">
+                  {store.bestBooksYear &&
+                    store.bestBooksYear.map((book, index) => {
+                      let thumbnail =
+                        book.volumeInfo.imageLinks &&
+                        book.volumeInfo.imageLinks.thumbnail;
+                      return (
+                        <div
+                          key={index}
+                          className={`carousel-item ${
+                            index < 1 ? "active" : ""
+                          }`}
+                        >
+                          <CarouselHome cover={thumbnail} />
+                        </div>
+                      );
+                    })}
+                </div>
               </div>
-            </div>
-            {/* {} */}
-            {/* {} */}
-            {/* <div className="carousel-inner d-flex justify-content-center h-25 w-50">
+              {/* {} */}
+              {/* {} */}
+              {/* <div className="carousel-inner d-flex justify-content-center h-25 w-50">
               {store.BestBooksYear &&
                 store.BestBooksYear.map((book, index) => {
                   let thumbnail =
@@ -93,32 +96,35 @@ export const Home = () => {
                   );
                 })}
             </div> */}
-            <button
-              className="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button
-              className="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="visually-hidden">Next</span>
-            </button>
+              <button
+                className="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev"
+              >
+                <span
+                  className="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span className="visually-hidden">Previous</span>
+              </button>
+              <button
+                className="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next"
+              >
+                <span
+                  className="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span className="visually-hidden">Next</span>
+              </button>
+            </div>
           </div>
-        </div>
+        ) : (
+          ""
+        )}
         <div className="d-flex row row-cols-1 row-cols-md-4 g-4">
           {store.searchGoogle &&
             store.searchGoogle.map((book, index) => {
