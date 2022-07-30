@@ -102,7 +102,7 @@ export const Home = () => {
             </button>
           </div>
         </div>
-        <div>
+        <div className="d-flex row row-cols-1 row-cols-md-4 g-4">
           {store.searchGoogle &&
             store.searchGoogle.map((book, index) => {
               let thumbnail =
