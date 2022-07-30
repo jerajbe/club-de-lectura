@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { CarouselHome } from "./CarouselHome";
 import { SingleBook } from "./SingleBook";
@@ -6,11 +6,43 @@ import { SingleBook } from "./SingleBook";
 export const Home = () => {
   const [search, setSearch] = useState("");
   const { store, actions } = useContext(Context);
-  const searchBook = (e) => {
+  useEffect(() => {
+    actions.carouselBook();
+  }, []);
+
+  const searchBook = () => {
     if (e.key == "Enter") {
       actions.googleBooks(search);
     }
   };
+  const carouselFunc = (e) => {
+    if (e.key == "Enter") {
+      return (
+        store.BestBooksYear &&
+        store.BestBooksYear.map((book, index) => {
+          return (
+            <div
+              className={`carousel-item w-100 me-0 ${
+                index < 1 ? "active" : ""
+              }`}
+              key={index}
+            >
+              <CarouselHome
+                cover={
+                  book.volumeInfo.imageLinks.thumbnail === undefined
+                    ? book.volumeInfo.imageLinks.smallThumbnail
+                    : false
+                }
+                key={index}
+                name={book.volumeInfo.title}
+              />
+            </div>
+          );
+        })
+      );
+    }
+  };
+
   return (
     <>
       <div className="header fondo">
@@ -41,27 +73,9 @@ export const Home = () => {
             className="carousel carousel-dark slide d-flex justify-content-center w-75"
             data-bs-ride="false"
           >
-            {/* <div className="carousel-inner d-flex justify-content-center h-25 w-50">
-              {search === ""
-                ? actions.carouselBook() &&
-                  store.BestBooksYear &&
-                  store.BestBooksYear.map((book, index) => {
-                    return (
-                      <div
-                        className={`carousel-item w-100 me-0 ${
-                          index < 1 ? "active" : ""
-                        }`}
-                        key={index}
-                      >
-                        <CarouselHome
-                          cover={book.volumeInfo.imageLinks.thumbnail}
-                          key={index}
-                          name={book.volumeInfo.title}
-                        />
-                      </div>
-                    );
-                  })}
-            </div> */}
+            <div className="carousel-inner d-flex justify-content-center h-25 w-50">
+              {searchBook}
+            </div>
             <button
               className="carousel-control-prev"
               type="button"
@@ -89,8 +103,8 @@ export const Home = () => {
           </div>
         </div>
         <div>
-          {store.BestBooksYear &&
-            store.BestBooksYear.map((book, index) => {
+          {store.searchGoogle &&
+            store.searchGoogle.map((book, index) => {
               return (
                 <SingleBook
                   // cover={book.volumeInfo.imageLinks.thumbnail}

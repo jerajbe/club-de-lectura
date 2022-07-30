@@ -3,8 +3,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
-import { DetailedBook } from "./DetailedBook";
 import { Comments } from "./Comments";
+import { DetailedBook } from "./DetailedBook";
 
 export const SingleBook = (props) => {
   const [show, setShow] = useState(false);
@@ -58,8 +58,56 @@ export const SingleBook = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="modal-body " id="ModalBook">
-            <Comments />
+          <DetailedBook />
+          <div className="container bootdey">
+            <div className="col-md-12 bootstrap snippets">
+              <div className="panel">
+                <div className="panel-body">
+                  <textarea
+                    className="form-control"
+                    rows="2"
+                    placeholder="What are you thinking?"
+                  ></textarea>
+                  <div className="mar-top clearfix">
+                    <button
+                      className="btn btn-sm btn-primary pull-right"
+                      type="submit"
+                    >
+                      <i className="fa fa-pencil fa-fw"></i> Share
+                    </button>
+                    <a
+                      style={{ color: "black" }}
+                      className="btn btn-trans btn-icon fa fa-video-camera add-tooltip"
+                      href="#"
+                    ></a>
+                    <a
+                      style={{ color: "black" }}
+                      className="btn btn-trans btn-icon fa fa-camera add-tooltip"
+                      href="#"
+                    ></a>
+                    <a
+                      style={{ color: "black" }}
+                      className="btn btn-trans btn-icon fa fa-file add-tooltip"
+                      href="#"
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="panel"
+                style={{
+                  backgroundColor: "grey",
+                  borderRadius: "10px",
+                  border: "1px solid white",
+                }}
+              >
+                <div className="panel-body">
+                  {/* <!-- Newsfeed Content -->
+    <!--===================================================--> */}
+                  <Comments />
+                </div>
+              </div>
+            </div>
           </div>
         </Modal.Body>
       </Modal>

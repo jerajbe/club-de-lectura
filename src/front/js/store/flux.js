@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // headers: {
       //   "Content-Type": "application/json",
       // },
-      BestBooksYear: [],
+      bestBooksYear: [],
       searchGoogle: [],
       favorites: [],
       isOpen: false,
@@ -169,7 +169,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           console.log(body.items);
           setStore({
-            BestBooksYear: body.items,
+            bestBooksYear: body.items,
           });
         } catch (error) {
           console.error("There has an error loading GoogleBooks in");
@@ -192,7 +192,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           console.log(body.items);
           setStore({
-            BestBooksYear: body.items,
+            searchGoogle: body.items,
           });
         } catch (error) {
           console.error("There has an error loading GoogleBooks in");

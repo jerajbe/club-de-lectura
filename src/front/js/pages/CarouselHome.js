@@ -18,12 +18,12 @@ export const CarouselHome = (props) => {
 };
 
 CarouselHome.propTypes = {
-  book_id: PropTypes.number,
+  book_id: PropTypes.string,
   name: PropTypes.string,
   cover: PropTypes.string,
   url: PropTypes.string,
   authors: PropTypes.array,
-  rating: PropTypes.number,
+  rating: PropTypes.string,
   created_editions: PropTypes.number,
   year: PropTypes.number,
 };
