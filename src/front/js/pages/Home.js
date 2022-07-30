@@ -105,9 +105,12 @@ export const Home = () => {
         <div>
           {store.searchGoogle &&
             store.searchGoogle.map((book, index) => {
+              let thumbnail =
+                book.volumeInfo.imageLinks &&
+                book.volumeInfo.imageLinks.smallThumbnail;
               return (
                 <SingleBook
-                  cover={book.volumeInfo.imageLinks.smallThumbnail}
+                  cover={thumbnail}
                   key={index}
                   name={book.volumeInfo.title}
                   year={book.volumeInfo.publishedDate}
