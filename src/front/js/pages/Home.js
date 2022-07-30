@@ -15,33 +15,6 @@ export const Home = () => {
       actions.googleBooks(search);
     }
   };
-  const carouselFunc = (e) => {
-    if (e.key == "Enter") {
-      return (
-        store.BestBooksYear &&
-        store.BestBooksYear.map((book, index) => {
-          return (
-            <div
-              className={`carousel-item w-100 me-0 ${
-                index < 1 ? "active" : ""
-              }`}
-              key={index}
-            >
-              <CarouselHome
-                cover={
-                  book.volumeInfo.imageLinks.thumbnail === undefined
-                    ? book.volumeInfo.imageLinks.smallThumbnail
-                    : false
-                }
-                key={index}
-                name={book.volumeInfo.title}
-              />
-            </div>
-          );
-        })
-      );
-    }
-  };
 
   return (
     <>
@@ -73,9 +46,53 @@ export const Home = () => {
             className="carousel carousel-dark slide d-flex justify-content-center w-75"
             data-bs-ride="false"
           >
-            <div className="carousel-inner d-flex justify-content-center h-25 w-50">
-              {searchBook}
+            {/* {} */}
+            <div
+              id="carouselExampleSlidesOnly"
+              className="carousel slide"
+              data-ride="carousel"
+            >
+              <div className="carousel-inner">
+                {store.bestBooksYear &&
+                  store.bestBooksYear.map((book, index) => {
+                    let thumbnail =
+                      book.volumeInfo.imageLinks &&
+                      book.volumeInfo.imageLinks.thumbnail;
+                    return (
+                      <div
+                        key={index}
+                        className={`carousel-item ${index < 1 ? "active" : ""}`}
+                      >
+                        <CarouselHome cover={thumbnail} />
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
+            {/* {} */}
+            {/* {} */}
+            {/* <div className="carousel-inner d-flex justify-content-center h-25 w-50">
+              {store.BestBooksYear &&
+                store.BestBooksYear.map((book, index) => {
+                  let thumbnail =
+                    book.volumeInfo.imageLinks &&
+                    book.volumeInfo.imageLinks.smallThumbnail;
+                  return (
+                    <div
+                      className={`carousel-item ${
+                        index < 1 ? "active" : ""
+                      } w-100 `}
+                      key={index}
+                    >
+                      <CarouselHome
+                        cover={thumbnail}
+                        key={index}
+                        name={book.volumeInfo.title}
+                      />
+                    </div>
+                  );
+                })}
+            </div> */}
             <button
               className="carousel-control-prev"
               type="button"
