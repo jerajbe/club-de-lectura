@@ -178,7 +178,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       googleBooks: async (nameBook) => {
         try {
           const response = await fetch(
-            `https://www.googleapis.com/books/v1/volumes?q=${nameBook}&key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI`,
+            `https://www.googleapis.com/books/v1/volumes?q=${nameBook}&key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI&maxResults=40`,
             {
               method: "GET",
               headers: {
