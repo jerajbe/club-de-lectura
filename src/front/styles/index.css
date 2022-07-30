@@ -1,4 +1,4 @@
-/* Fondos */ 
+/* Fondos */
 
 .fondo {
   background: #17181c;
@@ -8,27 +8,16 @@
   background: #17181c;
 }
 
-/* Botones inicio de sesion */ 
+/* subrayado titulo*/
 
-.boton--login  {
-  color:#ffa260;--hover:#e5ff60
-}
-.boton--login {color:var(--color);transition:.25s}
-.boton--login :focus,button:hover{border-color:var(--hover);color:#fff}
-.boton--login {background:0 0;border:2px solid;font:inherit;line-height:1;margin:.5em;padding:0.2em 1em}
-
-
-
-
-
-.h1--login {
+.span--titulo {
   display: inline-block;
   position: relative;
   --green: #e5ff60;
 }
 
-.h1--login:after {
-  content: '';
+.span--titulo:after {
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -40,7 +29,81 @@
   transition: transform 0.6s ease-out;
 }
 
-.h1--login:hover:after {
+.span--titulo:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+
+
+/*  nav  [es transparente :)] */
+
+.barra--nav {
+  background-color: transparent !important;
+}
+
+
+/* Botones nav  */
+
+.button {
+  position: relative;
+  padding: 0.5em 1em;
+  border: none;
+  background-color: transparent;
+  outline: 0;
+  margin: 1em 0.8em;
+}
+.button.type1 {
+  color: white;
+}
+.button.type1.type1::after,
+.button.type1.type1::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  border: 2px solid;
+  transition: all 0.6s ease;
+  border-radius: 2px;
+}
+.button.type1.type1::after {
+  bottom: 0;
+  right: 0;
+  border-color: transparent #e5ff60 #e5ff60 transparent;
+}
+.button.type1.type1::before {
+  top: 0;
+  left: 0;
+  border-color: #e5ff60 transparent transparent #e5ff60;
+}
+.button.type1.type1:hover:after,
+.button.type1.type1:hover:before {
+  width: 100%;
+  height: 100%;
+}
+
+/* Botones inicio de sesion */
+
+
+.boton--login {
+  color: #ffa260;
+  --hover: #e5ff60;
+}
+.boton--login {
+  color: var(--color);
+  transition: 0.25s;
+}
+.boton--login :focus,
+button:hover {
+  border-color: var(--hover);
+  color: #fff;
+}
+.boton--login {
+  background: 0 0;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 0.2em 1em;
 }
