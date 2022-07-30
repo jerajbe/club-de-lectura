@@ -10,7 +10,7 @@ export const Home = () => {
     actions.carouselBook();
   }, []);
 
-  const searchBook = () => {
+  const searchBook = (e) => {
     if (e.key == "Enter") {
       actions.googleBooks(search);
     }
@@ -107,7 +107,7 @@ export const Home = () => {
             store.searchGoogle.map((book, index) => {
               return (
                 <SingleBook
-                  // cover={book.volumeInfo.imageLinks.thumbnail}
+                  cover={book.volumeInfo.imageLinks.smallThumbnail}
                   key={index}
                   name={book.volumeInfo.title}
                   year={book.volumeInfo.publishedDate}
