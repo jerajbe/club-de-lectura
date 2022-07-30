@@ -16,35 +16,32 @@ export const SignUp = () => {
   }, [store.token]);
 
   return (
-    <div
-      style={{ height: "100vh" }}
-      className="container flex-column d-flex align-items-center justify-content-center"
-    >
-      <div className="row my-2">
-        <h1 className="justify-content-center">Sign Up</h1>
-        <form>
-          <input
-            for="exampleInputEmail1"
-            type={"text"}
-            name={"email"}
-            className="form-control"
-            value={email}
-            placeholder={"email"}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+      <form className="formulario">
+      <h1>Sing Up</h1>
+      <div className="content">
+          <div className="input-contenedor">
+          <i className="fas fa-envelope icon"></i>
+          <input 
+          type={"text"}
+          name={"email"}
+          value={email}
+          placeholder={"email"}
+          onChange={(e) => setEmail(e.target.value)}/>
+      </div>
+     <div className="input-contenedor">
+          <i className="fas fa-key icon"></i>
           <input
             type={"password"}
             name={"password"}
-            className="form-control"
             value={password}
             placeholder={"password"}
             onChange={(e) => setPassword(e.target.value)}
-          />
-        </form>
-        <div className="row">
+          />    
+      </div>
+          
           <button
             type={"button"}
-            className={"btn btn-primary"}
+            className="buttonSU"
             onClick={(e) => {
               const success = actions.signUp({
                 email: email,
@@ -54,13 +51,16 @@ export const SignUp = () => {
                 navigate("/login");
                 return;
               }
-              alert("something happened while creating the user.");
+              alert("Favor introducir sus datos");
             }}
           >
             {"Sign Up"}
           </button>
-        </div>
+          <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+          <p>¿Ya tienes una cuenta? <a className="link" href="">Inicia Sesión </a></p>
       </div>
-    </div>
+      </form>
+
+
   );
 };

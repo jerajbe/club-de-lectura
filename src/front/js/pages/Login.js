@@ -22,28 +22,41 @@ export const Login = () => {
     navigate("/private");
 
   return (
-    <div className="text-center mt-5">
-      <h1 className="text-white">Login</h1>
+    
+    <form className="formulario">
+    <h1>Login </h1>
+    <div className="content">
+    
       {store.token && store.token != "" && store.token != undefined ? (
         "you are logged in with" + store.token
       ) : (
-        <div>
+      <>
+        <div className="input-contenedor">
+          <i className="fas fa-key icon"/>
           <input
             type="text"
             placeholder="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            value={password}
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button className="boton--login text-white" onClick={handleClick}>Login</button>
+           />
         </div>
+        <div className="input-contenedor">
+          <i className="fas fa-key icon"/>  
+            <input
+              type="password"
+              value={password}
+              placeholder="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div> 
+        
+        <button className="buttonSU" onClick={handleClick}>Login</button>
+        </>
       )}
       {store.loginError && <p>{store.loginError}</p>}
-    </div>
+      <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+      <p>¿No tienes una cuenta? <a className="link" > Registrate </a></p>
+      </div>
+    </form>
   );
 };
