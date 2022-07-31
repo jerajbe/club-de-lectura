@@ -131,19 +131,21 @@ export const Home = () => {
               let thumbnail =
                 book.volumeInfo.imageLinks &&
                 book.volumeInfo.imageLinks.smallThumbnail;
-              return (
-                <SingleBook
-                  description={book.volumeInfo.description}
-                  cover={thumbnail}
-                  key={index}
-                  name={book.volumeInfo.title}
-                  year={book.volumeInfo.publishedDate}
-                  authors={book.volumeInfo.authors}
-                  rating={book.volumeInfo.lenguage}
-                  url={book.previewLink}
-                  created_edit={book.publisher}
-                />
-              );
+              if (thumbnail != undefined) {
+                return (
+                  <SingleBook
+                    description={book.volumeInfo.description}
+                    cover={thumbnail}
+                    key={index}
+                    name={book.volumeInfo.title}
+                    year={book.volumeInfo.publishedDate}
+                    authors={book.volumeInfo.authors}
+                    rating={book.volumeInfo.lenguage}
+                    url={book.previewLink}
+                    created_edit={book.publisher}
+                  />
+                );
+              }
             })}
         </div>
       </div>
