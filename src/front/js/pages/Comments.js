@@ -1,15 +1,11 @@
 import React from "react";
-
+import { Avatar } from "@mui/material";
+import PropTypes from "prop-types";
 export const Comments = () => {
   return (
     <div className="media-block d-flex">
       <a className="media-left" href="#">
-        <div className="user-image">
-          <img
-            className="rounded-circle"
-            src="https://gravatar.com/avatar/de84db04b0c7b43efdc840391ffe56ff"
-          />
-        </div>
+        <Avatar alt="Remy Sharp" />
       </a>
       <div className="media-body ms-3">
         <div className="mar-btm d-flex">
@@ -54,4 +50,15 @@ export const Comments = () => {
       </div>
     </div>
   );
+};
+
+Comments.propTypes = {
+  book_id: PropTypes.number,
+  name: PropTypes.string,
+  cover: PropTypes.string,
+  url: PropTypes.string,
+  authors: PropTypes.array,
+  rating: PropTypes.string,
+  created_editions: PropTypes.string,
+  year: PropTypes.string,
 };

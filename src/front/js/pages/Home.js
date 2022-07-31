@@ -133,6 +133,7 @@ export const Home = () => {
                 book.volumeInfo.imageLinks.smallThumbnail;
               return (
                 <SingleBook
+                  description={book.volumeInfo.description}
                   cover={thumbnail}
                   key={index}
                   name={book.volumeInfo.title}

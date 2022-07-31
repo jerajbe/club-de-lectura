@@ -8,15 +8,15 @@ export const DetailedBook = (props) => {
     <div className="modal-body" id="ModalBook">
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-4">.col-md-4</div>
+          <div className="col-md-4">{props.name}</div>
           <div className="col-md-4 ml-auto">.col-md-4 .ml-auto</div>
         </div>
         <div className="row">
           <div className="col-md-3 ml-auto">.col-md-3 .ml-auto</div>
-          <div className="col-md-2 ml-auto">.col-md-2 .ml-auto</div>
+          <div className="col-md-2 ml-auto">{props.cover}</div>
         </div>
         <div className="row">
-          <div className="col-md-6 ml-auto">.col-md-6 .ml-auto</div>
+          <div className="col-md-6 ml-auto">{props.description}</div>
         </div>
         <div className="row">
           <div className="col-sm-9">
@@ -33,6 +33,7 @@ export const DetailedBook = (props) => {
 };
 
 DetailedBook.propTypes = {
+  description: PropTypes.string,
   book_id: PropTypes.number,
   name: PropTypes.string,
   cover: PropTypes.string,

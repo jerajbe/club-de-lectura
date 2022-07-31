@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { Comments } from "./Comments";
 import { DetailedBook } from "./DetailedBook";
+import { Avatar } from "@mui/material";
 
 export const SingleBook = (props) => {
   const [show, setShow] = useState(false);
@@ -59,7 +60,37 @@ export const SingleBook = (props) => {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <DetailedBook />
+                <div className="modal-body" id="ModalBook">
+                  <div className="container-fluid">
+                    <div className="row">
+                      <div className="col-md-4">{props.name}</div>
+                      <div className="col-md-4 ml-auto">.col-md-4 .ml-auto</div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-3 ml-auto">.col-md-3 .ml-auto</div>
+                      <div className="col-md-2 ml-auto">{props.cover}</div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6 ml-auto">
+                        {props.description}
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-sm-9">
+                        Level 1: .col-sm-9
+                        <div className="row">
+                          <div className="col-8 col-sm-6">
+                            Level 2: .col-8 .col-sm-6
+                          </div>
+                          <div className="col-4 col-sm-6">
+                            Level 2: .col-4 .col-sm-6
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* {aqui termina la info del libro modal} */}
                 <div className="container bootdey">
                   <div className="col-md-12 bootstrap snippets">
                     <div className="panel">
@@ -120,6 +151,7 @@ export const SingleBook = (props) => {
 };
 
 SingleBook.propTypes = {
+  description: PropTypes.string,
   book_id: PropTypes.number,
   name: PropTypes.string,
   cover: PropTypes.string,
