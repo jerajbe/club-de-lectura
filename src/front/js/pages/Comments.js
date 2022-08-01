@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar } from "@mui/material";
 import PropTypes from "prop-types";
-export const Comments = () => {
+export const Comments = (props) => {
   return (
     <div className="media-block d-flex">
       <a className="media-left" href="#">
@@ -13,18 +13,13 @@ export const Comments = () => {
             href="#"
             className="btn-link text-semibold media-heading box-inline"
           >
-            Lisa D.
+            {props.userName}
           </a>
           <p style={{ marginLeft: "20px" }} className="text-muted text-sm">
             {" 11 min ago"}
           </p>
         </div>
-        <p style={{ color: "white" }}>
-          consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-          ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim
-          veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
-          ut aliquip ex ea commodo consequat.
-        </p>
+        <p style={{ color: "white" }}>{props.commentContent}</p>
         <div className="pad-ver">
           <div className="btn-group">
             <a className="btn btn-sm btn-default btn-hover-success" href="#">
@@ -54,11 +49,7 @@ export const Comments = () => {
 
 Comments.propTypes = {
   book_id: PropTypes.number,
-  name: PropTypes.string,
-  cover: PropTypes.string,
+  userName: PropTypes.string,
+  commentContent: PropTypes.string,
   url: PropTypes.string,
-  authors: PropTypes.array,
-  rating: PropTypes.string,
-  created_editions: PropTypes.string,
-  year: PropTypes.string,
 };

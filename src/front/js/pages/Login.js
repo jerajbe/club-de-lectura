@@ -19,43 +19,48 @@ export const Login = () => {
   };
 
   if (store.token && store.token != "" && store.token != undefined)
-    navigate("/private");
+    navigate("/");
 
   return (
-    
     <form className="formulario">
-    <h1>Login </h1>
-    <div className="content">
-    
-      {store.token && store.token != "" && store.token != undefined ? (
-        "you are logged in with" + store.token
-      ) : (
-      <>
-        <div className="input-contenedor">
-          <i className="fas fa-key icon"/>
-          <input
-            type="text"
-            placeholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-           />
-        </div>
-        <div className="input-contenedor">
-          <i className="fas fa-key icon"/>  
-            <input
-              type="password"
-              value={password}
-              placeholder="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div> 
-        
-        <button className="buttonSU" onClick={handleClick}>Login</button>
-        </>
-      )}
-      {store.loginError && <p>{store.loginError}</p>}
-      <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-      <p>¿No tienes una cuenta? <a className="link" > Registrate </a></p>
+      <h1>Login </h1>
+      <div className="content">
+        {store.token && store.token != "" && store.token != undefined ? (
+          "you are logged in with" + store.token
+        ) : (
+          <>
+            <div className="input-contenedor">
+              <i className="fas fa-key icon" />
+              <input
+                type="text"
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="input-contenedor">
+              <i className="fas fa-key icon" />
+              <input
+                type="password"
+                value={password}
+                placeholder="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <button className="buttonSU" onClick={handleClick}>
+              Login
+            </button>
+          </>
+        )}
+        {store.loginError && <p>{store.loginError}</p>}
+        <p>
+          Al registrarte, aceptas nuestras Condiciones de uso y Política de
+          privacidad.
+        </p>
+        <p>
+          ¿No tienes una cuenta? <a className="link"> Registrate </a>
+        </p>
       </div>
     </form>
   );
