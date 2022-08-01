@@ -56,11 +56,16 @@ def handle_users():
     new_user = User(user_name, email, password)
     return jsonify(new_user.serialize()), 201
 
-@api.route('/users', methods=['GET'])
-def get_users():
-    users = User.query.all()
-    usersSerial = users.serialize()
-    return jsonify(usersSerial), 200
+@api.route('/users/<int:user_id>', methods=['GET'])
+def get_users(user_id):
+    user = User.query.filter_by(id=user_id).one_or_none()
+    # userSerialize = list(map(
+    #     lambda user: user.serialize(),
+    #     users
+    # ))
+    if user is None:
+        return jsonify("usuario no existe"), 404
+    return jsonify(user.serialize()), 200
 
 @api.route('/users/favorites', methods=['GET'])
 def get_favorites():

@@ -14,9 +14,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    actions.login(user_name, password).then(() => {
-      actions.login(user_name, password);
-    });
+    actions.login(user_name, password);
   };
 
   if (store.token && store.token != "" && store.token != undefined)
@@ -58,7 +56,7 @@ export const Login = () => {
               />
             </div>
 
-            <button className="buttonSU" onClick={handleClick}>
+            <button className="buttonSU" type="button" onClick={handleClick}>
               Login
             </button>
           </>
