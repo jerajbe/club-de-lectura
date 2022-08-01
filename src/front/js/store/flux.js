@@ -5,9 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       // headers: {
       //   "Content-Type": "application/json",
       // },
-      comment: "",
-      comments: "",
-      users: [],
+      comments: [],
+      userName: "",
       bestBooksYear: [],
       searchGoogle: [],
       favorites: [],
@@ -31,12 +30,33 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
     },
     actions: {
+      getMessage: async () => {
+        const store = getStore();
+        try {
+          const opts = {
+            headers: {
+              Authorization: "Bearer " + store.token,
+            },
+          };
+          // fetching data from the backend
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/comment",
+            opts
+          );
+          const data = await resp.json();
+          setStore({ message: data.message });
+          // don't forget to return something, that is how the async resolves
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
       addComent: async (element) => {
         const store = getStore();
         const comments = store.comment;
         console.log(comments);
         setStore({
-          coment: element,
+          coment: [...comments, element],
         });
       },
       deleteFavoriteElement: async (element) => {
@@ -124,7 +144,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       signUp: async (requestBody) => {
         try {
-          if (requestBody.password == "" || requestBody.email == "")
+          if (
+            (requestBody.userName == "",
+            requestBody.password == "" || requestBody.email == "")
+          )
             return false;
           const response = await fetch(process.env.BACKEND_URL + "/api/users", {
             method: "POST",
@@ -199,7 +222,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Log Out");
         setStore({ token: null });
       },
-      login: async (email, password) => {
+      login: async (userName, password) => {
         const opts = {
           // mode: "no-cors",
           method: "POST",
@@ -207,7 +230,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: email,
+            userName: userName,
             password: password,
           }),
         };

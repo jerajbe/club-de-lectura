@@ -15,12 +15,12 @@ api = Blueprint('app', __name__)
 
 @api.route("/token", methods=["POST"])
 def create_token():
-    email = request.json.get("email", None)
+    user_name = request.json.get("user_name", None)
     password = request.json.get("password", None)
     # if email is None or password is None: return jsonify(
     #     "revise el payload de su solicitud"
     # ), 400
-    user =  User.query.filter_by(email = email, password=password).one_or_none()
+    user =  User.query.filter_by(user_name=user_name, password=password).one_or_none()
     if user is None:
         return jsonify({"msg": "Bad username or password"}), 401
     access_token = create_access_token(identity=user.id)
@@ -37,21 +37,22 @@ def add_comment():
 @api.route("/private", methods=['GET', 'POST'])
 @jwt_required()
 def get_hello():
-    email = get_jwt_identity()
+    user_name = get_jwt_identity()
     dictionary = {
-        "message":f"hello world {email}"
+        "message":f"hello world {user_name}"
     }
     return jsonify(dictionary), 200
 
 @api.route("/users", methods=["POST"])
 def handle_users():
     body = request.json
+    user_name = body["user_name"] if "user_name" in body else None
     email = body["email"] if "email" in body else None
     password = body["password"] if "password" in body else None
     if email is None or password is None: return jsonify(
         "Ningun valor puede ser nulo"
     ), 400
-    new_user = User(email, password)
+    new_user = User(user_name, email, password)
     return jsonify(new_user.serialize()), 201
 
 @api.route('/users/favorites', methods=['GET'])

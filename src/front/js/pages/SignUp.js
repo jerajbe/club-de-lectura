@@ -7,28 +7,44 @@ import { useEffect } from "react";
 
 export const SignUp = () => {
   const { store, actions } = useContext(Context);
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (store.token != null) navigate("/private");
+    if (store.token != null) navigate("/");
   }, [store.token]);
 
   return (
-      <form className="formulario">
+    <form className="formulario">
       <h1>Sing Up</h1>
       <div className="content">
-          <div className="input-contenedor">
+        <div className="input-contenedor">
+          <i
+            style={{ color: "#999", marginLeft: "17px" }}
+            className="fas fa-address-card"
+          ></i>
+          <input
+            style={{ marginLeft: "12px" }}
+            type={"text"}
+            name={"userName"}
+            value={userName}
+            placeholder={"User Name"}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
+        <div className="input-contenedor">
           <i className="fas fa-envelope icon"></i>
-          <input 
-          type={"text"}
-          name={"email"}
-          value={email}
-          placeholder={"email"}
-          onChange={(e) => setEmail(e.target.value)}/>
-      </div>
-     <div className="input-contenedor">
+          <input
+            type={"text"}
+            name={"email"}
+            value={email}
+            placeholder={"email"}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="input-contenedor">
           <i className="fas fa-key icon"></i>
           <input
             type={"password"}
@@ -36,31 +52,38 @@ export const SignUp = () => {
             value={password}
             placeholder={"password"}
             onChange={(e) => setPassword(e.target.value)}
-          />    
-      </div>
-          
-          <button
-            type={"button"}
-            className="buttonSU"
-            onClick={(e) => {
-              const success = actions.signUp({
-                email: email,
-                password: password,
-              });
-              if (success && email != "" && password != "") {
-                navigate("/login");
-                return;
-              }
-              alert("Favor introducir sus datos");
-            }}
-          >
-            {"Sign Up"}
-          </button>
-          <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-          <p>¿Ya tienes una cuenta? <a className="link" href="">Inicia Sesión </a></p>
-      </div>
-      </form>
+          />
+        </div>
 
-
+        <button
+          type={"button"}
+          className="buttonSU"
+          onClick={(e) => {
+            const success = actions.signUp({
+              userName: userName,
+              email: email,
+              password: password,
+            });
+            if (success && userName != "" && email != "" && password != "") {
+              navigate("/login");
+              return;
+            }
+            alert("Favor introducir sus datos");
+          }}
+        >
+          {"Sign Up"}
+        </button>
+        <p>
+          Al registrarte, aceptas nuestras Condiciones de uso y Política de
+          privacidad.
+        </p>
+        <p>
+          ¿Ya tienes una cuenta?{" "}
+          <a className="link" href="">
+            Inicia Sesión{" "}
+          </a>
+        </p>
+      </div>
+    </form>
   );
 };

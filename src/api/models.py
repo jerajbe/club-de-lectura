@@ -11,13 +11,15 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     comment = db.relationship("Comment", back_populates="user")
     favorite_books = db.relationship("FavoriteBooks", back_populates="user")
 
-    def __init__(self, email, password):
+    def __init__(self, user_name, email, password):
+        self.user_name = user_name
         self.email = email
         self.password = password
         self.is_active = False
@@ -25,11 +27,12 @@ class User(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<User {self.user_name}>'
 
     def serialize(self):
         return {
             "id": self.id,
+            "user_name": self.user_name,
             "email": self.email,
             "is_active": self.is_active
             # do not serialize the password, its a security breach

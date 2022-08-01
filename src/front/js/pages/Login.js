@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,8 +14,8 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    actions.login(email, password).then(() => {
-      actions.login(email, password);
+    actions.login(userName, email, password).then(() => {
+      actions.login(userName, email, password);
     });
   };
 
@@ -33,9 +34,9 @@ export const Login = () => {
               <i className="fas fa-key icon" />
               <input
                 type="text"
-                placeholder="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="userName"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
               />
             </div>
             <div className="input-contenedor">
