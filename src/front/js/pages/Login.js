@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
   const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   // console.log("this is your token", token);
   const navigate = useNavigate();
@@ -42,6 +42,15 @@ export const Login = () => {
             <div className="input-contenedor">
               <i className="fas fa-key icon" />
               <input
+                type="text"
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="input-contenedor">
+              <i className="fas fa-key icon" />
+              <input
                 type="password"
                 value={password}
                 placeholder="password"
@@ -60,7 +69,10 @@ export const Login = () => {
           privacidad.
         </p>
         <p>
-          ¿No tienes una cuenta? <a className="link"> Registrate </a>
+          ¿No tienes una cuenta?{" "}
+          <Link to="/sign-up">
+            <a className="link"> Registrate </a>
+          </Link>
         </p>
       </div>
     </form>

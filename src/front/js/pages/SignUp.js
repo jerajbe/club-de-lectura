@@ -4,6 +4,7 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const SignUp = () => {
   const { store, actions } = useContext(Context);
@@ -58,9 +59,9 @@ export const SignUp = () => {
         <button
           type={"button"}
           className="buttonSU"
-          onClick={(e) => {
+          onClick={() => {
             const success = actions.signUp({
-              userName: userName,
+              user_name: userName,
               email: email,
               password: password,
             });
@@ -79,9 +80,11 @@ export const SignUp = () => {
         </p>
         <p>
           ¿Ya tienes una cuenta?{" "}
-          <a className="link" href="">
-            Inicia Sesión{" "}
-          </a>
+          <Link to="/login">
+            <a className="link" href="">
+              Inicia Sesión{" "}
+            </a>
+          </Link>
         </p>
       </div>
     </form>

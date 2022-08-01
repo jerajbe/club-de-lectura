@@ -6,7 +6,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       //   "Content-Type": "application/json",
       // },
       comments: [],
-      userName: "",
       bestBooksYear: [],
       searchGoogle: [],
       favorites: [],
@@ -130,14 +129,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("There has an error loading 15 most popular books");
         }
       },
-      syncTokenFromSessionStore: () => {
-        const token = sessionStorage.getItem("token");
-        console.log(
-          "Aplication just loaded, synching the session storage token"
-        );
-        if (token && token != "" && token != undefined)
-          setStore({ token: token });
-      },
+      // syncTokenFromSessionStore: () => {
+      //   const token = sessionStorage.getItem("token");
+      //   console.log(
+      //     "Aplication just loaded, synching the session storage token"
+      //   );
+      //   if (token && token != "" && token != undefined)
+      //     setStore({ token: token });
+      // },
       // Use getActions to call a function within a fuction
       exampleFunction: () => {
         getActions().changeColor(0, "green");
@@ -145,11 +144,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       signUp: async (requestBody) => {
         try {
           if (
-            (requestBody.userName == "",
-            requestBody.password == "" || requestBody.email == "")
+            requestBody.user_name == "" ||
+            requestBody.email == "" ||
+            requestBody.password == ""
           )
             return false;
           const response = await fetch(process.env.BACKEND_URL + "/api/users", {
+            mode: "no-cors",
             method: "POST",
             body: JSON.stringify(requestBody),
             headers: {
@@ -222,7 +223,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Log Out");
         setStore({ token: null });
       },
-      login: async (userName, password) => {
+      login: async (userName, email, password) => {
         const opts = {
           // mode: "no-cors",
           method: "POST",
@@ -231,6 +232,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           body: JSON.stringify({
             userName: userName,
+            email: email,
             password: password,
           }),
         };
