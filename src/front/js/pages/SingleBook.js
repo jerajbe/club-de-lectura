@@ -31,7 +31,6 @@ export const SingleBook = (props) => {
           <div className="d-flex justify-content-around">
             <i
               style={{
-                color: "red",
                 position: "relative",
                 marginLeft: "5px",
                 fontSize: "40px",
@@ -41,8 +40,8 @@ export const SingleBook = (props) => {
                   props.name
                 ); /* setIsFavorite(!isFavorite)*/
               }}
-              className={`fas ${
-                isFavorite(props.name) ? "fa-heart" : "fa-heart-circle-plus"
+              className={`${
+                isFavorite(props.name) ? "fas fa-thumbs-up" : "far fa-thumbs-up"
               }`}
             ></i>
             <Button variant="primary" onClick={() => setShow(true)}>
