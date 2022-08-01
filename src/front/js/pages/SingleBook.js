@@ -60,32 +60,25 @@ export const SingleBook = (props) => {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <div className="modal-body" id="ModalBook">
-                  <div className="container-fluid">
-                    <div className="row">
-                      <div className="col-md-4">{props.name}</div>
-                      <div className="col-md-4 ml-auto">.col-md-4 .ml-auto</div>
+                <div className="card mb-3" style={{ maxWidth: "540px" }}>
+                  <div className="row g-0">
+                    <div className="col-md-4">
+                      <img
+                        src={props.cover}
+                        alt={props.name}
+                        className="img-fluid rounded-start"
+                      />
+                      <ul className="list-group">
+                        <li className="list-group-item">{`Authors: ${props.authors}`}</li>
+                        <li className="list-group-item">
+                          {`Year: ${props.year}`}
+                        </li>
+                        <li className="list-group-item">{`Language: ${props.rating}`}</li>
+                      </ul>
                     </div>
-                    <div className="row">
-                      <div className="col-md-3 ml-auto">.col-md-3 .ml-auto</div>
-                      <div className="col-md-2 ml-auto">{props.cover}</div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6 ml-auto">
-                        {props.description}
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-sm-9">
-                        Level 1: .col-sm-9
-                        <div className="row">
-                          <div className="col-8 col-sm-6">
-                            Level 2: .col-8 .col-sm-6
-                          </div>
-                          <div className="col-4 col-sm-6">
-                            Level 2: .col-4 .col-sm-6
-                          </div>
-                        </div>
+                    <div className="col-md-8">
+                      <div className="card-body">
+                        <p className="card-text">{props.description}</p>
                       </div>
                     </div>
                   </div>
