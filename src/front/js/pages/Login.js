@@ -6,16 +6,16 @@ import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
-  const [userName, setUserName] = useState("");
+  const [user_name, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
 
   // console.log("this is your token", token);
   const navigate = useNavigate();
 
   const handleClick = () => {
-    actions.login(userName, email, password).then(() => {
-      actions.login(userName, email, password);
+    actions.login(user_name, password).then(() => {
+      actions.login(user_name, password);
     });
   };
 
@@ -34,12 +34,12 @@ export const Login = () => {
               <i className="fas fa-key icon" />
               <input
                 type="text"
-                placeholder="userName"
-                value={userName}
+                placeholder="User name"
+                value={user_name}
                 onChange={(e) => setUserName(e.target.value)}
               />
             </div>
-            <div className="input-contenedor">
+            {/* <div className="input-contenedor">
               <i className="fas fa-key icon" />
               <input
                 type="text"
@@ -47,7 +47,7 @@ export const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
+            </div> */}
             <div className="input-contenedor">
               <i className="fas fa-key icon" />
               <input

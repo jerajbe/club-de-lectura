@@ -16,12 +16,12 @@ api = Blueprint('app', __name__)
 @api.route("/token", methods=["POST"])
 def create_token():
     user_name = request.json.get("user_name", None)
-    email = request.json.get("email", None)
+    # email = request.json.get("email", None)
     password = request.json.get("password", None)
     # if email is None or password is None: return jsonify(
     #     "revise el payload de su solicitud"
     # ), 400
-    user =  User.query.filter_by(user_name=user_name, email=email, password=password).one_or_none()
+    user =  User.query.filter_by(user_name=user_name, password=password).one_or_none()
     if user is None:
         return jsonify({"msg": "Bad username or password"}), 401
     access_token = create_access_token(identity=user.id)

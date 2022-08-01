@@ -59,7 +59,7 @@ export const SignUp = () => {
         <button
           type={"button"}
           className="buttonSU"
-          onClick={() => {
+          onClick={(e) => {
             const success = actions.signUp({
               user_name: userName,
               email: email,

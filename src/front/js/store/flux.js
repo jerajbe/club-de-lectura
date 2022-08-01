@@ -144,13 +144,12 @@ const getState = ({ getStore, getActions, setStore }) => {
       signUp: async (requestBody) => {
         try {
           if (
-            requestBody.user_name == "" ||
+            requestBody.password == "" ||
             requestBody.email == "" ||
-            requestBody.password == ""
+            requestBody.userName == ""
           )
             return false;
           const response = await fetch(process.env.BACKEND_URL + "/api/users", {
-            mode: "no-cors",
             method: "POST",
             body: JSON.stringify(requestBody),
             headers: {
@@ -223,7 +222,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Log Out");
         setStore({ token: null });
       },
-      login: async (userName, email, password) => {
+      login: async (userName, password) => {
         const opts = {
           // mode: "no-cors",
           method: "POST",
@@ -231,8 +230,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            userName: userName,
-            email: email,
+            user_name: userName,
             password: password,
           }),
         };
