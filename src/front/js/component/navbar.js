@@ -8,7 +8,7 @@ export const Navbar = () => {
     <nav className="navbar navbar-light bg-success barra--nav">
       <div className="container">
         <Link to="/" className="navbar-brand mb-0 h1 text-light span--titulo">
-          Club de Lectura
+          Lecture´s Club
         </Link>
         <div className="ml-auto">
           {/* renderizado condicional cuando esta iniciada la sesion */}
@@ -26,7 +26,7 @@ export const Navbar = () => {
           ) : (
             <button
               onClick={() => actions.logout()}
-              className="btn s button type1"
+              className="btn button type1"
             >
               Log Out
             </button>

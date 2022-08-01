@@ -56,6 +56,12 @@ def handle_users():
     new_user = User(user_name, email, password)
     return jsonify(new_user.serialize()), 201
 
+@api.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    usersSerial = users.serialize()
+    return jsonify(usersSerial), 200
+
 @api.route('/users/favorites', methods=['GET'])
 def get_favorites():
     books = FavoriteBooks.query.all()
