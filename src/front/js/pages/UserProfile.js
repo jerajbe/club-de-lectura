@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { Context } from "../store/appContext";
 import { PropTypes } from "prop-types";
 import { MapComponent } from "./MapComponent";
+import { useParams } from "react-router-dom";
 
-export const UserProfile = () => {
+export const UserProfile = (props) => {
+  const { store, actions } = useContext(Context);
+  const userId = useParams();
+  useEffect(() => {
+    console.log(userId.id);
+    actions.getSingleUser(userId.id);
+  }, []);
   return (
     <>
-      <h1 style={{ color: "white" }}>Username</h1>
+      <h1 style={{ color: "white" }}>{store.singleUser.user_name}</h1>
       <div className="container">
         <div className="main-body">
           <div className="row gutters-sm">
@@ -20,7 +28,7 @@ export const UserProfile = () => {
                       width="150"
                     />
                     <div className="mt-3">
-                      <h4>Full Name</h4>
+                      <h4>{store.singleUser.user_name}</h4>
                       <p className="text-secondary mb-1">Profesion</p>
                       <p className="text-muted font-size-sm">Location</p>
                       <button className="btn btn-primary">Follow</button>
@@ -284,4 +292,9 @@ export const UserProfile = () => {
       </div>
     </>
   );
+};
+
+UserProfile.propTypes = {
+  user_id: PropTypes.string,
+  user_name: PropTypes.string,
 };

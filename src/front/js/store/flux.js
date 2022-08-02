@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // headers: {
       //   "Content-Type": "application/json",
       // },
+      singleUser: [],
       comments: [],
       bestBooksYear: [],
       searchGoogle: [],
@@ -29,6 +30,31 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
     },
     actions: {
+      getSingleUser: async (user_id) => {
+        try {
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/api/users/${"1"}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(),
+            }
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            alert("No pudimos cargar los planetas");
+            return;
+          }
+          console.log(body);
+          setStore({
+            singleUser: body,
+          });
+        } catch (error) {
+          alert("promesa rechazada, servidor caido");
+        }
+      },
       getMessage: async () => {
         const store = getStore();
         try {
@@ -79,31 +105,31 @@ const getState = ({ getStore, getActions, setStore }) => {
           isOpen: !this.state.isOpen,
         });
       },
-      search: async (inputValue) => {
-        const options = {
-          method: "GET",
-          headers: {
-            "X-RapidAPI-Key": getStore().rapidApiKey,
-            "X-RapidAPI-Host": "hapi-books.p.rapidapi.com",
-          },
-        };
-        try {
-          const response = await fetch(
-            `https://hapi-books.p.rapidapi.com/search/${inputValue}`,
-            options
-          );
-          const body = await response.json();
-          if (response.status !== 200) {
-            return false;
-          }
-          console.log(body);
-          setStore({
-            searchBody: body,
-          });
-        } catch (error) {
-          console.error("There has an error login in");
-        }
-      },
+      // search: async (inputValue) => {
+      //   const options = {
+      //     method: "GET",
+      //     headers: {
+      //       "X-RapidAPI-Key": getStore().rapidApiKey,
+      //       "X-RapidAPI-Host": "hapi-books.p.rapidapi.com",
+      //     },
+      //   };
+      //   try {
+      //     const response = await fetch(
+      //       `https://hapi-books.p.rapidapi.com/search/${inputValue}`,
+      //       options
+      //     );
+      //     const body = await response.json();
+      //     if (response.status !== 200) {
+      //       return false;
+      //     }
+      //     console.log(body);
+      //     setStore({
+      //       searchBody: body,
+      //     });
+      //   } catch (error) {
+      //     console.error("There has an error login in");
+      //   }
+      // },
       mostPopular: async () => {
         const options = {
           method: "GET",
