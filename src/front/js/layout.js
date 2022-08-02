@@ -12,6 +12,7 @@ import { Search } from "./pages/Search";
 import { SingleBook } from "./pages/SingleBook";
 import { Comments } from "./pages/Comments";
 import { UserProfile } from "./pages/UserProfile";
+import { Wrapper } from "@googlemaps/react-wrapper";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -20,23 +21,25 @@ const Layout = () => {
 
   return (
     <div className="fondo">
-      <BrowserRouter basename={basename}>
-        <ScrollToTop>
-          <Navbar />
-          <Routes>
-            <Route element={<Comments />} path="/comments" />
-            <Route element={<SingleBook />} path="/modal" />
-            <Route element={<Search />} path="/search" />
-            <Route element={<Private />} path="/private" />
-            <Route element={<Home />} path="/" />
-            <Route element={<Login />} path="/login" />
-            <Route element={<SignUp />} path="/sign-up" />
-            <Route element={<UserProfile />} path="/user-profile" />
-            <Route element={<h1>Not found!</h1>} />
-          </Routes>
-          <Footer />
-        </ScrollToTop>
-      </BrowserRouter>
+      <Wrapper apiKey={"AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI"}>
+        <BrowserRouter basename={basename}>
+          <ScrollToTop>
+            <Navbar />
+            <Routes>
+              <Route element={<Comments />} path="/comments" />
+              <Route element={<SingleBook />} path="/modal" />
+              <Route element={<Search />} path="/search" />
+              <Route element={<Private />} path="/private" />
+              <Route element={<Home />} path="/" />
+              <Route element={<Login />} path="/login" />
+              <Route element={<SignUp />} path="/sign-up" />
+              <Route element={<UserProfile />} path="/user-profile" />
+              <Route element={<h1>Not found!</h1>} />
+            </Routes>
+            <Footer />
+          </ScrollToTop>
+        </BrowserRouter>
+      </Wrapper>
     </div>
   );
 };

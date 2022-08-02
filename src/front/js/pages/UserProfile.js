@@ -1,5 +1,6 @@
 import React from "react";
 import { PropTypes } from "prop-types";
+import { MapComponent } from "./MapComponent";
 
 export const UserProfile = () => {
   return (
@@ -261,63 +262,18 @@ export const UserProfile = () => {
                         <i className="material-icons text-info mr-2">
                           assignment
                         </i>
-                        Project Status
+                        Location
                       </h6>
-                      <small>Web Design</small>
-                      <div className="progress mb-3" style={{ height: "5px" }}>
-                        <div
-                          className="progress-bar bg-primary"
-                          role="progressbar"
-                          style={{ width: "80%" }}
-                          aria-valuenow="80"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                      <small>Website Markup</small>
-                      <div className="progress mb-3" style={{ height: "5px" }}>
-                        <div
-                          className="progress-bar bg-primary"
-                          role="progressbar"
-                          style={{ width: "72%" }}
-                          aria-valuenow="72"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                      <small>One Page</small>
-                      <div className="progress mb-3" style={{ height: "5px" }}>
-                        <div
-                          className="progress-bar bg-primary"
-                          role="progressbar"
-                          style={{ width: "89%" }}
-                          aria-valuenow="89"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div className="progress mb-3" style={{ height: "5px" }}>
-                        <div
-                          className="progress-bar bg-primary"
-                          role="progressbar"
-                          style={{ width: "55%" }}
-                          aria-valuenow="55"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div className="progress mb-3" style={{ height: "5px" }}>
-                        <div
-                          className="progress-bar bg-primary"
-                          role="progressbar"
-                          style={{ width: "66%" }}
-                          aria-valuenow="66"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
+                      <MapComponent
+                        center={{
+                          lat: 10.491,
+                          lng: -66.902,
+                        }}
+                        zoom={12}
+                        style={{
+                          margin: "0 0 1.5rem 0",
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
