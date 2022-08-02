@@ -79,12 +79,7 @@ export const SignUp = () => {
           privacidad.
         </p>
         <p>
-          ¿Ya tienes una cuenta?{" "}
-          <Link to="/login">
-            <a className="link" href="">
-              Inicia Sesión{" "}
-            </a>
-          </Link>
+          ¿Ya tienes una cuenta? <Link to="/login">Inicia Sesión </Link>
         </p>
       </div>
     </form>

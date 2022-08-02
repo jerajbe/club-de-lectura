@@ -41,7 +41,7 @@ export const Home = () => {
           <img src="https://img.freepik.com/vector-premium/libreria-biblioteca-libreria-bestseller-estilo-dibujos-animados-ilustracion-vectorial_499431-682.jpg" />
         </div>
       </div>
-      <div className="container">
+      <div className="m-auto container">
         {store.searchGoogle.length <= 0 ? (
           <div className="carouselHome">
             <div

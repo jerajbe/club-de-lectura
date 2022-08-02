@@ -67,6 +67,19 @@ def get_users(user_id):
         return jsonify("usuario no existe"), 404
     return jsonify(user.serialize()), 200
 
+@api.route('/users', methods=['GET'])
+@jwt_required()
+def get_user():
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).one_or_none()
+    # userSerialize = list(map(
+    #     lambda user: user.serialize(),
+    #     users
+    # ))
+    if user is None:
+        return jsonify("usuario no existe"), 404
+    return jsonify(user.serialize()), 200
+
 @api.route('/users/favorites', methods=['GET'])
 def get_favorites():
     books = FavoriteBooks.query.all()

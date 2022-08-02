@@ -30,22 +30,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
     },
     actions: {
-      getSingleUser: async (user_id) => {
-        console.log(user_id);
+      getSingleUser: async () => {
         try {
-          const response = await fetch(
-            `${process.env.BACKEND_URL}/api/users/${user_id}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(),
-            }
-          );
+          const response = await fetch(`${process.env.BACKEND_URL}/api/users`, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${getStore().token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(),
+          });
           const body = await response.json();
           if (response.status !== 200) {
-            alert("No pudimos cargar los planetas");
+            alert("No pudimos cargar los usuarios");
             return;
           }
           console.log(body);

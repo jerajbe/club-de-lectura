@@ -6,11 +6,11 @@ import { useParams } from "react-router-dom";
 
 export const UserProfile = (props) => {
   const { store, actions } = useContext(Context);
-  const userId = useParams();
+  const params = useParams();
   if (store.token && store.token != "" && store.token != undefined)
     useEffect(() => {
-      console.log(userId.id);
-      actions.getSingleUser(userId.id);
+      console.log(params.userId);
+      actions.getSingleUser(params.userId);
     }, []);
   return (
     <>

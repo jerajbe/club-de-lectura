@@ -24,20 +24,17 @@ export const Login = () => {
     <form className="formulario">
       <h1>Login </h1>
       <div className="content">
-        {store.token && store.token != "" && store.token != undefined ? (
-          "you are logged in with" + store.token
-        ) : (
-          <>
-            <div className="input-contenedor">
-              <i className="fas fa-key icon" />
-              <input
-                type="text"
-                placeholder="User name"
-                value={user_name}
-                onChange={(e) => setUserName(e.target.value)}
-              />
-            </div>
-            {/* <div className="input-contenedor">
+        <>
+          <div className="input-contenedor">
+            <i className="fas fa-key icon" />
+            <input
+              type="text"
+              placeholder="User name"
+              value={user_name}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </div>
+          {/* <div className="input-contenedor">
               <i className="fas fa-key icon" />
               <input
                 type="text"
@@ -46,31 +43,27 @@ export const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div> */}
-            <div className="input-contenedor">
-              <i className="fas fa-key icon" />
-              <input
-                type="password"
-                value={password}
-                placeholder="password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+          <div className="input-contenedor">
+            <i className="fas fa-key icon" />
+            <input
+              type="password"
+              value={password}
+              placeholder="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-            <button className="buttonSU" type="button" onClick={handleClick}>
-              Login
-            </button>
-          </>
-        )}
+          <button className="buttonSU" type="button" onClick={handleClick}>
+            Login
+          </button>
+        </>
         {store.loginError && <p>{store.loginError}</p>}
         <p>
           Al registrarte, aceptas nuestras Condiciones de uso y Política de
           privacidad.
         </p>
         <p>
-          ¿No tienes una cuenta?{" "}
-          <Link to="/sign-up">
-            <a className="link"> Registrate </a>
-          </Link>
+          ¿No tienes una cuenta? <Link to="/sign-up">Registrate</Link>
         </p>
       </div>
     </form>

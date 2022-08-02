@@ -32,7 +32,10 @@ export const Navbar = () => {
               >
                 Log Out
               </button>
-              <Link className="ms-5 mt-3 dropdown" to="/user-profile/:user_id">
+              <Link
+                className="ms-5 mt-3 dropdown"
+                to={`/user-profile/${store.singleUser.id}`}
+              >
                 <Avatar />
               </Link>
             </div>
