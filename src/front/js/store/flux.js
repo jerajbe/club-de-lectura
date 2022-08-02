@@ -31,9 +31,10 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
     actions: {
       getSingleUser: async (user_id) => {
+        console.log(user_id);
         try {
           const response = await fetch(
-            `${process.env.BACKEND_URL}/api/users/${"1"}`,
+            `${process.env.BACKEND_URL}/api/users/${user_id}`,
             {
               method: "GET",
               headers: {

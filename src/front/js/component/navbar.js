@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { Avatar } from "@mui/material";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
@@ -24,12 +25,17 @@ export const Navbar = () => {
               <button className="button type1">Log In</button>
             </Link>
           ) : (
-            <button
-              onClick={() => actions.logout()}
-              className="btn button type1"
-            >
-              Log Out
-            </button>
+            <div className="d-flex">
+              <button
+                onClick={() => actions.logout()}
+                className="btn button type1"
+              >
+                Log Out
+              </button>
+              <Link className="ms-5 mt-3 dropdown" to="/user-profile/:user_id">
+                <Avatar />
+              </Link>
+            </div>
           )}
         </div>
       </div>

@@ -7,10 +7,11 @@ import { useParams } from "react-router-dom";
 export const UserProfile = (props) => {
   const { store, actions } = useContext(Context);
   const userId = useParams();
-  useEffect(() => {
-    console.log(userId.id);
-    actions.getSingleUser(userId.id);
-  }, []);
+  if (store.token && store.token != "" && store.token != undefined)
+    useEffect(() => {
+      console.log(userId.id);
+      actions.getSingleUser(userId.id);
+    }, []);
   return (
     <>
       <h1 style={{ color: "white" }}>{store.singleUser.user_name}</h1>
