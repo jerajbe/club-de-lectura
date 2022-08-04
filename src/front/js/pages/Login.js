@@ -26,7 +26,7 @@ export const Login = () => {
       <div className="content">
         <>
           <div className="input-contenedor">
-            <i className="fas fa-key icon" />
+            <i className="fas fa-envelope icon" />
             <input
               type="text"
               placeholder="User name"

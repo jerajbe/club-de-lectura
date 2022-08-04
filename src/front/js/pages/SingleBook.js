@@ -22,31 +22,52 @@ export const SingleBook = (props) => {
     <div className="CardBook d-flex col">
       <div className="card" style={{ width: "18rem" }}>
         <img className="card-img-top" src={props.cover} alt="Card image cap" />
-        <div className="card-body">
-          <div>
-            {props.name && <h5 className="card-title">{props.name}</h5>}
-            {props.authors && <p className="card-text">{props.authors}</p>}
+        <div className="card-body bodyCard">
+          <div className="row">
+            <div className="col-md titulo">
+              {props.name && (
+                <h5 className="card-title text-center titleCard">
+                  {props.name}
+                </h5>
+              )}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md texto">
+              {props.authors && (
+                <p className="card-text textCard">{props.authors}</p>
+              )}
+            </div>
           </div>
           {/* <Link to={`/people/${props.uid}`} className="btn btn-primary">{"DATA BANK"}</Link>{" "} */}
           <div className="d-flex justify-content-around">
-            <i
-              style={{
-                position: "relative",
-                marginLeft: "5px",
-                fontSize: "40px",
-              }}
-              onClick={() => {
-                actions.addFavoriteElement(
-                  props.name
-                ); /* setIsFavorite(!isFavorite)*/
-              }}
-              className={`${
-                isFavorite(props.name) ? "fas fa-thumbs-up" : "far fa-thumbs-up"
-              }`}
-            ></i>
-            <Button variant="primary" onClick={() => setShow(true)}>
-              More Details
-            </Button>
+            {/*<div className="row d-flex justify-content-between">
+              <div className="col-3 align-self-end">
+                <i
+                  style={{
+                    position: "relative",
+                    marginLeft: "5px",
+                    fontSize: "40px",
+                  }}
+                  onClick={() => {
+                    actions.addFavoriteElement(
+                      props.name
+                    ); /* setIsFavorite(!isFavorite)
+                  }}
+                  className={`${
+                    isFavorite(props.name)
+                      ? "fas fa-thumbs-up"
+                      : "far fa-thumbs-up"
+                  }`}
+                ></i>
+              </div>
+              <div className="col-9 align-self-end">
+                <Button variant="primary" onClick={() => setShow(true)}>
+                  More Details
+                </Button>
+              </div>
+            </div>*/}
+
             <Modal
               show={show}
               onHide={() => setShow(false)}
@@ -135,6 +156,32 @@ export const SingleBook = (props) => {
                 </div>
               </Modal.Body>
             </Modal>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div className="row justify-content-between">
+            <div className="col-6 p-0">
+              <i
+                style={{
+                  fontSize: "40px",
+                }}
+                onClick={() => {
+                  actions.addFavoriteElement(
+                    props.name
+                  ); /* setIsFavorite(!isFavorite)*/
+                }}
+                className={`${
+                  isFavorite(props.name)
+                    ? "fas fa-thumbs-up"
+                    : "far fa-thumbs-up"
+                }`}
+              ></i>
+            </div>
+            <div className="col-6 p-0 btnDetails">
+              <Button variant="primary" onClick={() => setShow(true)}>
+                More Details
+              </Button>
+            </div>
           </div>
         </div>
       </div>
