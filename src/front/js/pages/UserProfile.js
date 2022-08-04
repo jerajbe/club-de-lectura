@@ -31,7 +31,9 @@ export const UserProfile = (props) => {
                     <div className="mt-3">
                       <h4>{store.singleUser.user_name}</h4>
                       <p className="text-secondary mb-1">Profesion</p>
-                      <p className="text-muted font-size-sm">Location</p>
+                      <p className="text-muted font-size-sm">
+                        {store.singleUser.address}
+                      </p>
                       <button className="btn btn-primary">Follow</button>
                       <button className="btn btn-outline-primary">
                         Message
@@ -144,7 +146,7 @@ export const UserProfile = (props) => {
                       <h6 className="mb-0">Full Name</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      Kenneth Valdez
+                      {store.singleUser.user_name}
                     </div>
                   </div>
                   <hr />
@@ -152,7 +154,9 @@ export const UserProfile = (props) => {
                     <div className="col-sm-3">
                       <h6 className="mb-0">Email</h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">fip@jukmuh.al</div>
+                    <div className="col-sm-9 text-secondary">
+                      {store.singleUser.email}
+                    </div>
                   </div>
                   <hr />
                   <div className="row">
@@ -160,16 +164,7 @@ export const UserProfile = (props) => {
                       <h6 className="mb-0">Phone</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      (239) 816-9029
-                    </div>
-                  </div>
-                  <hr />
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Mobile</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      (320) 380-4539
+                      {store.singleUser.phone_number}
                     </div>
                   </div>
                   <hr />
@@ -178,21 +173,10 @@ export const UserProfile = (props) => {
                       <h6 className="mb-0">Address</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                      {store.singleUser.address}
                     </div>
                   </div>
                   <hr />
-                  <div className="row">
-                    <div className="col-sm-12">
-                      <a
-                        className="btn btn-info "
-                        target="__blank"
-                        href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills"
-                      >
-                        Edit
-                      </a>
-                    </div>
-                  </div>
                 </div>
               </div>
 

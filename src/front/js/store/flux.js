@@ -1,10 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      // methods: "POST",
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
       singleUser: [],
       comments: [],
       bestBooksYear: [],

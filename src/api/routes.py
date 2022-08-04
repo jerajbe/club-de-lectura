@@ -48,12 +48,14 @@ def get_hello():
 def handle_users():
     body = request.json
     user_name = body["user_name"] if "user_name" in body else None
+    phone_number = body["phone_number"] if "phone_number" in body else None
+    address = body["address"] if "address" in body else None
     email = body["email"] if "email" in body else None
     password = body["password"] if "password" in body else None
     if user_name is None or email is None or password is None: return jsonify(
         "Ningun valor puede ser nulo"
     ), 400
-    new_user = User(user_name, email, password)
+    new_user = User(user_name, phone_number, address, email, password)
     return jsonify(new_user.serialize()), 201
 
 @api.route('/users/<int:user_id>', methods=['GET'])

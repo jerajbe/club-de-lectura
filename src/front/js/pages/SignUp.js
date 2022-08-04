@@ -10,6 +10,8 @@ export const SignUp = () => {
   const { store, actions } = useContext(Context);
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -46,6 +48,26 @@ export const SignUp = () => {
           />
         </div>
         <div className="input-contenedor">
+          <i className="fas fa-envelope icon"></i>
+          <input
+            type={"text"}
+            name={"phone"}
+            value={phone}
+            placeholder={"Phone"}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </div>
+        <div className="input-contenedor">
+          <i className="fas fa-envelope icon"></i>
+          <input
+            type={"text"}
+            name={"address"}
+            value={address}
+            placeholder={"address"}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </div>
+        <div className="input-contenedor">
           <i className="fas fa-key icon"></i>
           <input
             type={"password"}
@@ -62,6 +84,8 @@ export const SignUp = () => {
           onClick={(e) => {
             const success = actions.signUp({
               user_name: userName,
+              phone_number: phone,
+              address: address,
               email: email,
               password: password,
             });
