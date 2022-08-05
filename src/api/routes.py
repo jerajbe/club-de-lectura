@@ -28,12 +28,12 @@ def create_token():
     return jsonify(access_token=access_token), 200
 
 @api.route("/comment", methods=["POST"])
+@jwt_required()
 def add_comment():
-    user_id = request.json.get("user_id", None)
     book_id = request.json.get("book_id", None)
     content = request.json.get("content", None)
-    comment = Comment(user_id, book_id, content)
-
+    comment = Comment(get_jwt_identity(), book_id, content)
+    return comment.serialize(), 201
 
 @api.route("/private", methods=['GET', 'POST'])
 @jwt_required()

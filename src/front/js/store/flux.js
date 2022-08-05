@@ -1,8 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      singleUser: [],
       comments: [],
+      singleUser: [],
+      commentUser: [],
       bestBooksYear: [],
       searchGoogle: [],
       favorites: [],
@@ -49,11 +50,30 @@ const getState = ({ getStore, getActions, setStore }) => {
           alert("promesa rechazada, servidor caido");
         }
       },
-      getMessage: async () => {
+      // getComments: async (element) =>{
+      //   try{
+      //     const options = {
+      //       method: "GET",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       }
+      //     }
+      //     const response = await fetch(`${process.env.BACKEND_URL}/api/users/${element}`, options)
+      //     const data = await response.json()
+      //     setStore({})
+      //   }
+      // },
+      addComment: async (commentBody) => {
         const store = getStore();
         try {
           const opts = {
+            method: "POST",
+            body: {
+              book_id: commentBody.book_id,
+              content: commentBody.content,
+            },
             headers: {
+              "Content-Type": "application/json",
               Authorization: "Bearer " + store.token,
             },
           };
@@ -62,22 +82,25 @@ const getState = ({ getStore, getActions, setStore }) => {
             process.env.BACKEND_URL + "/api/comment",
             opts
           );
-          const data = await resp.json();
-          setStore({ message: data.message });
+          const body = await resp.json();
+          // setStore({ commentUser: [...commentsStore, element] });
           // don't forget to return something, that is how the async resolves
-          return data;
+          return body;
         } catch (error) {
           console.log("Error loading message from backend", error);
         }
       },
-      addComent: async (element) => {
-        const store = getStore();
-        const comments = store.comment;
-        console.log(comments);
-        setStore({
-          coment: [...comments, element],
-        });
-      },
+      // addComent: async (element) => {
+      //   try{
+
+      //   }
+      //   // const store = getStore();
+      //   // const commentsStore = store.comments;
+      //   // console.log(comments);
+      //   // setStore({
+      //   //   comments: [...commentsStore, element],
+      //   // });
+      // },
       deleteFavoriteElement: async (element) => {
         const store = getStore();
         setStore({

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
@@ -17,7 +17,6 @@ export const SingleBook = (props) => {
     }
     return false;
   };
-
   return (
     <div className="CardBook d-flex col">
       <div className="card" style={{ width: "18rem" }}>
@@ -116,25 +115,10 @@ export const SingleBook = (props) => {
                         <div className="mar-top clearfix">
                           <button
                             className="btn btn-sm btn-primary pull-right"
-                            type="submit"
+                            type="button"
                           >
-                            <i className="fa fa-pencil fa-fw"></i> Share
+                            <i className="fa fa-pencil fa-fw"></i> {"Share"}
                           </button>
-                          <a
-                            style={{ color: "black" }}
-                            className="btn btn-trans btn-icon fa fa-video-camera add-tooltip"
-                            href="#"
-                          ></a>
-                          <a
-                            style={{ color: "black" }}
-                            className="btn btn-trans btn-icon fa fa-camera add-tooltip"
-                            href="#"
-                          ></a>
-                          <a
-                            style={{ color: "black" }}
-                            className="btn btn-trans btn-icon fa fa-file add-tooltip"
-                            href="#"
-                          ></a>
                         </div>
                       </div>
                     </div>
@@ -166,9 +150,7 @@ export const SingleBook = (props) => {
                   fontSize: "40px",
                 }}
                 onClick={() => {
-                  actions.addFavoriteElement(
-                    props.name
-                  ); /* setIsFavorite(!isFavorite)*/
+                  actions.addFavoriteElement(props.name);
                 }}
                 className={`${
                   isFavorite(props.name)

@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar } from "@mui/material";
 import PropTypes from "prop-types";
 export const Comments = (props) => {
   return (
     <div className="media-block d-flex">
-      <a className="media-left" href="#">
+      <button className="media-left" href="#">
         <Avatar alt="Remy Sharp" />
-      </a>
+      </button>
       <div className="media-body ms-3">
         <div className="mar-btm d-flex">
           <a
@@ -34,6 +34,7 @@ export const Comments = (props) => {
             </a>
           </div>
           <a
+            type={"button"}
             style={{ color: "black" }}
             className="btn btn-sm btn-default btn-hover-primary"
             href="#"

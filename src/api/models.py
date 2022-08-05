@@ -74,7 +74,7 @@ class Book(db.Model):
     authors = db.Column(db.String(250), nullable=False)
     cover = db.Column(db.String(250), nullable=False)
     year = db.Column(db.String(250), nullable=False)
-    comment = db.relationship("Comment", back_populates="book")
+    comments = db.relationship("Comment", back_populates="book")
     favorite_books = db.relationship("FavoriteBooks", back_populates="book")
 
     def serialize(self):
@@ -84,7 +84,8 @@ class Book(db.Model):
             "rating":self.rating,
             "authors":self.authors,
             "cover":self.cover,
-            "year":self.year
+            "year":self.year,
+            "comments": [c.serialize() for c in self.comments]
         }
 
 class Comment(db.Model):
@@ -92,16 +93,22 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user = db.relationship("User", back_populates="comment")
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    user_name = db.Column(db.String(120), unique=True, nullable=False)
     book_id = db.Column(db.Integer, db.ForeignKey("book.id"))
     content = db.Column(db.String(1500), nullable=False)
-    book = db.relationship("Book", back_populates="comment")
+    book = db.relationship("Book", back_populates="comments")
 
-def serialize(self):
-    return {
-        "id": self.id,
-        "user_name": self.user_name,
-        "content": self.content,
-        "user_id": self.user_id,
-        "book_id": self.book_id
-    }
+    def __init__(self, user_id, book_id, content):
+        self.user_id = user_id
+        self.book_id = book_id
+        self.content = content
+        db.session.add(self)
+        db.session.commit()
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_name": self.user.user_name,
+            "content": self.content,
+            "user_id": self.user_id,
+            "book_id": self.book_id
+        }
