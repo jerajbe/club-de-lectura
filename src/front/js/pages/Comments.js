@@ -13,7 +13,7 @@ export const Comments = (props) => {
             href="#"
             className="btn-link text-semibold media-heading box-inline"
           >
-            {props.userName}
+            {store.singleUser.user_name}
           </a>
           <p style={{ marginLeft: "20px" }} className="text-muted text-sm">
             {" 11 min ago"}

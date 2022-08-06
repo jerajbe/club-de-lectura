@@ -143,7 +143,12 @@ export const SingleBook = (props) => {
                       <div className="panel-body">
                         {/* <!-- Newsfeed Content -->
       <!--===================================================--> */}
-                        <Comments />
+                        {store.commentBody &&
+                          store.commentBody.map((book, index) => {
+                            if (book.google_books_id) {
+                              return <Comments commentContent={comment} />;
+                            }
+                          })}
                       </div>
                     </div>
                   </div>
@@ -182,6 +187,7 @@ export const SingleBook = (props) => {
 };
 
 SingleBook.propTypes = {
+  user_name: PropTypes.string,
   google_books_id: PropTypes.string,
   description: PropTypes.string,
   book_id: PropTypes.number,
