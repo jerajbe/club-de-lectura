@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      commentBody: null,
       comments: [],
       singleUser: [],
       commentUser: [],
@@ -13,18 +14,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       loginError: null,
       token: null,
       message: null,
-      demo: [
-        {
-          title: "FIRST",
-          background: "white",
-          initial: "white",
-        },
-        {
-          title: "SECOND",
-          background: "white",
-          initial: "white",
-        },
-      ],
     },
     actions: {
       getSingleUser: async () => {
@@ -78,6 +67,10 @@ const getState = ({ getStore, getActions, setStore }) => {
               Authorization: "Bearer " + store.token,
             },
           };
+
+          setStore({
+            commentBody: [commentBody.google_books_id, commentBody.content],
+          });
           // fetching data from the backend
           // const resp = await fetch(
           //   process.env.BACKEND_URL + "/api/comment",

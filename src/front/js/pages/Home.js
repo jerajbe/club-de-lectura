@@ -143,7 +143,7 @@ export const Home = () => {
                     name={book.volumeInfo.title}
                     year={book.volumeInfo.publishedDate}
                     authors={book.volumeInfo.authors}
-                    rating={book.volumeInfo.lenguage}
+                    language={book.volumeInfo.language}
                     url={book.previewLink}
                     created_edit={book.publisher}
                   />

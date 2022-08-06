@@ -80,27 +80,28 @@ export const SingleBook = (props) => {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-
-              <div className="card mb-3 border border-0" style={{maxWwidth: "540px"}}>
-                <div className="row border border-0">
-                  <div className="col-md-5">
-                    <img 
-                      src={props.cover}
-                      alt={props.name}
-                      className="img-fluid w-100 h-100"
-                    />
-                  </div>
-                  <div className="col-md-7 overflow-auto">
-                    <div className="card-body border border-0 overflow-auto">
-                      <h5 className="card-title">{`Authors: ${props.authors}`}</h5>
-                      <p className="card-text">{`Year: ${props.year}`}</p>
-                      <p className="card-text">{`Language: ${props.rating}`}</p>
-                      <p className="card-text">{props.description}</p>
+                <div
+                  className="card mb-3 border border-0"
+                  style={{ maxWwidth: "540px" }}
+                >
+                  <div className="row border border-0">
+                    <div className="col-md-5">
+                      <img
+                        src={props.cover}
+                        alt={props.name}
+                        className="img-fluid w-100 h-100"
+                      />
+                    </div>
+                    <div className="col-md-7 overflow-auto">
+                      <div className="card-body border border-0 overflow-auto">
+                        <h5 className="card-title">{`Authors: ${props.authors}`}</h5>
+                        <p className="card-text">{`Year: ${props.year}`}</p>
+                        <p className="card-text">{`Language: ${props.language}`}</p>
+                        <p className="card-text">{props.description}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
 
                 {/*<div className="card mb-3" style={{ maxWidth: "540px" }}>
                   <div className="row g-0">
@@ -218,7 +219,7 @@ SingleBook.propTypes = {
   cover: PropTypes.string,
   url: PropTypes.string,
   authors: PropTypes.array,
-  rating: PropTypes.string,
+  language: PropTypes.string,
   created_editions: PropTypes.string,
   year: PropTypes.string,
 };
