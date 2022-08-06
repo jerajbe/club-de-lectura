@@ -136,6 +136,7 @@ export const Home = () => {
               if (thumbnail != undefined) {
                 return (
                   <SingleBook
+                    google_books_id={book.id}
                     description={book.volumeInfo.description}
                     cover={thumbnail}
                     key={index}

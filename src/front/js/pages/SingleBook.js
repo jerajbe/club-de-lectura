@@ -10,6 +10,7 @@ import { Avatar } from "@mui/material";
 export const SingleBook = (props) => {
   const [show, setShow] = useState(false);
   const { store, actions } = useContext(Context);
+  const [comment, setComment] = useState("");
   const isFavorite = (fav) => {
     const search = store.favorites.find((x) => x == fav);
     if (search) {
@@ -108,12 +109,21 @@ export const SingleBook = (props) => {
                     <div className="panel">
                       <div className="panel-body">
                         <textarea
+                          value={comment}
+                          onChange={(e) => setComment(e.target.value)}
                           className="form-control"
                           rows="2"
                           placeholder="What are you thinking?"
                         ></textarea>
                         <div className="mar-top clearfix">
                           <button
+                            onClick={() =>
+                              actions.addComment({
+                                google_books_id: props.google_books_id,
+                                // book_id: commentBody.book_id,
+                                content: comment,
+                              })
+                            }
                             className="btn btn-sm btn-primary pull-right"
                             type="button"
                           >
@@ -142,7 +152,7 @@ export const SingleBook = (props) => {
             </Modal>
           </div>
         </div>
-        <div class="card-footer">
+        <div className="card-footer">
           <div className="row justify-content-between">
             <div className="col-6 p-0">
               <i
@@ -172,6 +182,7 @@ export const SingleBook = (props) => {
 };
 
 SingleBook.propTypes = {
+  google_books_id: PropTypes.string,
   description: PropTypes.string,
   book_id: PropTypes.number,
   name: PropTypes.string,

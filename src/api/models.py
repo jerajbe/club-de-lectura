@@ -94,11 +94,13 @@ class Comment(db.Model):
     user = db.relationship("User", back_populates="comment")
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     book_id = db.Column(db.Integer, db.ForeignKey("book.id"))
+    google_books_id = db.Column(db.String(120), nullable=False)
     content = db.Column(db.String(1500), nullable=False)
     book = db.relationship("Book", back_populates="comments")
 
-    def __init__(self, user_id, book_id, content):
+    def __init__(self, user_id, google_books_id, book_id, content):
         self.user_id = user_id
+        self.google_books_id = google_books_id
         self.book_id = book_id
         self.content = content
         db.session.add(self)
@@ -110,5 +112,6 @@ class Comment(db.Model):
             "user_name": self.user.user_name,
             "content": self.content,
             "user_id": self.user_id,
+            "google_books_id": self.google_books_id,
             "book_id": self.book_id
         }

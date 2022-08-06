@@ -30,9 +30,10 @@ def create_token():
 @api.route("/comment", methods=["POST"])
 @jwt_required()
 def add_comment():
+    google_books_id = request.json.get("google_books_id")
     book_id = request.json.get("book_id", None)
     content = request.json.get("content", None)
-    comment = Comment(get_jwt_identity(), book_id, content)
+    comment = Comment(get_jwt_identity(), google_books_id, book_id, content)
     return comment.serialize(), 201
 
 @api.route("/private", methods=['GET', 'POST'])

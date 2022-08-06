@@ -69,7 +69,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           const opts = {
             method: "POST",
             body: {
-              book_id: commentBody.book_id,
+              google_books_id: commentBody.google_books_id,
+              // book_id: commentBody.book_id,
               content: commentBody.content,
             },
             headers: {
@@ -78,14 +79,15 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
           };
           // fetching data from the backend
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/comment",
-            opts
-          );
-          const body = await resp.json();
+          // const resp = await fetch(
+          //   process.env.BACKEND_URL + "/api/comment",
+          //   opts
+          // );
+          // const body = await resp.json();
+          console.log(commentBody);
           // setStore({ commentUser: [...commentsStore, element] });
           // don't forget to return something, that is how the async resolves
-          return body;
+          return true;
         } catch (error) {
           console.log("Error loading message from backend", error);
         }
@@ -101,13 +103,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       //   //   comments: [...commentsStore, element],
       //   // });
       // },
-      deleteFavoriteElement: async (element) => {
+      deleteFavoriteElement: (element) => {
         const store = getStore();
         setStore({
           favorites: [...store.favorites].filter((x) => x != element),
         });
       },
-      addFavoriteElement: async (element) => {
+      addFavoriteElement: (element) => {
         const store = getStore();
         const search = store.favorites.find((x) => x == element);
         console.log(search, element);
