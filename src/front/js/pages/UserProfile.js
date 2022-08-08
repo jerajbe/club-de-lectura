@@ -151,8 +151,8 @@ export const UserProfile = (props) => {
                         <Marker
                           draggable={false}
                           position={{
-                            lat: 10.491,
-                            lng: -66.902,
+                            lat: store.userPosition.latitude,
+                            lng: store.userPosition.longitude,
                           }}
                           dragHandler={() => {}}
                         />
