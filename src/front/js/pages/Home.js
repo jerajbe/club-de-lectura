@@ -20,25 +20,30 @@ export const Home = () => {
 
   return (
     <>
-      <div className="header fondo">
+      <div className="header">
         <div className="row1">
           <h1 style={{ color: "white" }}>Welcome to Lectur's Club</h1>
         </div>
-        <div className="row2">
-          <h2 style={{ color: "white" }}>Find your Book</h2>
+        <div className="row2 card slider-frame ">
+          <ul>
+          <li> <img className="card-img-top img--card" src="https://p1.pxfuel.com/preview/781/453/305/book-hands-reading-man.jpg"></img></li>
+          <li> <img className="card-img-top img--card" src="https://mh-1-banco-de-imagen.panthermedia.net/media/media_detail/0025000000/25802000/~grupo-de-personas-leyendo-libros-sagrados_25802815_detail.jpg"></img></li>
+          <li> <img className="card-img-top img--card" src="https://media.thegospelcoalition.org/wp-content/uploads/sites/4/2020/02/31160000/Personas-leyendo-la-Biblia.jpg"></img></li>
+          </ul>
+          <h2 style={{ color: "black" }}>Find your Book</h2>
           <div className="inputSearch">
             <input
+              className="form-control"
               type="text"
               placeholder="Enter your Book Name"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onKeyDown={searchBook}
             />
-            <button onClick={() => actions.googleBooks(search)}>
+            <button onClick={() => actions.googleBooks(search)} className="btn btn-outline-secondary" type="button" id="button-addon2">
               <i className="fas fa-search"></i>
             </button>
           </div>
-          <img src="https://img.freepik.com/vector-premium/libreria-biblioteca-libreria-bestseller-estilo-dibujos-animados-ilustracion-vectorial_499431-682.jpg" />
         </div>
       </div>
       <div className="m-auto container">
@@ -155,3 +160,4 @@ export const Home = () => {
     </>
   );
 };
+
