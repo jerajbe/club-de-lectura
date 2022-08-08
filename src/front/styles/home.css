@@ -13,11 +13,6 @@
   position: relative;
 }
 
-.row2 {
-  position: absolute;
-  right: 150px;
-}
-
 .inputSearch {
   display: flex;
   justify-content: center;
@@ -28,11 +23,7 @@
   text-align: center;
   margin-left: 35px;
 }
-
-
 /* animacion e imagen de card*/
-
-
 .img--card {
   width: 50px;
   height: 110px;

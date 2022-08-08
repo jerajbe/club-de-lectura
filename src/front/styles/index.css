@@ -186,3 +186,8 @@ p {
 .btnDetails {
   padding: 2px;
 }
+.fondoheader {
+  background-color: #3b3b3b;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
