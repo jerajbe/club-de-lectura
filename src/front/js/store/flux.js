@@ -15,6 +15,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       loginError: null,
       token: null,
       message: null,
+      userPosition: {
+        latitude: undefined,
+        longitude: undefined,
+      },
     },
     actions: {
       getSingleUser: async () => {
@@ -348,6 +352,23 @@ const getState = ({ getStore, getActions, setStore }) => {
       //       console.error("WARNING ERROR!", error);
       //     });
       // },
+      getUserPosition: () => {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            let lat = position.coords.latitude;
+            let long = position.coords.longitude;
+            setStore({
+              userPosition: {
+                latitude: lat,
+                longitude: long,
+              },
+            });
+          },
+          function (error) {
+            console.log("error", error);
+          }
+        );
+      },
       changeColor: (index, color) => {
         //get the store
         const store = getStore();

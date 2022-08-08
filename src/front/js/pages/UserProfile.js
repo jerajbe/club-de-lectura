@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { MapComponent } from "./MapComponent";
 import { useParams } from "react-router-dom";
+import { Marker } from "./Marker";
 
 export const UserProfile = (props) => {
   const { store, actions } = useContext(Context);
@@ -141,11 +142,21 @@ export const UserProfile = (props) => {
                           lat: 10.491,
                           lng: -66.902,
                         }}
-                        zoom={12}
+                        zoom={10}
+                        clickHandler={() => {}}
                         style={{
                           margin: "0 0 1.5rem 0",
                         }}
-                      />
+                      >
+                        <Marker
+                          draggable={false}
+                          position={{
+                            lat: store.userPosition.latitude,
+                            lng: store.userPosition.longitude,
+                          }}
+                          dragHandler={() => {}}
+                        />
+                      </MapComponent>
                     </div>
                   </div>
                 </div>
