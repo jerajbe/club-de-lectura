@@ -115,10 +115,10 @@ export const UserProfile = (props) => {
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3">
-                        <i className="material-icons text-info mr-2">
+                        <i className="material-icons text-info me-2">
                           assignment
                         </i>
-                        {"Favorite Books"}
+                        {"Books available to exchange"}
                       </h6>
                       <small>{"Libro 1"}</small>
                       <div
@@ -132,15 +132,13 @@ export const UserProfile = (props) => {
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3">
-                        <i className="material-icons text-info mr-2">
-                          assignment
-                        </i>
-                        Location
+                        <i className="fa-solid fa-location-dot material-icons text-info me-2"></i>
+                        {" Location"}
                       </h6>
                       <MapComponent
                         center={{
-                          lat: 10.491,
-                          lng: -66.902,
+                          lat: store.userPosition.latitude,
+                          lng: store.userPosition.longitude,
                         }}
                         zoom={10}
                         clickHandler={() => {}}
