@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      commentBody: null,
+      bookComments: [],
+      commentBody: [],
       comments: [],
       singleUser: [],
       commentUser: [],
@@ -39,50 +40,60 @@ const getState = ({ getStore, getActions, setStore }) => {
           alert("promesa rechazada, servidor caido");
         }
       },
-      // getComments: async (element) =>{
-      //   try{
-      //     const options = {
-      //       method: "GET",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       }
-      //     }
-      //     const response = await fetch(`${process.env.BACKEND_URL}/api/users/${element}`, options)
-      //     const data = await response.json()
-      //     setStore({})
-      //   }
-      // },
-      addComment: async (commentBody) => {
+      getComments: async (element) => {
+        try {
+          const options = {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/api/comments/${element}`,
+            options
+          );
+          const data = await response.json();
+          console.log(data);
+          // const aux = [
+          //   ...getStore().bookComments,
+          //   {
+
+          //   },
+          // ];
+          setStore({
+            bookComments: data,
+          });
+        } catch (error) {
+          console.log("hubo un error getComments");
+        }
+      },
+      addComment: async (data) => {
+        console.log(data, "linea 56");
         const store = getStore();
         try {
           const opts = {
             method: "POST",
-            body: {
-              google_books_id: commentBody.google_books_id,
-              // book_id: commentBody.book_id,
-              content: commentBody.content,
-            },
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + store.token,
+              Authorization: `Bearer ${store.token}`,
             },
+            body: JSON.stringify(data),
           };
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/comment",
+            opts
+          );
+          const body = await resp.json();
+          // const commentsData = Object.keys()
+          setStore({ commentBody: body });
 
-          setStore({
-            commentBody: [commentBody.google_books_id, commentBody.content],
-          });
+          // getActions().getComments(commentBody.google_books_id);
           // fetching data from the backend
-          // const resp = await fetch(
-          //   process.env.BACKEND_URL + "/api/comment",
-          //   opts
-          // );
-          // const body = await resp.json();
-          console.log(commentBody);
-          // setStore({ commentUser: [...commentsStore, element] });
+          console.log(resp);
           // don't forget to return something, that is how the async resolves
-          return true;
+          // return store.commentBody;
         } catch (error) {
-          console.log("Error loading message from backend", error);
+          console.log("Error loading message from backend ", error);
         }
       },
       // addComent: async (element) => {

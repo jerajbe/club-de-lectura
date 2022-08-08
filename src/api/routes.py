@@ -27,6 +27,18 @@ def create_token():
     access_token = create_access_token(identity=user.id)
     return jsonify(access_token=access_token), 200
 
+@api.route("/comments/<string:google_book_id>", methods=["GET"])
+def get_comments(google_book_id):
+    comment = Comment.query.filter_by(google_books_id=google_book_id).all()
+    if comment is None:
+        return jsonify({"msg":"no hay comentarios"})
+    comments = list(map(
+        lambda comments: comments.serialize(),
+        comment
+    ))
+    print(comments)
+    return jsonify(comments), 201
+
 @api.route("/comment", methods=["POST"])
 @jwt_required()
 def add_comment():
@@ -34,7 +46,8 @@ def add_comment():
     book_id = request.json.get("book_id", None)
     content = request.json.get("content", None)
     comment = Comment(get_jwt_identity(), google_books_id, book_id, content)
-    return comment.serialize(), 201
+    print(comment.serialize())
+    return jsonify(comment.serialize()), 201
 
 @api.route("/private", methods=['GET', 'POST'])
 @jwt_required()

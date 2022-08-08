@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Avatar } from "@mui/material";
 import PropTypes from "prop-types";
+
 export const Comments = (props) => {
   return (
     <div className="media-block d-flex">
@@ -13,7 +14,7 @@ export const Comments = (props) => {
             href="#"
             className="btn-link text-semibold media-heading box-inline"
           >
-            {store.singleUser.user_name}
+            {props.userName}
           </a>
           <p style={{ marginLeft: "20px" }} className="text-muted text-sm">
             {" 11 min ago"}

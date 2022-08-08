@@ -18,6 +18,27 @@ export const SingleBook = (props) => {
     }
     return false;
   };
+  const handleClick = () => {
+    actions.addComment({
+      google_books_id: props.google_books_id,
+      // book_id: commentBody.book_id,
+      content: comment,
+    });
+    // actions.getComments(props.google_books_id);
+  };
+  useEffect(() => {
+    if (show) {
+      console.log("se ejecuto useEffect SingleBook");
+      actions.getComments(props.google_books_id);
+    }
+  }, [show]);
+
+  // useEffect(() => {
+  //   if (store.bookComments) {
+  //     actions.getComments(props.google_books_id);
+  //   }
+  // }, []);
+
   return (
     <div className="CardBook d-flex col">
       <div className="card" style={{ width: "18rem" }}>
@@ -149,13 +170,7 @@ export const SingleBook = (props) => {
                         ></textarea>
                         <div className="mar-top clearfix">
                           <button
-                            onClick={() =>
-                              actions.addComment({
-                                google_books_id: props.google_books_id,
-                                // book_id: commentBody.book_id,
-                                content: comment,
-                              })
-                            }
+                            onClick={handleClick}
                             className="btn btn-sm btn-primary pull-right"
                             type="button"
                           >
@@ -175,10 +190,16 @@ export const SingleBook = (props) => {
                       <div className="panel-body">
                         {/* <!-- Newsfeed Content -->
       <!--===================================================--> */}
-                        {store.commentBody &&
-                          store.commentBody.map((book, index) => {
-                            if (book.google_books_id) {
-                              return <Comments commentContent={comment} />;
+                        {store.bookComments &&
+                          store.bookComments.map((book, index) => {
+                            if (book.google_books_id !== null) {
+                              return (
+                                <Comments
+                                  key={index}
+                                  userName={book.user_name}
+                                  commentContent={book.content}
+                                />
+                              );
                             }
                           })}
                       </div>
