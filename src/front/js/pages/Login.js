@@ -29,7 +29,7 @@ export const Login = () => {
             <i className="fas fa-envelope icon" />
             <input
               type="text"
-              placeholder="User name"
+              placeholder="Username"
               value={user_name}
               onChange={(e) => setUserName(e.target.value)}
             />
@@ -48,7 +48,7 @@ export const Login = () => {
             <input
               type="password"
               value={password}
-              placeholder="password"
+              placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -58,12 +58,9 @@ export const Login = () => {
           </button>
         </>
         {store.loginError && <p>{store.loginError}</p>}
+        <p>By signing up, you agree to our Terms of Use and Privacy Policy.</p>
         <p>
-          Al registrarte, aceptas nuestras Condiciones de uso y Política de
-          privacidad.
-        </p>
-        <p>
-          ¿No tienes una cuenta? <Link to="/sign-up">Registrate</Link>
+          You do not have an account? <Link to="/sign-up">Sign Up</Link>
         </p>
       </div>
     </form>
