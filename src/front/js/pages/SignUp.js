@@ -24,21 +24,18 @@ export const SignUp = () => {
       <h1>Sing Up</h1>
       <div className="content">
         <div className="input-contenedor">
-          <i
-            style={{ color: "#999", marginLeft: "17px" }}
-            className="fas fa-address-card"
-          ></i>
+          <i style={{ color: "#999" }} className="fas fa-address-card ms-3"></i>
           <input
             style={{ marginLeft: "12px" }}
             type={"text"}
             name={"userName"}
             value={userName}
-            placeholder={"User Name"}
+            placeholder={"Username"}
             onChange={(e) => setUserName(e.target.value)}
           />
         </div>
         <div className="input-contenedor">
-          <i className="fas fa-envelope icon"></i>
+          <i className="fas fa-envelope icon" style={{ color: "#999" }}></i>
           <input
             type={"text"}
             name={"email"}
@@ -48,7 +45,7 @@ export const SignUp = () => {
           />
         </div>
         <div className="input-contenedor">
-          <i className="fas fa-envelope icon"></i>
+          <i className="fa-solid fa-phone ms-3" style={{ color: "#999" }}></i>
           <input
             type={"text"}
             name={"phone"}
@@ -58,7 +55,10 @@ export const SignUp = () => {
           />
         </div>
         <div className="input-contenedor">
-          <i className="fas fa-envelope icon"></i>
+          <i
+            className="fa-solid fa-location-dot ms-3"
+            style={{ color: "#999" }}
+          ></i>
           <input
             type={"text"}
             name={"address"}
@@ -68,7 +68,7 @@ export const SignUp = () => {
           />
         </div>
         <div className="input-contenedor">
-          <i className="fas fa-key icon"></i>
+          <i className="fas fa-key icon" style={{ color: "#999" }}></i>
           <input
             type={"password"}
             name={"password"}
@@ -98,12 +98,9 @@ export const SignUp = () => {
         >
           {"Sign Up"}
         </button>
+        <p>By signing up, you agree to our Terms of Use and Privacy Policy.</p>
         <p>
-          Al registrarte, aceptas nuestras Condiciones de uso y Política de
-          privacidad.
-        </p>
-        <p>
-          ¿Ya tienes una cuenta? <Link to="/login">Inicia Sesión </Link>
+          Do you have an account? <Link to="/login">Log in </Link>
         </p>
       </div>
     </form>
