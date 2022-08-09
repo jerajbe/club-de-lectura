@@ -26,12 +26,14 @@ export const Navbar = () => {
             </Link>
           ) : (
             <div className="d-flex">
-              <button
-                onClick={() => actions.logout()}
-                className="btn button type1"
-              >
-                Log Out
-              </button>
+              <Link to="/">
+                <button
+                  onClick={() => actions.logout()}
+                  className="btn button type1"
+                >
+                  Log Out
+                </button>
+              </Link>
               <Link
                 className="ms-5 mt-3 dropdown"
                 to={`/user-profile/${store.singleUser.id}`}
