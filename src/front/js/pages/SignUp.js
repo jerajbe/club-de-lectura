@@ -20,7 +20,7 @@ export const SignUp = () => {
   }, [store.token]);
 
   return (
-    <form className="formulario">
+    <form className="formulario" style={{ marginTop: "50px" }}>
       <h1>Sing Up</h1>
       <div className="content">
         <div className="input-contenedor">
@@ -35,12 +35,16 @@ export const SignUp = () => {
           />
         </div>
         <div className="input-contenedor">
-          <i className="fas fa-envelope icon" style={{ color: "#999" }}></i>
+          <i
+            className="fa-solid fa-envelope ms-3"
+            style={{ color: "#999" }}
+          ></i>
           <input
+            style={{ marginLeft: "10px" }}
             type={"text"}
             name={"email"}
             value={email}
-            placeholder={"email"}
+            placeholder={"Email"}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -63,17 +67,17 @@ export const SignUp = () => {
             type={"text"}
             name={"address"}
             value={address}
-            placeholder={"address"}
+            placeholder={"Address"}
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
         <div className="input-contenedor">
-          <i className="fas fa-key icon" style={{ color: "#999" }}></i>
+          <i class="fa-solid fa-key ms-3" style={{ color: "#999" }}></i>
           <input
             type={"password"}
             name={"password"}
             value={password}
-            placeholder={"password"}
+            placeholder={"Password"}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
