@@ -129,21 +129,50 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
         }
       },
-      addWantReadElement: (element) => {
+      addWantReadElement: async (googleBooksId) => {
         const store = getStore();
-        const search = store.wantRead.find((x) => x == element);
-        console.log(search, element);
-        if (search == undefined) {
-          setStore({
-            wantRead: [...store.wantRead, element],
-          });
+        try {
+          const opts = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${store.token}`,
+            },
+            body: JSON.stringify(googleBooksId),
+          };
+          const resp = await fetch(
+            `${process.env.BACKEND_URL}/api/users/want_read/${googleBooksId}`,
+            opts
+          );
+          const body = await resp.json();
+          // const commentsData = Object.keys()
+          const search = store.wantRead.find((x) => x == googleBooksId);
+          console.log(search, googleBooksId);
+          if (search == undefined) {
+            setStore({ wantRead: body });
+          }
+          // getActions().getComments(commentBody.google_books_id);
+          // fetching data from the backend
+          console.log(resp);
+          // don't forget to return something, that is how the async resolves
+          // return store.commentBody;
+          return resp;
+        } catch (error) {
+          console.log("Error loading message from backend ", error);
         }
-      },
-      toggleModal: async () => {
-        this.setState({
-          isOpen: !this.state.isOpen,
-        });
-      },
+      }, //   const store = getStore();
+      //   const search = store.wantRead.find((x) => x == element);
+      //   console.log(search, element);
+      //   if (search == undefined) {
+      //     setStore({
+      //       wantRead: [...store.wantRead, element],
+      //     });
+      //   }
+      // },
+      // toggleModal: async () => {
+      //   this.setState({
+      //     isOpen: !this.state.isOpen,
+      //   });
       // syncTokenFromSessionStore: () => {
       //   const token = sessionStorage.getItem("token");
       //   console.log(

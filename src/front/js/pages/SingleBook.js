@@ -226,10 +226,10 @@ export const SingleBook = (props) => {
                   fontSize: "30px",
                 }}
                 onClick={() => {
-                  actions.addWantReadElement(props.name);
+                  actions.addWantReadElement(props.google_books_id);
                 }}
                 className={`${
-                  isWantRead(props.name)
+                  isWantRead(props.google_books_id)
                     ? "fa-solid fa-bookmark"
                     : "fa-regular fa-bookmark"
                 }`}

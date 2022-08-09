@@ -145,12 +145,13 @@ def get_want_read():
     return jsonify(want_read_books), 200
 
 @api.route('/users/want_read/<string:google_book_id>', methods=['POST'])
+@jwt_required()
 def add_want_read_book(google_book_id):
     body = request.json
     want_read_books = WantReadBooks(
-            user_id = body["users_id"] if "users_id" in body else None, 
+            get_jwt_identity(), 
             book_id = body["book_id"] if "book_id" in body else None,
-            google_books_id = body["google_books_id"] if "google_books_id" in body else None
+            google_books_id = google_book_id
         )
     db.session.add(want_read_books)
     db.session.commit()
