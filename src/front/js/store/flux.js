@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       singleUser: [],
       commentUser: [],
       bestBooksYear: [],
+      loveBooks: [],
       searchGoogle: [],
       favorites: [],
       isOpen: false,
@@ -132,56 +133,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           isOpen: !this.state.isOpen,
         });
       },
-      // search: async (inputValue) => {
-      //   const options = {
-      //     method: "GET",
-      //     headers: {
-      //       "X-RapidAPI-Key": getStore().rapidApiKey,
-      //       "X-RapidAPI-Host": "hapi-books.p.rapidapi.com",
-      //     },
-      //   };
-      //   try {
-      //     const response = await fetch(
-      //       `https://hapi-books.p.rapidapi.com/search/${inputValue}`,
-      //       options
-      //     );
-      //     const body = await response.json();
-      //     if (response.status !== 200) {
-      //       return false;
-      //     }
-      //     console.log(body);
-      //     setStore({
-      //       searchBody: body,
-      //     });
-      //   } catch (error) {
-      //     console.error("There has an error login in");
-      //   }
-      // },
-      mostPopular: async () => {
-        const options = {
-          method: "GET",
-          headers: {
-            "X-RapidAPI-Key": getStore().rapidApiKey,
-            "X-RapidAPI-Host": "hapi-books.p.rapidapi.com",
-          },
-        };
-        try {
-          const response = await fetch(
-            `https://hapi-books.p.rapidapi.com/month/2022/3`,
-            options
-          );
-          const body = await response.json();
-          if (response.status !== 200) {
-            return false;
-          }
-          console.log(body);
-          setStore({
-            bestsBooks: body,
-          });
-        } catch (error) {
-          console.error("There has an error loading 15 most popular books");
-        }
-      },
       // syncTokenFromSessionStore: () => {
       //   const token = sessionStorage.getItem("token");
       //   console.log(
@@ -237,6 +188,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
         } catch (error) {
           console.error("There has an error loading GoogleBooks in");
+        }
+      },
+      getLoveBooks: async () => {
+        try {
+          const response = await fetch(
+            `https://www.googleapis.com/books/v1/volumes?q=+subject:love&key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            return false;
+          }
+          console.log(body.items);
+          setStore({
+            loveBooks: body.items,
+          });
+        } catch (error) {
+          console.error("There has an error loading love Books");
         }
       },
       googleBooks: async (nameBook) => {

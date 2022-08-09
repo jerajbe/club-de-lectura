@@ -7,6 +7,7 @@ export const Home = () => {
   const [search, setSearch] = useState("");
   const { store, actions } = useContext(Context);
   useEffect(() => {
+    actions.getLoveBooks();
     actions.carouselBook();
     if (store.token && store.token != "" && store.token != undefined)
       actions.getMessage();
@@ -71,66 +72,137 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      {/* CARRUSEL */}
 
-      <div className="container mb-3 mt-3 d-flex justify-content-center align-items-center">
+      <div className="container mb-3 mt-3 d-flex justify-content-around align-items-center">
         {store.searchGoogle.length <= 0 ? (
-          <div className="carouselHome me-4">
-            <div
-              id="carouselExampleCaptions"
-              className="carousel carousel-dark slide d-flex justify-content-center w-100"
-              data-bs-ride="false"
-            >
-              {/* {} */}
-              <div
-                id="carouselExampleSlidesOnly"
-                className="carousel slide"
-                data-ride="carousel"
-              >
-                <div className="carousel-inner">
-                  {store.bestBooksYear &&
-                    store.bestBooksYear.map((book, index) => {
-                      let thumbnail =
-                        book.volumeInfo.imageLinks &&
-                        book.volumeInfo.imageLinks.thumbnail;
-                      return (
-                        <div
-                          key={index}
-                          className={`carousel-item ${
-                            index < 1 ? "active" : ""
-                          }`}
-                        >
-                          <CarouselHome cover={thumbnail} />
-                        </div>
-                      );
-                    })}
+          <>
+            <div className="fondoheader mb-3 mt-3 d-flex justify-content-center align-items-center">
+              <h2 style={{ color: "white" }} className="me-4 ms-3">
+                Best books of 2021
+              </h2>
+              <div className="carouselHome me-4">
+                <div
+                  id="carouselExampleCaptions"
+                  className="carousel carousel-dark slide d-flex justify-content-center w-100"
+                  data-bs-ride="false"
+                >
+                  {/* {} */}
+                  <div
+                    id="carouselExampleSlidesOnly"
+                    className="carousel slide"
+                    data-ride="carousel"
+                  >
+                    <div className="carousel-inner">
+                      {store.bestBooksYear &&
+                        store.bestBooksYear.map((book, index) => {
+                          let thumbnail =
+                            book.volumeInfo.imageLinks &&
+                            book.volumeInfo.imageLinks.thumbnail;
+                          return (
+                            <div
+                              key={index}
+                              className={`carousel-item ${
+                                index < 1 ? "active" : ""
+                              }`}
+                            >
+                              <CarouselHome cover={thumbnail} />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                  <button
+                    className="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      className="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    className="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      className="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Next</span>
+                  </button>
                 </div>
               </div>
-              <button
-                className="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">Previous</span>
-              </button>
-              <button
-                className="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">Next</span>
-              </button>
             </div>
-          </div>
+            {/* LOVE */}
+            <div className="fondoheader mb-3 mt-3 d-flex justify-content-center align-items-center">
+              <h2 style={{ color: "white" }} className="me-4 ms-3">
+                Best books of Love
+              </h2>
+              <div className="carouselHome me-4">
+                <div
+                  id="carouselExampleCaptionsLove"
+                  className="carousel carousel-dark slide d-flex justify-content-center w-100"
+                  data-bs-ride="false"
+                >
+                  {/* {} */}
+                  <div
+                    id="carouselExampleSlidesOnly"
+                    className="carousel slide"
+                    data-ride="carousel"
+                  >
+                    <div className="carousel-inner">
+                      {store.loveBooks &&
+                        store.loveBooks.map((book, index) => {
+                          let thumbnail =
+                            book.volumeInfo.imageLinks &&
+                            book.volumeInfo.imageLinks.thumbnail;
+                          return (
+                            <div
+                              key={index}
+                              className={`carousel-item ${
+                                index < 1 ? "active" : ""
+                              }`}
+                            >
+                              <CarouselHome cover={thumbnail} />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                  <button
+                    className="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselExampleCaptionsLove"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      className="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    className="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExampleCaptionsLove"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      className="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </>
         ) : (
           ""
         )}
@@ -158,9 +230,6 @@ export const Home = () => {
               }
             })}
         </div>
-        <h2 style={{ color: "white" }} className="ms-4">
-          Best books of 2021
-        </h2>
       </div>
     </>
   );
