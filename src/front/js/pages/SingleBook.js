@@ -18,6 +18,13 @@ export const SingleBook = (props) => {
     }
     return false;
   };
+  const isWantRead = (fav) => {
+    const search = store.wantRead.find((x) => x == fav);
+    if (search) {
+      return true;
+    }
+    return false;
+  };
   const handleClick = () => {
     actions.addComment({
       google_books_id: props.google_books_id,
@@ -211,23 +218,40 @@ export const SingleBook = (props) => {
           </div>
         </div>
         <div className="card-footer">
-          <div className="row justify-content-between">
-            <div className="col-6 p-0">
+          <div className="row d-flex justify-content-between align-items-center">
+            {/* LIBRO QUE QUIERO LEER SIGNO DE GUARDAR */}
+            <div className="col-4 p-0">
               <i
                 style={{
-                  fontSize: "40px",
+                  fontSize: "30px",
+                }}
+                onClick={() => {
+                  actions.addWantReadElement(props.name);
+                }}
+                className={`${
+                  isWantRead(props.name)
+                    ? "fa-solid fa-bookmark"
+                    : "fa-regular fa-bookmark"
+                }`}
+              ></i>
+            </div>
+            {/* LIBRO QUE YA LEI Y QUIERO ENVIAR SIGNO AVION */}
+            <div className="col-4 p-0">
+              <i
+                style={{
+                  fontSize: "30px",
                 }}
                 onClick={() => {
                   actions.addFavoriteElement(props.name);
                 }}
                 className={`${
                   isFavorite(props.name)
-                    ? "fas fa-thumbs-up"
-                    : "far fa-thumbs-up"
+                    ? "fa-solid fa-paper-plane"
+                    : "fa-regular fa-paper-plane"
                 }`}
               ></i>
             </div>
-            <div className="col-6 p-0 btnDetails">
+            <div className="col-4 p-0 btnDetails">
               <Button variant="primary" onClick={() => setShow(true)}>
                 More Details
               </Button>

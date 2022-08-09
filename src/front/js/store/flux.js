@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       loveBooks: [],
       searchGoogle: [],
       favorites: [],
+      wantRead: [],
       isOpen: false,
       searchBody: [],
       bestsBooks: [],
@@ -125,6 +126,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         if (search == undefined) {
           setStore({
             favorites: [...store.favorites, element],
+          });
+        }
+      },
+      addWantReadElement: (element) => {
+        const store = getStore();
+        const search = store.wantRead.find((x) => x == element);
+        console.log(search, element);
+        if (search == undefined) {
+          setStore({
+            wantRead: [...store.wantRead, element],
           });
         }
       },

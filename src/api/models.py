@@ -19,6 +19,7 @@ class User(db.Model):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     comment = db.relationship("Comment", back_populates="user")
     favorite_books = db.relationship("FavoriteBooks", back_populates="user")
+    want_read_books = db.relationship("WantReadBooks", back_populates="user")
 
     def __init__(self, user_name, phone_number, address, email, password):
         self.user_name = user_name
@@ -44,6 +45,30 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class WantReadBooks(db.Model):
+    __tablename__ = 'want_read_books'
+    id = db.Column(db.Integer, primary_key=True)
+    user = db.relationship("User", back_populates="want_read_books")
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    book_id = db.Column(db.Integer, db.ForeignKey("book.id"))
+    book_name = db.Column(db.String(250), nullable=True)
+    book = db.relationship("Book", back_populates="want_read_books")
+    google_books_id = db.Column(db.String(250), nullable=False)
+
+    def __init__(self, user_id, book_id, google_books_id):
+        self.user_id = user_id
+        self.book_id = book_id
+        self.google_books_id = google_books_id
+        db.session.add(self)
+        db.session.commit()
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "book_id": self.book_id,
+            "user_id": self.user_id,
+            "google_books_id": self.google_books_id
+        }
 class FavoriteBooks(db.Model):
     __tablename__ = 'favorite_books'
     id = db.Column(db.Integer, primary_key=True)
@@ -76,6 +101,7 @@ class Book(db.Model):
     year = db.Column(db.String(250), nullable=False)
     comments = db.relationship("Comment", back_populates="book")
     favorite_books = db.relationship("FavoriteBooks", back_populates="book")
+    want_read_books = db.relationship("WantReadBooks", back_populates="book")
 
     def serialize(self):
         return {

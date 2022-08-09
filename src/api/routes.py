@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, FavoriteBooks, Comment, Book
+from api.models import db, User, FavoriteBooks, Comment, Book, WantReadBooks
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -134,3 +134,24 @@ def add_favorite_user_planet(book_id):
     db.session.add(favorite)
     db.session.commit()
     return jsonify(favorite.serialize()), 201
+
+@api.route('/users/want_read', methods=['GET'])
+def get_want_read():
+    books = WantReadBooks.query.all()
+    want_read_books = list(map(
+        lambda want_read_books: want_read_books.serialize(),
+        books
+    ))
+    return jsonify(want_read_books), 200
+
+@api.route('/users/want_read/<string:google_book_id>', methods=['POST'])
+def add_want_read_book(google_book_id):
+    body = request.json
+    want_read_books = WantReadBooks(
+            user_id = body["users_id"] if "users_id" in body else None, 
+            book_id = body["book_id"] if "book_id" in body else None,
+            google_books_id = body["google_books_id"] if "google_books_id" in body else None
+        )
+    db.session.add(want_read_books)
+    db.session.commit()
+    return jsonify(want_read_books.serialize()), 201
