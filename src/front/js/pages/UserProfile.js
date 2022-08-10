@@ -53,16 +53,14 @@ export const UserProfile = (props) => {
               </div>
               <div className="card mt-3">
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">
-                      <i
-                        style={{
-                          fontSize: "30px",
-                        }}
-                        className="fa-solid fa-bookmark me-3"
-                      ></i>
-                      {"Books I want to read"}
-                    </h6>
+                  <li className="list-group-item d-flex justify-content-center align-items-center flex-wrap">
+                    <i
+                      style={{
+                        fontSize: "30px",
+                      }}
+                      className="fa-solid fa-bookmark me-3"
+                    ></i>
+                    <h6 className="mb-0">{"Books I want to read"}</h6>
                   </li>
                   {/* AQUI VA EL MAP DE WANT TO READ */}
                   {store.getWantRead &&
@@ -129,16 +127,18 @@ export const UserProfile = (props) => {
               <div className="row gutters-sm">
                 <div className="col-sm-6 mb-3">
                   <div className="card h-100">
-                    <div className="card-body">
-                      <h6 className="d-flex align-items-center mb-3">
-                        <i
-                          style={{
-                            fontSize: "30px",
-                          }}
-                          className="fa-solid fa-paper-plane me-3"
-                        ></i>
+                    <div className="d-flex justify-content-center my-2 align-items-center">
+                      <i
+                        style={{
+                          fontSize: "30px",
+                        }}
+                        className="fa-solid fa-paper-plane me-3"
+                      ></i>
+                      <h6 className="d-flex align-items-center">
                         {"Books available to exchange"}
                       </h6>
+                    </div>
+                    <div className="card-body">
                       <small>{"Libro 1"}</small>
                       <div
                         className="progress mb-3"
@@ -149,11 +149,18 @@ export const UserProfile = (props) => {
                 </div>
                 <div className="col-sm-6 mb-3">
                   <div className="card h-100">
-                    <div className="card-body">
-                      <h6 className="d-flex align-items-center mb-3">
-                        <i className="fa-solid fa-location-dot material-icons text-info me-2"></i>
+                    <div className="d-flex justify-content-center my-2 align-items-center">
+                      <i
+                        style={{
+                          fontSize: "30px",
+                        }}
+                        className="fa-solid fa-location-dot me-2"
+                      ></i>
+                      <h6 className="d-flex align-items-center">
                         {" Location"}
                       </h6>
+                    </div>
+                    <div className="card-body py-0">
                       <MapComponent
                         center={{
                           lat: store.userPosition.latitude,

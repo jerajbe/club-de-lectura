@@ -1,8 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
-  const GOOGLE_KEY = "AIzaSyCTL_qPtBvzIaU6l7-UMvuvz62AYl-8TJQ";
+  const GOOGLE_KEY = "AIzaSyAoVObEHLc3hsJ5Vac6jQKz3n48NnIoeMs";
   return {
     store: {
-      wantReadInfo: [],
       getWantRead: [],
       bookComments: [],
       commentBody: [],
@@ -105,17 +104,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend ", error);
         }
       },
-      // addComent: async (element) => {
-      //   try{
-
-      //   }
-      //   // const store = getStore();
-      //   // const commentsStore = store.comments;
-      //   // console.log(comments);
-      //   // setStore({
-      //   //   comments: [...commentsStore, element],
-      //   // });
-      // },
       deleteFavoriteElement: (element) => {
         const store = getStore();
         setStore({
@@ -148,11 +136,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           const data = await response.json();
           console.log(data);
-          // const aux = [
-          //   ...getStore().bookComments,
-          //   {
-          //   },
-          // ];
           setStore({
             getWantRead: data,
           });
@@ -196,28 +179,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.log("Error loading message from backend ", error);
         }
-      }, //   const store = getStore();
-      //   const search = store.wantRead.find((x) => x == element);
-      //   console.log(search, element);
-      //   if (search == undefined) {
-      //     setStore({
-      //       wantRead: [...store.wantRead, element],
-      //     });
-      //   }
-      // },
-      // toggleModal: async () => {
-      //   this.setState({
-      //     isOpen: !this.state.isOpen,
-      //   });
-      // syncTokenFromSessionStore: () => {
-      //   const token = sessionStorage.getItem("token");
-      //   console.log(
-      //     "Aplication just loaded, synching the session storage token"
-      //   );
-      //   if (token && token != "" && token != undefined)
-      //     setStore({ token: token });
-      // },
-      // Use getActions to call a function within a fuction
+      },
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
@@ -312,29 +274,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("There has an error loading GoogleBooks in");
         }
       },
-      getWantReadInfo: async (googleId) => {
-        try {
-          const response = await fetch(
-            `https://www.googleapis.com/books/v1/volumes/${googleId}?key=${GOOGLE_KEY}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const body = await response.json();
-          if (response.status !== 200) {
-            return false;
-          }
-          console.log(...body.volumeInfo);
-          setStore({
-            wantReadInfo: [...body.volumeInfo],
-          });
-        } catch (error) {
-          console.error("There has an error loading GoogleBooks info");
-        }
-      },
+      // getWantReadInfo: async (googleId) => {
+      //   try {
+      //     const response = await fetch(
+      //       `https://www.googleapis.com/books/v1/volumes/${googleId}?key=${GOOGLE_KEY}`,
+      //       {
+      //         method: "GET",
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //         },
+      //       }
+      //     );
+      //     const body = await response.json();
+      //     if (response.status !== 200) {
+      //       return false;
+      //     }
+      //     console.log(...body.volumeInfo);
+      //     setStore({
+      //       wantReadInfo: [...body.volumeInfo],
+      //     });
+      //   } catch (error) {
+      //     console.error("There has an error loading GoogleBooks info");
+      //   }
+      // },
       syncTokenFromSessionStore: () => {
         const token = sessionStorage.getItem("token");
         console.log(
@@ -400,31 +362,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
-      // handleClick: async () => {
-      //   const opts = {
-      //     methods: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       email: email,
-      //       password: password,
-      //     }),
-      //   };
-      //   try{
-      //     const response = await fetch(process.env.BACKEND_URL + "/api/token")
-      //     const data = await response.json()
-      //     setStore({})
-      //     return data;
-      //   }
-      //     .then((data) => {
-      //       console.log("this came from the backend", data);
-      //       sessionStorage.setItem("token", data.access_token);
-      //     })
-      //     .catch((error) => {
-      //       console.error("WARNING ERROR!", error);
-      //     });
-      // },
       getUserPosition: () => {
         navigator.geolocation.getCurrentPosition(
           function (position) {
