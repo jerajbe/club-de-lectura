@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      getWantRead: [],
       bookComments: [],
       commentBody: [],
       comments: [],
@@ -129,6 +130,33 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
         }
       },
+      getWantReadElement: async () => {
+        try {
+          const options = {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/users/want_read/`,
+            options
+          );
+          const data = await response.json();
+          console.log(data);
+          // const aux = [
+          //   ...getStore().bookComments,
+          //   {
+
+          //   },
+          // ];
+          setStore({
+            getWantRead: data,
+          });
+        } catch (error) {
+          console.log("hubo un error getComments");
+        }
+      },
       addWantReadElement: async (googleBooksId) => {
         const store = getStore();
         try {
@@ -149,7 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           const search = store.wantRead.find((x) => x == googleBooksId);
           console.log(search, googleBooksId);
           if (search == undefined) {
-            setStore({ wantRead: body });
+            setStore({ wantRead: [...store.wantRead, googleBooksId] });
           }
           // getActions().getComments(commentBody.google_books_id);
           // fetching data from the backend
