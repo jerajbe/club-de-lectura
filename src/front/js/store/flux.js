@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+  const GOOGLE_KEY = "AIzaSyCTL_qPtBvzIaU6l7-UMvuvz62AYl-8TJQ";
   return {
     store: {
       wantReadInfo: [],
@@ -132,11 +133,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       getWantReadElement: async () => {
+        const store = getStore();
         try {
           const options = {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${store.token}`,
             },
           };
           const response = await fetch(
@@ -148,18 +151,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           // const aux = [
           //   ...getStore().bookComments,
           //   {
-
           //   },
           // ];
           setStore({
             getWantRead: data,
           });
         } catch (error) {
-          console.log("hubo un error getComments");
+          console.log("hubo un error getWantReadElement");
         }
       },
-      addWantReadElement: async (googleBooksId) => {
+      addWantReadElement: async (googleBooksId, cover, name) => {
         const store = getStore();
+        const auxObject = {
+          google_books_id: googleBooksId,
+          book_cover: cover,
+          book_name: name,
+        };
         try {
           const opts = {
             method: "POST",
@@ -167,7 +174,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               "Content-Type": "application/json",
               Authorization: `Bearer ${store.token}`,
             },
-            body: JSON.stringify(googleBooksId),
+            body: JSON.stringify(auxObject),
           };
           const resp = await fetch(
             `${process.env.BACKEND_URL}/api/users/want_read/${googleBooksId}`,
@@ -239,7 +246,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       carouselBook: async () => {
         try {
           const response = await fetch(
-            `https://www.googleapis.com/books/v1/volumes?q=BestBooksOf2021&key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI`,
+            `https://www.googleapis.com/books/v1/volumes?q=BestBooksOf2021&key=${GOOGLE_KEY}`,
             {
               method: "GET",
               headers: {
@@ -262,7 +269,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       getLoveBooks: async () => {
         try {
           const response = await fetch(
-            `https://www.googleapis.com/books/v1/volumes?q=+subject:love&key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI`,
+            `https://www.googleapis.com/books/v1/volumes?q=+subject:love&key=${GOOGLE_KEY}`,
             {
               method: "GET",
               headers: {
@@ -285,7 +292,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       googleBooks: async (nameBook) => {
         try {
           const response = await fetch(
-            `https://www.googleapis.com/books/v1/volumes?q=${nameBook}&key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI&maxResults=40`,
+            `https://www.googleapis.com/books/v1/volumes?q=${nameBook}&key=${GOOGLE_KEY}`,
             {
               method: "GET",
               headers: {
@@ -308,7 +315,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       getWantReadInfo: async (googleId) => {
         try {
           const response = await fetch(
-            `https://www.googleapis.com/books/v1/volumes/${googleId}?key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI`,
+            `https://www.googleapis.com/books/v1/volumes/${googleId}?key=${GOOGLE_KEY}`,
             {
               method: "GET",
               headers: {
@@ -320,9 +327,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (response.status !== 200) {
             return false;
           }
-          console.log(body.items);
+          console.log(...body.volumeInfo);
           setStore({
-            wantReadInfo: body.items,
+            wantReadInfo: [...body.volumeInfo],
           });
         } catch (error) {
           console.error("There has an error loading GoogleBooks info");

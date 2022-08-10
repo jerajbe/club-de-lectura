@@ -8,18 +8,19 @@ import { ListElement } from "../component/ListElement";
 export const UserProfile = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
-  const mapWantRead = store.getWantRead.map((id) => {
-    actions.getWantReadInfo(id.google_books_id);
-  });
+  // const mapWantRead = store.getWantRead.map((id) => {
+  //   actions.getWantReadInfo(id.google_books_id);
+  // });
+  // const mapWantRead = store.getWantRead.map((id, index) => {
+  //   actions.getWantReadElement();
+  //   actions.getWantReadInfo(id.google_books_id);
+  // });
   if (store.token && store.token != "" && store.token != undefined)
     useEffect(() => {
       console.log(params.userId);
       actions.getSingleUser(params.userId);
+      actions.getWantReadElement();
     }, []);
-  useEffect(() => {
-    actions.getWantReadElement();
-    mapWantRead;
-  }, []);
   return (
     <>
       <h1 style={{ color: "white" }}>{store.singleUser.user_name}</h1>
@@ -64,18 +65,20 @@ export const UserProfile = (props) => {
                     </h6>
                   </li>
                   {/* AQUI VA EL MAP DE WANT TO READ */}
-                  {store.wantReadInfo &&
-                    store.wantReadInfo.map((book, index) => {
-                      let thumbnail =
-                        book.volumeInfo.imageLinks &&
-                        book.volumeInfo.imageLinks.thumbnail;
+                  {store.getWantRead &&
+                    store.getWantRead.map((book, index) => {
+                      // let thumbnail =
+                      //   book.volumeInfo.imageLinks &&
+                      //   book.volumeInfo.imageLinks.thumbnail;
                       return (
                         <li
                           key={index}
                           className="list-group-item d-flex justify-content-between align-items-center flex-wrap"
                         >
-                          {index}
-                          {/* <ListElement cover={thumbnail} /> */}
+                          <ListElement
+                            book_cover={book.book_cover}
+                            book_name={book.book_name}
+                          />
                         </li>
                       );
                     })}

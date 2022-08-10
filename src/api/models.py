@@ -51,13 +51,16 @@ class WantReadBooks(db.Model):
     user = db.relationship("User", back_populates="want_read_books")
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     book_id = db.Column(db.Integer, db.ForeignKey("book.id"))
+    book_cover = db.Column(db.String(500), nullable=True) 
     book_name = db.Column(db.String(250), nullable=True)
     book = db.relationship("Book", back_populates="want_read_books")
     google_books_id = db.Column(db.String(250), nullable=False)
 
-    def __init__(self, user_id, book_id, google_books_id):
+    def __init__(self, user_id, book_id, book_name, book_cover, google_books_id):
         self.user_id = user_id
         self.book_id = book_id
+        self.book_name = book_name
+        self.book_cover = book_cover
         self.google_books_id = google_books_id
         db.session.add(self)
         db.session.commit()
@@ -67,6 +70,8 @@ class WantReadBooks(db.Model):
             "id": self.id,
             "book_id": self.book_id,
             "user_id": self.user_id,
+            "book_cover": self.book_cover,
+            "book_name": self.book_name,
             "google_books_id": self.google_books_id
         }
 class FavoriteBooks(db.Model):

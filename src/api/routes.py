@@ -136,8 +136,10 @@ def add_favorite_user_planet(book_id):
     return jsonify(favorite.serialize()), 201
 
 @api.route('/users/want_read', methods=['GET'])
+@jwt_required()
 def get_want_read():
-    books = WantReadBooks.query.all()
+    current_user = get_jwt_identity()
+    books = WantReadBooks.query.filter_by(user_id=current_user).all()
     want_read_books = list(map(
         lambda want_read_books: want_read_books.serialize(),
         books
@@ -149,7 +151,9 @@ def get_want_read():
 def add_want_read_book(google_book_id):
     body = request.json
     want_read_books = WantReadBooks(
-            get_jwt_identity(), 
+            get_jwt_identity(),
+            book_cover = body["book_cover"] if "book_cover" in body else None, 
+            book_name = body["book_name"] if "book_name" in body else None, 
             book_id = body["book_id"] if "book_id" in body else None,
             google_books_id = google_book_id
         )

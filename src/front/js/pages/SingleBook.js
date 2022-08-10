@@ -226,7 +226,11 @@ export const SingleBook = (props) => {
                   fontSize: "30px",
                 }}
                 onClick={() => {
-                  actions.addWantReadElement(props.google_books_id);
+                  actions.addWantReadElement(
+                    props.google_books_id,
+                    props.cover,
+                    props.name
+                  );
                 }}
                 className={`${
                   isWantRead(props.google_books_id)
