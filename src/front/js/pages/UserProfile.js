@@ -52,39 +52,6 @@ export const UserProfile = (props) => {
                 </div>
               </div>
               <div className="card mt-3">
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item d-flex justify-content-center align-items-center flex-wrap">
-                    <i
-                      style={{
-                        fontSize: "30px",
-                      }}
-                      className="fa-solid fa-bookmark me-3"
-                    ></i>
-                    <h6 className="mb-0">{"Books I want to read"}</h6>
-                  </li>
-                  {/* AQUI VA EL MAP DE WANT TO READ */}
-                  {store.getWantRead &&
-                    store.getWantRead.map((book, index) => {
-                      // let thumbnail =
-                      //   book.volumeInfo.imageLinks &&
-                      //   book.volumeInfo.imageLinks.thumbnail;
-                      return (
-                        <li
-                          key={index}
-                          className="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-                        >
-                          <ListElement
-                            book_cover={book.book_cover}
-                            book_name={book.book_name}
-                          />
-                        </li>
-                      );
-                    })}
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-8">
-              <div className="card mb-3">
                 <div className="card-body">
                   <div className="row">
                     <div className="col-sm-3">
@@ -123,6 +90,41 @@ export const UserProfile = (props) => {
                   </div>
                   <hr />
                 </div>
+              </div>
+            </div>
+            <div className="col-md-8">
+              <div className="card mb-3">
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item d-flex justify-content-center align-items-center flex-wrap">
+                    <i
+                      style={{
+                        fontSize: "30px",
+                      }}
+                      className="fa-solid fa-bookmark me-3"
+                    ></i>
+                    <h6 className="mb-0">{"Books I want to read"}</h6>
+                  </li>
+                  <div className=" d-flex flex-column flex-nowrap scroll">
+                    {/* AQUI VA EL MAP DE WANT TO READ */}
+                    {store.getWantRead &&
+                      store.getWantRead.map((book, index) => {
+                        // let thumbnail =
+                        //   book.volumeInfo.imageLinks &&
+                        //   book.volumeInfo.imageLinks.thumbnail;
+                        return (
+                          <li
+                            key={index}
+                            className="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+                          >
+                            <ListElement
+                              book_cover={book.book_cover}
+                              book_name={book.book_name}
+                            />
+                          </li>
+                        );
+                      })}
+                  </div>
+                </ul>
               </div>
               <div className="row gutters-sm">
                 <div className="col-sm-6 mb-3">

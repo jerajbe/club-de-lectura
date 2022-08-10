@@ -72,7 +72,7 @@ export const SignUp = () => {
           />
         </div>
         <div className="input-contenedor">
-          <i class="fa-solid fa-key ms-3" style={{ color: "#999" }}></i>
+          <i className="fa-solid fa-key ms-3" style={{ color: "#999" }}></i>
           <input
             type={"password"}
             name={"password"}

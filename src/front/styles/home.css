@@ -80,3 +80,8 @@
     margin-left: -300%;
   }
 }
+
+.scroll {
+  overflow-y: scroll;
+  height: 295px;
+}
