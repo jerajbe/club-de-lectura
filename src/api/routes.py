@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, FavoriteBooks, Comment, Book, WantReadBooks
+from api.models import db, User, Comment, Book, WantReadBook, ExchangeBook
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -96,14 +96,14 @@ def get_user():
         return jsonify("usuario no existe"), 404
     return jsonify(user.serialize()), 200
 
-@api.route('/users/favorites', methods=['GET'])
-def get_favorites():
-    books = FavoriteBooks.query.all()
-    favorites_books = list(map(
-        lambda favorite_books: favorite_books.serialize(),
-        books
-    ))
-    return jsonify(favorites_books), 200
+# @api.route('/users/favorites', methods=['GET'])
+# def get_favorites():
+#     books = FavoriteBooks.query.all()
+#     favorites_books = list(map(
+#         lambda favorite_books: favorite_books.serialize(),
+#         books
+#     ))
+#     return jsonify(favorites_books), 200
 
 @api.route('/books', methods=["POST"])
 def add_book():
@@ -124,22 +124,48 @@ def list_single_book(book_id):
     book = Book.query.filter_by(id=book_id).one_or_none()
     return jsonify(book.serialize())
 
-@api.route('/users/favorite/books/<int:book_id>', methods=['POST'])
-def add_favorite_user_planet(book_id):
+# @api.route('/users/favorite/books/<int:book_id>', methods=['POST'])
+# def add_favorite_user_planet(book_id):
+#     body = request.json
+#     favorite = FavoriteBooks(
+#             user_id = body["users_id"] if "users_id" in body else None, 
+#             book_id = body["book_id"] if "book_id" in body else None
+#         )
+#     db.session.add(favorite)
+#     db.session.commit()
+#     return jsonify(favorite.serialize()), 201
+
+@api.route('/users/exchange_books', methods=['GET'])
+@jwt_required()
+def get_exchange_books():
+    current_user = get_jwt_identity()
+    books = ExchangeBook.query.filter_by(user_id=current_user).all()
+    exchange_books = list(map(
+        lambda exchange_book: exchange_book.serialize(),
+        books
+    ))
+    return jsonify(exchange_books), 200
+
+@api.route('/users/exchange_books/<string:google_book_id>', methods=['POST'])
+@jwt_required()
+def add_exchange_books(google_book_id):
     body = request.json
-    favorite = FavoriteBooks(
-            user_id = body["users_id"] if "users_id" in body else None, 
-            book_id = body["book_id"] if "book_id" in body else None
+    exchange_book = ExchangeBook(
+            get_jwt_identity(),
+            book_cover = body["book_cover"] if "book_cover" in body else None, 
+            book_name = body["book_name"] if "book_name" in body else None, 
+            book_id = body["book_id"] if "book_id" in body else None,
+            google_books_id = google_book_id
         )
-    db.session.add(favorite)
+    db.session.add(exchange_book)
     db.session.commit()
-    return jsonify(favorite.serialize()), 201
+    return jsonify(exchange_book.serialize()), 201
 
 @api.route('/users/want_read', methods=['GET'])
 @jwt_required()
 def get_want_read():
     current_user = get_jwt_identity()
-    books = WantReadBooks.query.filter_by(user_id=current_user).all()
+    books = WantReadBook.query.filter_by(user_id=current_user).all()
     want_read_books = list(map(
         lambda want_read_books: want_read_books.serialize(),
         books
@@ -150,7 +176,7 @@ def get_want_read():
 @jwt_required()
 def add_want_read_book(google_book_id):
     body = request.json
-    want_read_books = WantReadBooks(
+    want_read_books = WantReadBook(
             get_jwt_identity(),
             book_cover = body["book_cover"] if "book_cover" in body else None, 
             book_name = body["book_name"] if "book_name" in body else None, 
