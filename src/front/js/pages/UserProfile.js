@@ -3,15 +3,23 @@ import { Context } from "../store/appContext";
 import { MapComponent } from "./MapComponent";
 import { useParams } from "react-router-dom";
 import { Marker } from "./Marker";
+import { ListElement } from "../component/ListElement";
 
 export const UserProfile = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
+  const mapWantRead = store.getWantRead.map((id) => {
+    actions.getWantReadInfo(id.google_books_id);
+  });
   if (store.token && store.token != "" && store.token != undefined)
     useEffect(() => {
       console.log(params.userId);
       actions.getSingleUser(params.userId);
     }, []);
+  useEffect(() => {
+    actions.getWantReadElement();
+    mapWantRead;
+  }, []);
   return (
     <>
       <h1 style={{ color: "white" }}>{store.singleUser.user_name}</h1>
@@ -46,26 +54,31 @@ export const UserProfile = (props) => {
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 className="mb-0">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-globe mr-2 icon-inline"
-                      >
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                      </svg>
-                      {" Amigos"}
+                      <i
+                        style={{
+                          fontSize: "30px",
+                        }}
+                        className="fa-solid fa-bookmark me-3"
+                      ></i>
+                      {"Books I want to read"}
                     </h6>
                   </li>
-                  <li>{"Amigo 1"}</li>
+                  {/* AQUI VA EL MAP DE WANT TO READ */}
+                  {store.wantReadInfo &&
+                    store.wantReadInfo.map((book, index) => {
+                      let thumbnail =
+                        book.volumeInfo.imageLinks &&
+                        book.volumeInfo.imageLinks.thumbnail;
+                      return (
+                        <li
+                          key={index}
+                          className="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+                        >
+                          {index}
+                          {/* <ListElement cover={thumbnail} /> */}
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
             </div>
@@ -115,9 +128,12 @@ export const UserProfile = (props) => {
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3">
-                        <i className="material-icons text-info me-2">
-                          assignment
-                        </i>
+                        <i
+                          style={{
+                            fontSize: "30px",
+                          }}
+                          className="fa-solid fa-paper-plane me-3"
+                        ></i>
                         {"Books available to exchange"}
                       </h6>
                       <small>{"Libro 1"}</small>

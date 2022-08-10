@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      wantReadInfo: [],
       getWantRead: [],
       bookComments: [],
       commentBody: [],
@@ -139,7 +140,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
           };
           const response = await fetch(
-            `${process.env.BACKEND_URL}/users/want_read/`,
+            `${process.env.BACKEND_URL}/api/users/want_read`,
             options
           );
           const data = await response.json();
@@ -181,10 +182,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           // getActions().getComments(commentBody.google_books_id);
           // fetching data from the backend
-          console.log(resp);
+          console.log(body);
           // don't forget to return something, that is how the async resolves
           // return store.commentBody;
-          return resp;
+          return body;
         } catch (error) {
           console.log("Error loading message from backend ", error);
         }
@@ -302,6 +303,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
         } catch (error) {
           console.error("There has an error loading GoogleBooks in");
+        }
+      },
+      getWantReadInfo: async (googleId) => {
+        try {
+          const response = await fetch(
+            `https://www.googleapis.com/books/v1/volumes/${googleId}?key=AIzaSyBl8fMSLm787M_HncAHXLd_yRz7V8wlXdI`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            return false;
+          }
+          console.log(body.items);
+          setStore({
+            wantReadInfo: body.items,
+          });
+        } catch (error) {
+          console.error("There has an error loading GoogleBooks info");
         }
       },
       syncTokenFromSessionStore: () => {
