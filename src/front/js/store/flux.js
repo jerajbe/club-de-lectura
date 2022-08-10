@@ -2,6 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
   const GOOGLE_KEY = "AIzaSyAoVObEHLc3hsJ5Vac6jQKz3n48NnIoeMs";
   return {
     store: {
+      getExchange: [],
+      exchangeBook: [],
       getWantRead: [],
       bookComments: [],
       commentBody: [],
@@ -11,7 +13,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       bestBooksYear: [],
       loveBooks: [],
       searchGoogle: [],
-      favorites: [],
       wantRead: [],
       isOpen: false,
       searchBody: [],
@@ -178,6 +179,66 @@ const getState = ({ getStore, getActions, setStore }) => {
           return body;
         } catch (error) {
           console.log("Error loading message from backend ", error);
+        }
+      },
+      addExchageBook: async (googleBooksId, cover, name) => {
+        const store = getStore();
+        const auxObject = {
+          google_books_id: googleBooksId,
+          book_cover: cover,
+          book_name: name,
+        };
+        try {
+          const opts = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${store.token}`,
+            },
+            body: JSON.stringify(auxObject),
+          };
+          const resp = await fetch(
+            `${process.env.BACKEND_URL}/api/users/exchange_books/${googleBooksId}`,
+            opts
+          );
+          const body = await resp.json();
+          // const commentsData = Object.keys()
+          const search = store.exchangeBook.find((x) => x == googleBooksId);
+          console.log(search, googleBooksId);
+          if (search == undefined) {
+            setStore({ exchangeBook: [...store.exchangeBook, googleBooksId] });
+          }
+          // getActions().getComments(commentBody.google_books_id);
+          // fetching data from the backend
+          console.log(body);
+          // don't forget to return something, that is how the async resolves
+          // return store.commentBody;
+          return body;
+        } catch (error) {
+          console.log("Error loading message from backend ", error);
+        }
+      },
+      getExchangeBooks: async () => {
+        const store = getStore();
+        try {
+          const options = {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${store.token}`,
+            },
+          };
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/api/users/exchange_books`,
+            options
+          );
+          const data = await response.json();
+          console.log(data);
+          setStore({
+            getExchange: data,
+          });
+        } catch (error) {
+          console.log("hubo un error getExchangeBook");
         }
       },
       exampleFunction: () => {

@@ -20,6 +20,7 @@ export const UserProfile = (props) => {
       console.log(params.userId);
       actions.getSingleUser(params.userId);
       actions.getWantReadElement();
+      actions.getExchangeBooks();
     }, []);
   return (
     <>
@@ -141,7 +142,26 @@ export const UserProfile = (props) => {
                       </h6>
                     </div>
                     <div className="card-body">
-                      <small>{"Libro 1"}</small>
+                      <div className=" d-flex flex-column flex-nowrap scroll">
+                        {/* AQUI VA EL MAP DE WANT TO READ */}
+                        {store.getExchange &&
+                          store.getExchange.map((book, index) => {
+                            // let thumbnail =
+                            //   book.volumeInfo.imageLinks &&
+                            //   book.volumeInfo.imageLinks.thumbnail;
+                            return (
+                              <li
+                                key={index}
+                                className="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+                              >
+                                <ListElement
+                                  book_cover={book.book_cover}
+                                  book_name={book.book_name}
+                                />
+                              </li>
+                            );
+                          })}
+                      </div>
                       <div
                         className="progress mb-3"
                         style={{ wheight: "5px" }}

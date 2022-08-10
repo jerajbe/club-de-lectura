@@ -11,8 +11,8 @@ export const SingleBook = (props) => {
   const [show, setShow] = useState(false);
   const { store, actions } = useContext(Context);
   const [comment, setComment] = useState("");
-  const isFavorite = (fav) => {
-    const search = store.favorites.find((x) => x == fav);
+  const isExchange = (fav) => {
+    const search = store.exchangeBook.find((x) => x == fav);
     if (search) {
       return true;
     }
@@ -246,10 +246,14 @@ export const SingleBook = (props) => {
                   fontSize: "30px",
                 }}
                 onClick={() => {
-                  actions.addFavoriteElement(props.name);
+                  actions.addExchageBook(
+                    props.google_books_id,
+                    props.cover,
+                    props.name
+                  );
                 }}
                 className={`${
-                  isFavorite(props.name)
+                  isExchange(props.google_books_id)
                     ? "fa-solid fa-paper-plane"
                     : "fa-regular fa-paper-plane"
                 }`}
