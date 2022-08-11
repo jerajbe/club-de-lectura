@@ -1,3 +1,4 @@
+import { fontSize } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { CarouselHome } from "./CarouselHome";
@@ -23,11 +24,14 @@ export const Home = () => {
     <>
       <div>
         <div className="header wtitle fondoheader container d-flex h-75 mt-2 mb-4 justify-content-between">
-          <div className="row1 fondo p-4">
-            <h1 style={{ color: "white" }}>Welcome to Lectur's Club</h1>
+          <div className="row1 col-8 fondo p-4">
+            <h1 className="letra" style={{ color: "white" }}>
+              "No matter how busy you think you are, you must find time to read,
+              or give in to self-chosen ignorance." Confucius
+            </h1>
           </div>
-          <div className="row2 ms-2 card slider-frame w-25">
-            <ul>
+          {/* <div className="row2 ms-2 card slider-frame w-25"> */}
+          {/* <ul>
               <li>
                 {" "}
                 <img
@@ -49,13 +53,15 @@ export const Home = () => {
                   src="https://media.thegospelcoalition.org/wp-content/uploads/sites/4/2020/02/31160000/Personas-leyendo-la-Biblia.jpg"
                 ></img>
               </li>
-            </ul>
-            <h2 style={{ color: "black" }}>Find your Book</h2>
-            <div className="inputSearch">
+            </ul> */}
+          {/* </div> */}
+          <div className="inputSearch d-flex flex-column col-4">
+            {/* <h2 style={{ color: "black" }}>Find your Book</h2> */}
+            <div className="d-flex">
               <input
                 className="form-control"
                 type="text"
-                placeholder="Enter your Book Name"
+                placeholder="Find your Book"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 onKeyDown={searchBook}
@@ -77,7 +83,7 @@ export const Home = () => {
       <div className="container wtitle fondoheader mb-3 mt-3 d-flex justify-content-around align-items-center">
         {store.searchGoogle.length <= 0 ? (
           <>
-            <div className="fondo py-2 mb-3 mt-3 d-flex justify-content-center align-items-center">
+            <div className="fondo letra py-2 mb-3 mt-3 d-flex justify-content-center align-items-center">
               <h2 style={{ color: "white" }} className="me-4 ms-3">
                 Best books of 2021
               </h2>
@@ -140,7 +146,7 @@ export const Home = () => {
               </div>
             </div>
             {/* LOVE */}
-            <div className="fondo py-2 mb-3 mt-3 d-flex justify-content-center align-items-center">
+            <div className="fondo letra py-2 mb-3 mt-3 d-flex justify-content-center align-items-center">
               <h2 style={{ color: "white" }} className="me-4 ms-3">
                 Best books of Love
               </h2>

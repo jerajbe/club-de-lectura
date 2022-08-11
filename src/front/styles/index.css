@@ -199,3 +199,8 @@ p {
 .btnDetails {
   padding: 2px;
 }
+.rounded-circle {
+  height: 100px;
+  width: 150px;
+  font-size: 100px;
+}

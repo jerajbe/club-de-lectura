@@ -25,7 +25,7 @@ export const UserProfile = (props) => {
     }, [params.userId]);
   return (
     <>
-      <h1 style={{ color: "white" }}>{store.profile.user_name}</h1>
+      {/* <h1 style={{ color: "white" }}>{store.profile.user_name}</h1> */}
       <div className="container">
         <div className="main-body">
           <div className="row gutters-sm profilebox">
@@ -33,19 +33,23 @@ export const UserProfile = (props) => {
               <div className="card">
                 <div className="card-body">
                   <div className="d-flex flex-column align-items-center text-center">
-                    <img
+                    <i
+                      className="fa-solid fa-circle-user rounded-circle"
+                      alt="Admin"
+                    ></i>
+                    {/* <img
                       src="https://bootdey.com/img/Content/avatar/avatar7.png"
                       alt="Admin"
                       className="rounded-circle"
                       width="150"
-                    />
+                    /> */}
                     <div className="mt-3">
                       <h4>{store.profile.user_name}</h4>
-                      <p className="text-secondary mb-1">Profesion</p>
+                      {/* <p className="text-secondary mb-1">Profesion</p> */}
                       <p className="text-muted font-size-sm">
                         {store.profile.address}
                       </p>
-                      <button className="btn btn-primary">Follow</button>
+                      {/* <button className="btn btn-primary">Follow</button> */}
                       {/* <button className="btn btn-outline-primary">
                         Message
                       </button> */}
@@ -57,7 +61,7 @@ export const UserProfile = (props) => {
                 <div className="card-body">
                   <div className="row">
                     <div className="col-sm-3">
-                      <h6 className="mb-0">Full Name</h6>
+                      <h6 className="mb-0">Username</h6>
                     </div>
                     <div className="col-sm-9 text-secondary">
                       {store.profile.user_name}

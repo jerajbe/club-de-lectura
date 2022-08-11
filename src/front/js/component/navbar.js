@@ -26,6 +26,15 @@ export const Navbar = () => {
             </Link>
           ) : (
             <div className="d-flex">
+              <Link
+                className="mx-2 profilepic d-flex align-items-center justify-content-center"
+                to={`/user-profile/${store.singleUser.id}`}
+              >
+                <Avatar />
+              </Link>
+              <Link className="btn button type1" to={"/search"}>
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </Link>
               <Link to="/">
                 <button
                   onClick={() => actions.logout()}
@@ -34,13 +43,6 @@ export const Navbar = () => {
                   Log Out
                 </button>
               </Link>
-              <Link
-                className="ms-2 profilepic d-flex align-items-center justify-content-center"
-                to={`/user-profile/${store.singleUser.id}`}
-              >
-                <Avatar />
-              </Link>
-              <Link className="btn button type1" to={"/search"}></Link>
             </div>
           )}
         </div>

@@ -28,6 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         latitude: undefined,
         longitude: undefined,
       },
+      frases: [],
     },
     actions: {
       getSearchUser: async (param) => {
