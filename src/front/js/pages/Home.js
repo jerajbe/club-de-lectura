@@ -102,6 +102,7 @@ export const Home = () => {
                   >
                     <div className="carousel-inner">
                       {store.bestBooksYear &&
+                        search === "" &&
                         store.bestBooksYear.map((book, index) => {
                           let thumbnail =
                             book.volumeInfo.imageLinks &&
@@ -165,6 +166,7 @@ export const Home = () => {
                   >
                     <div className="carousel-inner">
                       {store.loveBooks &&
+                        search === "" &&
                         store.loveBooks.map((book, index) => {
                           let thumbnail =
                             book.volumeInfo.imageLinks &&
@@ -215,6 +217,7 @@ export const Home = () => {
         )}
         <div className="d-flex row row-cols-1 row-cols-md-4 g-4">
           {store.searchGoogle &&
+            search != "" &&
             store.searchGoogle.map((book, index) => {
               let thumbnail =
                 book.volumeInfo.imageLinks &&
