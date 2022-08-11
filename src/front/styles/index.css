@@ -2,7 +2,13 @@
 
 .fondo {
   background: #17181c;
-  border-radius: 2%;
+  border-radius: 20%;
+}
+
+.fondoheader {
+  background-color: #3b3b3b;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .fondo-template-html {
@@ -189,10 +195,4 @@ p {
 }
 .btnDetails {
   padding: 2px;
-}
-.fondoheader {
-  background-color: #3b3b3b;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 2%;
 }
