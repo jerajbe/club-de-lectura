@@ -23,7 +23,7 @@ export const Home = () => {
     <>
       <div>
         <div className="header wtitle fondoheader container d-flex h-75 mt-2 mb-4 justify-content-between">
-          <div className="row1 wtitle fondo p-4">
+          <div className="row1 fondo p-4">
             <h1 style={{ color: "white" }}>Welcome to Lectur's Club</h1>
           </div>
           <div className="row2 ms-2 card slider-frame w-25">
@@ -77,7 +77,7 @@ export const Home = () => {
       <div className="container wtitle fondoheader mb-3 mt-3 d-flex justify-content-around align-items-center">
         {store.searchGoogle.length <= 0 ? (
           <>
-            <div className="fondo wtitle py-2 mb-3 mt-3 d-flex justify-content-center align-items-center">
+            <div className="fondo py-2 mb-3 mt-3 d-flex justify-content-center align-items-center">
               <h2 style={{ color: "white" }} className="me-4 ms-3">
                 Best books of 2021
               </h2>
@@ -140,7 +140,7 @@ export const Home = () => {
               </div>
             </div>
             {/* LOVE */}
-            <div className="fondo wtitle py-2 mb-3 mt-3 d-flex justify-content-center align-items-center">
+            <div className="fondo py-2 mb-3 mt-3 d-flex justify-content-center align-items-center">
               <h2 style={{ color: "white" }} className="me-4 ms-3">
                 Best books of Love
               </h2>
