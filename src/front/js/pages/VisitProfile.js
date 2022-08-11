@@ -21,6 +21,7 @@ export const VisitProfile = (props) => {
       // actions.profileSingleUser();
       actions.getProfile(params.userId);
       actions.getWantReadVisit(params.userId);
+      actions.getExchangeBooksVisit(params.userId);
     }, [params.userId]);
   return (
     <>
@@ -144,8 +145,8 @@ export const VisitProfile = (props) => {
                     <div className="card-body">
                       <div className=" d-flex flex-column flex-nowrap scroll">
                         {/* AQUI VA EL MAP DE WANT TO READ */}
-                        {/* {store.getExchange &&
-                          store.getExchange.map((book, index) => {
+                        {store.getExchangeVisit &&
+                          store.getExchangeVisit.map((book, index) => {
                             // let thumbnail =
                             //   book.volumeInfo.imageLinks &&
                             //   book.volumeInfo.imageLinks.thumbnail;
@@ -160,7 +161,7 @@ export const VisitProfile = (props) => {
                                 />
                               </li>
                             );
-                          })} */}
+                          })}
                       </div>
                       <div
                         className="progress mb-3"

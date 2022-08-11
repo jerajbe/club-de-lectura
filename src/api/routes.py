@@ -171,6 +171,17 @@ def add_exchange_books(google_book_id):
     db.session.commit()
     return jsonify(exchange_book.serialize()), 201
 
+@api.route('/users/exchange_books/<int:user_id>', methods=['GET'])
+@jwt_required()
+def get_exchange_visit(user_id):
+    # current_user = get_jwt_identity()
+    books = ExchangeBook.query.filter_by(user_id=user_id).all()
+    exchange_books = list(map(
+        lambda exchange_books: exchange_books.serialize(),
+        books
+    ))
+    return jsonify(exchange_books), 200
+
 @api.route('/users/want_read/<int:user_id>', methods=['GET'])
 @jwt_required()
 def get_want_read_visit(user_id):

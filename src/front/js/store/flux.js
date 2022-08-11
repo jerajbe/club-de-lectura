@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   const GOOGLE_KEY = "AIzaSyAoVObEHLc3hsJ5Vac6jQKz3n48NnIoeMs";
   return {
     store: {
+      getExchangeVisit: [],
       getWantReadVisit: [],
       profile: [],
       bodySearch: [],
@@ -319,6 +320,29 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       exampleFunction: () => {
         getActions().changeColor(0, "green");
+      },
+      getExchangeBooksVisit: async (userId) => {
+        const store = getStore();
+        try {
+          const options = {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${store.token}`,
+            },
+          };
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/api/users/exchange_books/${userId}`,
+            options
+          );
+          const data = await response.json();
+          console.log(data);
+          setStore({
+            getExchangeVisit: data,
+          });
+        } catch (error) {
+          console.log("hubo un error getExchangeBooksVisit");
+        }
       },
       signUp: async (requestBody) => {
         try {
