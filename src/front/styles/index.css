@@ -2,13 +2,14 @@
 
 .fondo {
   background: #17181c;
-  border-radius: 20%;
+  border-radius: 20px;
 }
 
 .fondoheader {
   background-color: #3b3b3b;
   padding-top: 10px;
   padding-bottom: 10px;
+  border-radius: 20px;
 }
 
 .fondo-template-html {

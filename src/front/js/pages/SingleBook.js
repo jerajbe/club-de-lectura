@@ -49,7 +49,13 @@ export const SingleBook = (props) => {
   return (
     <div className="cardBook d-flex justify-content-center col">
       <div className="card" style={{ width: "14rem" }}>
-        <img className="card-img-top" src={props.cover} alt="Card image cap" />
+        <img
+          className="card-img-top"
+          src={props.cover}
+          alt="Card image cap"
+          onClick={() => setShow(true)}
+          type="button"
+        />
         <div className="card-body bodyCard">
           <div className="row">
             <div className="col-md titulo">
@@ -168,9 +174,9 @@ export const SingleBook = (props) => {
           </div>
         </div>
         <div className="card-footer">
-          <div className="row d-flex justify-content-between align-items-center">
+          <div className="row d-flex justify-content-around align-items-center">
             {/* LIBRO QUE QUIERO LEER SIGNO DE GUARDAR */}
-            <div className="col-4 p-0">
+            <div className="col-6 p-0">
               <i
                 style={{
                   fontSize: "30px",
@@ -190,7 +196,7 @@ export const SingleBook = (props) => {
               ></i>
             </div>
             {/* LIBRO QUE YA LEI Y QUIERO ENVIAR SIGNO AVION */}
-            <div className="col-4 p-0">
+            <div className="col-6 p-0">
               <i
                 style={{
                   fontSize: "30px",
@@ -208,15 +214,6 @@ export const SingleBook = (props) => {
                     : "fa-regular fa-paper-plane icon"
                 }`}
               ></i>
-            </div>
-            <div className="col-4 p-0 btnDetails">
-              <Button
-                className="detailsB"
-                variant="secondary"
-                onClick={() => setShow(true)}
-              >
-                Details
-              </Button>
             </div>
           </div>
         </div>
