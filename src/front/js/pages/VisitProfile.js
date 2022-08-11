@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Marker } from "./Marker";
 import { ListElement } from "../component/ListElement";
 
-export const UserProfile = (props) => {
+export const VisitProfile = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
   // const mapWantRead = store.getWantRead.map((id) => {
@@ -19,9 +19,8 @@ export const UserProfile = (props) => {
     useEffect(() => {
       console.log(params.userId);
       // actions.profileSingleUser();
-      actions.getWantReadElement();
-      actions.getExchangeBooks();
       actions.getProfile(params.userId);
+      actions.getWantReadVisit(params.userId);
     }, [params.userId]);
   return (
     <>
@@ -108,8 +107,8 @@ export const UserProfile = (props) => {
                   </li>
                   <div className=" d-flex flex-column flex-nowrap scroll">
                     {/* AQUI VA EL MAP DE WANT TO READ */}
-                    {store.getWantRead &&
-                      store.getWantRead.map((book, index) => {
+                    {store.getWantReadVisit &&
+                      store.getWantReadVisit.map((book, index) => {
                         // let thumbnail =
                         //   book.volumeInfo.imageLinks &&
                         //   book.volumeInfo.imageLinks.thumbnail;
@@ -145,7 +144,7 @@ export const UserProfile = (props) => {
                     <div className="card-body">
                       <div className=" d-flex flex-column flex-nowrap scroll">
                         {/* AQUI VA EL MAP DE WANT TO READ */}
-                        {store.getExchange &&
+                        {/* {store.getExchange &&
                           store.getExchange.map((book, index) => {
                             // let thumbnail =
                             //   book.volumeInfo.imageLinks &&
@@ -161,7 +160,7 @@ export const UserProfile = (props) => {
                                 />
                               </li>
                             );
-                          })}
+                          })} */}
                       </div>
                       <div
                         className="progress mb-3"

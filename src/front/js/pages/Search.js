@@ -1,11 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { CarouselHome } from "./CarouselHome";
 import { SingleBook } from "./SingleBook";
+import { Link } from "react-router-dom";
 
 export const Search = () => {
   const { store, actions } = useContext(Context);
   const [search, setSearch] = useState("");
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    if (show) {
+      actions.getSearchUser(search);
+      console.log(search);
+    } else {
+      setShow(true);
+    }
+  }, [search]);
   return (
     <div className="d-flex flex-column align-items-center justify-content-center">
       <form>
@@ -17,29 +27,24 @@ export const Search = () => {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Enter your Book Name"
           ></input>
-          <button type="button" onClick={(e) => actions.search(search)}>
-            {"Search"}
-          </button>
+          {/* <button type="button" onClick={(e) => actions.search(search)}> */}
+          {/* {"Search"} */}
+          {/* </button> */}
         </div>
-      </form>
-      <div>
-        {store.searchBody &&
-          store.searchBody.map((book, index) => {
+        {store.bodySearch &&
+          store.bodySearch.map((item) => {
             return (
-              <SingleBook
-                cover={book.cover}
-                key={index}
-                name={book.name}
-                year={book.year}
-                authors={book.authors}
-                rating={book.rating}
-                url={book.url}
-                created_edit={book.created_edit}
-              />
+              <Link
+                className={"d-flex flex-column"}
+                to={`/visit-profile/${item.id}`}
+                style={{ color: "white" }}
+                key={item.id}
+              >
+                {item.user_name}
+              </Link>
             );
           })}
-      </div>
-      <CarouselHome />
+      </form>
     </div>
   );
 };

@@ -40,6 +40,7 @@ export const Navbar = () => {
               >
                 <Avatar />
               </Link>
+              <Link className="btn button type1" to={"/search"}></Link>
             </div>
           )}
         </div>

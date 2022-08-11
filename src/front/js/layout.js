@@ -13,6 +13,7 @@ import { SingleBook } from "./pages/SingleBook";
 import { Comments } from "./pages/Comments";
 import { UserProfile } from "./pages/UserProfile";
 import { Wrapper } from "@googlemaps/react-wrapper";
+import { VisitProfile } from "./pages/VisitProfile";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -26,6 +27,7 @@ const Layout = () => {
           <ScrollToTop>
             <Navbar />
             <Routes>
+              <Route element={<VisitProfile />} path="/visit-profile/:userId" />
               <Route element={<Comments />} path="/comments" />
               <Route element={<SingleBook />} path="/modal" />
               <Route element={<Search />} path="/search" />

@@ -2,6 +2,9 @@ const getState = ({ getStore, getActions, setStore }) => {
   const GOOGLE_KEY = "AIzaSyAoVObEHLc3hsJ5Vac6jQKz3n48NnIoeMs";
   return {
     store: {
+      getWantReadVisit: [],
+      profile: [],
+      bodySearch: [],
       getExchange: [],
       exchangeBook: [],
       getWantRead: [],
@@ -26,6 +29,56 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
     },
     actions: {
+      getSearchUser: async (param) => {
+        try {
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/api/search?name=${param}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${getStore().token}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            alert("No pudimos cargar los usuarios");
+            return;
+          }
+          console.log(body);
+          setStore({
+            bodySearch: body,
+          });
+        } catch (error) {
+          alert("error en getSearchUser");
+        }
+      },
+      getProfile: async (userId) => {
+        try {
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/api/users/${userId}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${getStore().token}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            alert("No pudimos cargar los usuarios");
+            return;
+          }
+          console.log(body);
+          setStore({
+            profile: body,
+          });
+        } catch (error) {
+          alert("fallo en getProfile");
+        }
+      },
       getSingleUser: async () => {
         try {
           const response = await fetch(`${process.env.BACKEND_URL}/api/users`, {
@@ -119,6 +172,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             favorites: [...store.favorites, element],
           });
+        }
+      },
+      getWantReadVisit: async (userId) => {
+        const store = getStore();
+        try {
+          const options = {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${store.token}`,
+            },
+          };
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/api/users/want_read/${userId}`,
+            options
+          );
+          const data = await response.json();
+          console.log(data);
+          setStore({
+            getWantReadVisit: data,
+          });
+        } catch (error) {
+          console.log("hubo un error getWantReadElement");
         }
       },
       getWantReadElement: async () => {
@@ -372,6 +448,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ token: null });
       },
       login: async (userName, password) => {
+        const actions = getActions();
         const opts = {
           // mode: "no-cors",
           method: "POST",
@@ -397,6 +474,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("this came from the backend", data);
           sessionStorage.setItem("token", data.access_token);
           setStore({ token: data.access_token });
+          actions.getSingleUser();
           return true;
         } catch (error) {
           console.error("There has an error login in");

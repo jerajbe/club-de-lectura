@@ -96,6 +96,16 @@ def get_user():
         return jsonify("usuario no existe"), 404
     return jsonify(user.serialize()), 200
 
+@api.route('/search', methods=['GET'])
+@jwt_required()
+def search():
+    user_id = get_jwt_identity()
+    args = request.args
+    name = args.get("name")
+    result = User.query.filter(User.user_name.like(f"%{name}%")).limit(5).all()
+    print(result)
+    return jsonify(list(map(lambda user: user.serialize(), result))),200
+
 # @api.route('/users/favorites', methods=['GET'])
 # def get_favorites():
 #     books = FavoriteBooks.query.all()
@@ -160,6 +170,17 @@ def add_exchange_books(google_book_id):
     db.session.add(exchange_book)
     db.session.commit()
     return jsonify(exchange_book.serialize()), 201
+
+@api.route('/users/want_read/<int:user_id>', methods=['GET'])
+@jwt_required()
+def get_want_read_visit(user_id):
+    # current_user = get_jwt_identity()
+    books = WantReadBook.query.filter_by(user_id=user_id).all()
+    want_read_books = list(map(
+        lambda want_read_books: want_read_books.serialize(),
+        books
+    ))
+    return jsonify(want_read_books), 200
 
 @api.route('/users/want_read', methods=['GET'])
 @jwt_required()
