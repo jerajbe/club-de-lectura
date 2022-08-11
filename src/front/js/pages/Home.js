@@ -23,8 +23,8 @@ export const Home = () => {
   return (
     <>
       <div>
-        <div className="header wtitle fondoheader container d-flex h-75 mt-2 mb-4 justify-content-between">
-          <div className="row1 col-8 fondo p-4">
+        <div className="header wtitle fondoheader container d-flex h-75 mt-2 mb-4 justify-content-center">
+          <div className="row1 col-8 p-4">
             <h1 className="letra" style={{ color: "white" }}>
               "No matter how busy you think you are, you must find time to read,
               or give in to self-chosen ignorance." Confucius
@@ -56,7 +56,7 @@ export const Home = () => {
             </ul> */}
           {/* </div> */}
           <div className="inputSearch d-flex flex-column col-4">
-            {/* <h2 style={{ color: "black" }}>Find your Book</h2> */}
+            {/* <h2 style={{ color: "white" }}>Find your Book</h2> */}
             <div className="d-flex">
               <input
                 className="form-control"
@@ -75,6 +75,7 @@ export const Home = () => {
                 <i className="fas fa-search"></i>
               </button>
             </div>
+            <img src="https://images.vexels.com/media/users/3/157535/isolated/preview/f39cfd20c159bc118e737ba9d7c3023a-icono-de-vidrio-de-lectura.png" />
           </div>
         </div>
       </div>
