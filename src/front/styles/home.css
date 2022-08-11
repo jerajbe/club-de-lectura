@@ -85,3 +85,43 @@
   overflow-y: scroll;
   height: 295px;
 }
+.cardBook {
+  background-color: #17181c;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 5px;
+  box-shadow: 0 5px 5px rgba(212, 185, 150, 0.5);
+  transition: 0.5s;
+  text-align: center;
+}
+
+.cardBook:hover {
+  transform: scale(0.9);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 5px;
+  border-color: #e5ff60;
+  box-shadow: 0px 30px 45px 10% #161616;
+}
+
+.icon:hover {
+  transform: scale(0.9);
+  color: #e5ff60;
+  border: none;
+  box-shadow: 0px 30px 45px 10% #161616;
+}
+.detailsB:hover {
+  transform: scale(0.9);
+  background-color: #e5ff60;
+  border: none;
+  box-shadow: 0px 30px 45px 10% #161616;
+}
+.wtitle:hover {
+  transform: scale(0.95);
+  border: solid 2px;
+  border-color: #e5ff60;
+  box-shadow: 0px 30px 45px 10% #161616;
+}
+.imageC {
+  height: 280px;
+  width: 180px;
+}

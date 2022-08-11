@@ -2,6 +2,7 @@
 
 .fondo {
   background: #17181c;
+  border-radius: 2%;
 }
 
 .fondo-template-html {
@@ -165,23 +166,26 @@ p {
 
 /*cards carrusel*/
 .card-img-top {
-  height: 280px;
+  height: 250px;
   width: 100%;
   border: none;
+  border-radius: 1rem 1rem 0 0;
 }
 .bodyCard {
-  background-color: #ffffff;
+  background-color: #3b3b3b;
   border: none;
 }
-.bodyCard:hover {
-  border: none;
-  box-shadow: 0px 30px 45px 10% #161616;
-}
+
 .titulo {
-  color: #1a2537;
+  color: white;
+  margin-bottom: 12px;
 }
 .texto {
   justify-content: center;
+  color: white;
+}
+.card-footer {
+  background-color: #3b3b3b;
 }
 .btnDetails {
   padding: 2px;
@@ -190,4 +194,5 @@ p {
   background-color: #3b3b3b;
   padding-top: 10px;
   padding-bottom: 10px;
+  border-radius: 2%;
 }

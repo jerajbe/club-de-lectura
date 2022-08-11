@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
 export const CarouselHome = (props) => {
-  return <img className="d-block w-100" src={props.cover} alt="" />;
+  return <img className="d-block imageC" src={props.cover} alt="" />;
 };
 
 CarouselHome.propTypes = {

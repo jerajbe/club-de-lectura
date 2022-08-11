@@ -47,8 +47,8 @@ export const SingleBook = (props) => {
   // }, []);
 
   return (
-    <div className="CardBook d-flex col">
-      <div className="card" style={{ width: "18rem" }}>
+    <div className="cardBook d-flex justify-content-center col">
+      <div className="card" style={{ width: "14rem" }}>
         <img className="card-img-top" src={props.cover} alt="Card image cap" />
         <div className="card-body bodyCard">
           <div className="row">
@@ -69,33 +69,6 @@ export const SingleBook = (props) => {
           </div>
           {/* <Link to={`/people/${props.uid}`} className="btn btn-primary">{"DATA BANK"}</Link>{" "} */}
           <div className="d-flex justify-content-around">
-            {/*<div className="row d-flex justify-content-between">
-              <div className="col-3 align-self-end">
-                <i
-                  style={{
-                    position: "relative",
-                    marginLeft: "5px",
-                    fontSize: "40px",
-                  }}
-                  onClick={() => {
-                    actions.addFavoriteElement(
-                      props.name
-                    ); /* setIsFavorite(!isFavorite)
-                  }}
-                  className={`${
-                    isFavorite(props.name)
-                      ? "fas fa-thumbs-up"
-                      : "far fa-thumbs-up"
-                  }`}
-                ></i>
-              </div>
-              <div className="col-9 align-self-end">
-                <Button variant="primary" onClick={() => setShow(true)}>
-                  More Details
-                </Button>
-              </div>
-            </div>*/}
-
             <Modal
               show={show}
               onHide={() => setShow(false)}
@@ -140,29 +113,6 @@ export const SingleBook = (props) => {
                     </div>
                   </div>
                 </div>
-                {/*<div className="card mb-3" style={{ maxWidth: "540px" }}>
-                  <div className="row g-0">
-                    <div className="col-md-4">
-                      <img
-                        src={props.cover}
-                        alt={props.name}
-                        className="img-fluid rounded-start"
-                      />
-                      <ul className="list-group">
-                        <li className="list-group-item">{`Authors: ${props.authors}`}</li>
-                        <li className="list-group-item">
-                          {`Year: ${props.year}`}
-                        </li>
-                        <li className="list-group-item">{`Language: ${props.rating}`}</li>
-                      </ul>
-                    </div>
-                    <div className="col-md-8">
-                      <div className="card-body">
-                        <p className="card-text">{props.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>*/}
                 {/* {aqui termina la info del libro modal} */}
                 <div className="container bootdey">
                   <div className="col-md-12 bootstrap snippets">
@@ -234,8 +184,8 @@ export const SingleBook = (props) => {
                 }}
                 className={`${
                   isWantRead(props.google_books_id)
-                    ? "fa-solid fa-bookmark"
-                    : "fa-regular fa-bookmark"
+                    ? "fa-solid fa-bookmark icon"
+                    : "fa-regular fa-bookmark icon"
                 }`}
               ></i>
             </div>
@@ -254,14 +204,18 @@ export const SingleBook = (props) => {
                 }}
                 className={`${
                   isExchange(props.google_books_id)
-                    ? "fa-solid fa-paper-plane"
-                    : "fa-regular fa-paper-plane"
+                    ? "fa-solid fa-paper-plane icon"
+                    : "fa-regular fa-paper-plane icon"
                 }`}
               ></i>
             </div>
             <div className="col-4 p-0 btnDetails">
-              <Button variant="primary" onClick={() => setShow(true)}>
-                More Details
+              <Button
+                className="detailsB"
+                variant="secondary"
+                onClick={() => setShow(true)}
+              >
+                Details
               </Button>
             </div>
           </div>
