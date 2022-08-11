@@ -25,13 +25,14 @@ export const Search = () => {
             className="form-control w-100"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Enter your Book Name"
+            placeholder="Enter username"
           ></input>
           {/* <button type="button" onClick={(e) => actions.search(search)}> */}
           {/* {"Search"} */}
           {/* </button> */}
         </div>
         {store.bodySearch &&
+          search != "" &&
           store.bodySearch.map((item) => {
             return (
               <Link
@@ -40,7 +41,7 @@ export const Search = () => {
                 style={{ color: "white" }}
                 key={item.id}
               >
-                {item.user_name}
+                <div className="user-line">{item.user_name}</div>
               </Link>
             );
           })}

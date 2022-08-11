@@ -204,3 +204,14 @@ p {
   width: 150px;
   font-size: 100px;
 }
+.user-line {
+  height: 50px;
+  background-color: white;
+  width: 300px;
+  color: black;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 10px;
+}
