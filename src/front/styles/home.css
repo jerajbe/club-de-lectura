@@ -126,3 +126,15 @@
   width: 180px;
   border-radius: 15%;
 }
+.profilebox {
+  border: solid 2px #e5ff60;
+  box-shadow: 0px 30px 45px 10% #161616;
+  padding: 10px;
+}
+.profilepic:hover {
+  transform: scale(0.95);
+  border: solid 2px;
+  border-color: #e5ff60;
+  box-shadow: 0px 30px 45px 10% #161616;
+  border-radius: 40px;
+}

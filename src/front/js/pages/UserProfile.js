@@ -27,7 +27,7 @@ export const UserProfile = (props) => {
       <h1 style={{ color: "white" }}>{store.singleUser.user_name}</h1>
       <div className="container">
         <div className="main-body">
-          <div className="row gutters-sm">
+          <div className="row gutters-sm profilebox">
             <div className="col-md-4 mb-3">
               <div className="card">
                 <div className="card-body">

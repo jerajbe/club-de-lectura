@@ -11,7 +11,7 @@ export const Navbar = () => {
         <Link to="/" className="navbar-brand mb-0 h1 text-light span--titulo">
           Lecture´s Club
         </Link>
-        <div className="ml-auto">
+        <div className="ml-auto d-flex justify-content-center align-items-center">
           {/* renderizado condicional cuando esta iniciada la sesion */}
           {!store.token ? (
             <Link to="/sign-up">
@@ -35,7 +35,7 @@ export const Navbar = () => {
                 </button>
               </Link>
               <Link
-                className="ms-5 mt-3 dropdown"
+                className="ms-2 profilepic d-flex align-items-center justify-content-center"
                 to={`/user-profile/${store.singleUser.id}`}
               >
                 <Avatar />

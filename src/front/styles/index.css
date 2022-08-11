@@ -143,13 +143,15 @@ input[type="password"] {
   width: 100%;
   color: white;
   font-size: 20px;
-  background: #1a2537;
+  background: #17181c;
   padding: 15px 20px;
   border-radius: 5px;
   cursor: pointer;
 }
 .buttonSU:hover {
-  background: cadetblue;
+  transform: scale(0.95);
+  box-shadow: 0px 30px 45px 10% #161616;
+  border: 2px solid #e5ff60;
 }
 p {
   text-align: center;

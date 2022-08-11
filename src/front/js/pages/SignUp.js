@@ -67,7 +67,7 @@ export const SignUp = () => {
             type={"text"}
             name={"address"}
             value={address}
-            placeholder={"Address"}
+            placeholder={"City"}
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
