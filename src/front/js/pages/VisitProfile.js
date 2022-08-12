@@ -46,9 +46,9 @@ export const VisitProfile = (props) => {
                     <div className="mt-3">
                       <h4>{store.profile.user_name}</h4>
                       {/* <p className="text-secondary mb-1">Profesion</p> */}
-                      <p className="text-muted font-size-sm">
+                      {/* <p className="text-muted font-size-sm">
                         {store.profile.address}
-                      </p>
+                      </p> */}
                       {/* <button className="btn btn-primary">Follow</button> */}
                       {/* <button className="btn btn-outline-primary">
                         Message
@@ -60,37 +60,37 @@ export const VisitProfile = (props) => {
               <div className="card mt-3">
                 <div className="card-body">
                   <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-5">
                       <h6 className="mb-0">Username</h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">
+                    <div className="col-sm-7 text-secondary">
                       {store.profile.user_name}
                     </div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-5">
                       <h6 className="mb-0">Email</h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">
+                    <div className="col-sm-7 text-secondary">
                       {store.profile.email}
                     </div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-5">
                       <h6 className="mb-0">Phone</h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">
+                    <div className="col-sm-7 text-secondary">
                       {store.profile.phone_number}
                     </div>
                   </div>
                   <hr />
                   <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-5">
                       <h6 className="mb-0">Address</h6>
                     </div>
-                    <div className="col-sm-9 text-secondary">
+                    <div className="col-sm-7 text-secondary">
                       {store.profile.address}
                     </div>
                   </div>

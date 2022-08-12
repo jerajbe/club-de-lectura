@@ -3,39 +3,30 @@ import { Context } from "../store/appContext";
 import { CarouselHome } from "./CarouselHome";
 import { SingleBook } from "./SingleBook";
 import { Link } from "react-router-dom";
-import { SearchAddress } from "./SearchAddress";
 
-export const Search = () => {
+export const SearchAddress = () => {
   const { store, actions } = useContext(Context);
-  const [search, setSearch] = useState("");
-  const [show, setShow] = useState(false);
   useEffect(() => {
-    if (show) {
-      actions.getSearchUser(search);
-      console.log(search);
-    } else {
-      setShow(true);
-    }
-  }, [search]);
+    actions.getSearchAddress(store.singleUser.address);
+  }, []);
   return (
-    <>
+    <div className="d-flex flex-column">
       <div className="d-flex flex-column align-items-center justify-content-center">
         <form>
           <div className="form-group d-flex justify-content-center mb-3">
-            <input
+            {/* <input
               type="text"
               className="form-control w-100"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Enter username"
-            ></input>
+              placeholder="Enter Address"
+            ></input> */}
             {/* <button type="button" onClick={(e) => actions.search(search)}> */}
             {/* {"Search"} */}
             {/* </button> */}
           </div>
-          {store.bodySearch &&
-            search != "" &&
-            store.bodySearch.map((item) => {
+          {store.searchAddress &&
+            store.searchAddress.map((item) => {
               return (
                 <Link
                   className={"d-flex flex-column"}
@@ -49,9 +40,6 @@ export const Search = () => {
             })}
         </form>
       </div>
-      <div>
-        <SearchAddress />
-      </div>
-    </>
+    </div>
   );
 };
