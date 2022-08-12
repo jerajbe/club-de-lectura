@@ -29,7 +29,7 @@ const injectContext = (PassedComponent) => {
        * store, instead use actions, like this:
        **/
       // <---- calling this function from the flux.js actions
-
+      state.actions.getSingleUser();
       state.actions.syncTokenFromSessionStore();
       state.actions.getUserPosition();
     }, []);

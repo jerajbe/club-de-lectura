@@ -28,7 +28,7 @@ const Layout = () => {
           <ScrollToTop>
             <Navbar />
             <Routes>
-              <Route element={<SearchAddress />} path="/serach-address" />
+              <Route element={<SearchAddress />} path="/search-address" />
               <Route element={<VisitProfile />} path="/visit-profile/:userId" />
               <Route element={<Comments />} path="/comments" />
               <Route element={<SingleBook />} path="/modal" />

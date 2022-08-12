@@ -32,6 +32,9 @@ export const Navbar = () => {
               >
                 <Avatar />
               </Link>
+              {/* <Link className="btn button type1" to={"/search-address"}>
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </Link> */}
               <Link className="btn button type1" to={"/search"}>
                 <i className="fa-solid fa-magnifying-glass"></i>
               </Link>
