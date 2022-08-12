@@ -1,19 +1,21 @@
 /* Fondos  de header y template */
 
-.fondo {
+/*  .fondo {
   background: #17181c;
   border-radius: 20px;
-}
+} */
 
 .fondoheader {
-  background-color: #3b3b3b;
-  padding-top: 10px;
+  background: #17181c;
+
+  padding-top: 20px;
   padding-bottom: 10px;
   border-radius: 20px;
 }
 
 .fondo-template-html {
-  background: #17181c;
+  background: rgb(4,32,21);
+  background: linear-gradient(0deg, rgba(4,32,21,1) 0%, rgba(23,24,28,1) 100%);
 }
 
 /* subrayado titulo*/
@@ -214,4 +216,9 @@ p {
   align-items: center;
   justify-content: start;
   padding-left: 10px;
+}
+
+
+.bg--modal {
+  background: #e5ff60;
 }

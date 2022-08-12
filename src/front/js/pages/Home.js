@@ -75,7 +75,7 @@ export const Home = () => {
                 <i className="fas fa-search"></i>
               </button>
             </div>
-            <img src="https://images.vexels.com/media/users/3/157535/isolated/preview/f39cfd20c159bc118e737ba9d7c3023a-icono-de-vidrio-de-lectura.png" />
+            <img src="https://images.vexels.com/media/users/3/157500/isolated/preview/1dd42a603deec562d66c4b1bbf019439-vector-de-lectura-de-libro-abierto.png" />
           </div>
         </div>
       </div>

@@ -74,48 +74,46 @@ export const SingleBook = (props) => {
             </div>
           </div>
           {/* <Link to={`/people/${props.uid}`} className="btn btn-primary">{"DATA BANK"}</Link>{" "} */}
-          <div className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around bg-dark">
             <Modal
+              style={{ backdropFilter: "Blur(8px)" }}
               show={show}
               onHide={() => setShow(false)}
               dialogClassName="modal-lg"
               aria-labelledby="example-custom-modal-styling-title"
             >
-              <Modal.Header closeButton>
-                <Modal.Title id="example-custom-modal-styling-title">
+              <Modal.Header className="bg--modal" closeButton>
+                <Modal.Title className="text-dark" id="example-custom-modal-styling-title">
                   Book Information
                 </Modal.Title>
               </Modal.Header>
-              <Modal.Body>
+              <Modal.Body className="bg-dark">
                 <div
-                  className="card mb-3 border border-0"
+                  className="card mb-3 border border-0 bg-dark"
                   style={{ maxWwidth: "540px" }}
                 >
-                  <div className="row">
+                  <div className="row justify-content-start p-2">
                     <div className="col-md-5">
                       <img
                         src={props.cover}
                         alt={props.name}
-                        className="img-fluid w-100 h-100"
+                        className="img-fluid w-100 h-70 rounded-3 shadow-lg"
                       />
                     </div>
                     <div className="col-md-7">
-                      <div className="card-body">
-                        <h5 className="card-title">{`Authors: ${props.authors}`}</h5>
-                        <p className="card-text">{`Year: ${props.year}`}</p>
-                        <p className="card-text">{`Language: ${props.rating}`}</p>
-                        <p
-                          className="card-text"
-                          style={{
-                            overflowY: "auto",
-                            width: "400px",
-                            height: "500px",
-                            padding: "1%",
-                          }}
-                        >
-                          {props.description}
-                        </p>
-                      </div>
+                      <h5 className="card-title text-white ">{`Authors: ${props.authors}`}</h5>
+                      <p className="card-text text-start text-white ">{`Year: ${props.year}`}</p>
+                      <p className="card-text text-start text-white ">{`Language: ${props.rating}`}</p>
+                      <p
+                        className="card-text text-start text-white "
+                        style={{
+                          overflowY: "auto",
+                          width: "400px",
+                          height: "280px",
+                        }}
+                      >
+                        {props.description}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -127,14 +125,14 @@ export const SingleBook = (props) => {
                         <textarea
                           value={comment}
                           onChange={(e) => setComment(e.target.value)}
-                          className="form-control"
+                          className="form-control mt-2"
                           rows="2"
                           placeholder="What are you thinking?"
                         ></textarea>
                         <div className="mar-top clearfix">
                           <button
                             onClick={handleClick}
-                            className="btn btn-sm btn-primary pull-right"
+                            className="btn btn-sm btn-primary pull-right mt-4"
                             type="button"
                           >
                             <i className="fa fa-pencil fa-fw"></i> {"Share"}
@@ -147,7 +145,6 @@ export const SingleBook = (props) => {
                       style={{
                         backgroundColor: "grey",
                         borderRadius: "10px",
-                        border: "1px solid white",
                       }}
                     >
                       <div className="panel-body">
