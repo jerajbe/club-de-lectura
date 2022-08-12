@@ -172,6 +172,14 @@ export const UserProfile = (props) => {
                                   book_cover={book.book_cover}
                                   book_name={book.book_name}
                                 />
+                                <i
+                                  type={"button"}
+                                  onClick={() => {
+                                    actions.deleteExchangeBook(book.id);
+                                    actions.getExchangeBooks();
+                                  }}
+                                  className="far fa-trash-alt"
+                                ></i>
                               </li>
                             );
                           })}

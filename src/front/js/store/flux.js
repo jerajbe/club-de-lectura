@@ -31,7 +31,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       frases: [],
     },
     actions: {
-      deleteWantRead: async () => {},
       getSearchUser: async (param) => {
         try {
           const response = await fetch(
@@ -183,6 +182,30 @@ const getState = ({ getStore, getActions, setStore }) => {
           return data;
         } catch (error) {
           console.log("hubo un error deleteWantRead");
+        }
+      },
+      deleteExchangeBook: async (userId) => {
+        const store = getStore();
+        try {
+          const options = {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${store.token}`,
+            },
+          };
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/api/users/exchage_books/${userId}`,
+            options
+          );
+          const data = await response.json();
+          console.log(data);
+          setStore({
+            getExchange: [...store.getExchange].filter((x) => x != element),
+          });
+          return data;
+        } catch (error) {
+          console.log("hubo un error deleteExchangeBook");
         }
       },
       // addFavoriteElement: (element) => {
