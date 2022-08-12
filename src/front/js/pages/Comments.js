@@ -17,7 +17,7 @@ export const Comments = (props) => {
             {props.userName}
           </a>
           <p style={{ marginLeft: "20px" }} className="text-muted text-sm">
-            {" 11 min ago"}
+            {"12/08/22"}
           </p>
         </div>
         <p style={{ color: "white" }}>{props.commentContent}</p>

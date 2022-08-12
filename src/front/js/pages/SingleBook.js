@@ -83,7 +83,10 @@ export const SingleBook = (props) => {
               aria-labelledby="example-custom-modal-styling-title"
             >
               <Modal.Header className="bg--modal" closeButton>
-                <Modal.Title className="text-dark" id="example-custom-modal-styling-title">
+                <Modal.Title
+                  className="text-dark"
+                  id="example-custom-modal-styling-title"
+                >
                   Book Information
                 </Modal.Title>
               </Modal.Header>
@@ -132,7 +135,7 @@ export const SingleBook = (props) => {
                         <div className="mar-top clearfix">
                           <button
                             onClick={handleClick}
-                            className="btn btn-sm btn-primary pull-right mt-4"
+                            className="btn btn-sm btn-secondary pull-right mt-4"
                             type="button"
                           >
                             <i className="fa fa-pencil fa-fw"></i> {"Share"}
