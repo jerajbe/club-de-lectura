@@ -14,8 +14,7 @@
 }
 
 .fondo-template-html {
-  background: rgb(4,32,21);
-  background: linear-gradient(0deg, rgba(4,32,21,1) 0%, rgba(23,24,28,1) 100%);
+  background: #17181c;
 }
 
 /* subrayado titulo*/

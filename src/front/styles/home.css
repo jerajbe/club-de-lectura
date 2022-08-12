@@ -134,6 +134,7 @@
   box-shadow: 0px 30px 45px 10% #161616;
   padding: 10px;
 }
+
 .profilepic:hover {
   transform: scale(0.95);
   box-shadow: 0px 30px 45px 10% #e5ff60;
@@ -166,4 +167,22 @@
   z-index: -1;
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
+}
+
+
+/* UserLink */
+#UserLink{
+  margin: 0%;
+  border: solid 2px #e5ff60;
+  background: transparent;
+}
+
+/*BtnUserComment*/
+.BtnUserComment{
+  background-color: transparent;
+  border: none;
+}
+
+.bordertext{
+  border-bottom: 2px solid #e5ff60;
 }

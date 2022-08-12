@@ -4,15 +4,15 @@ import PropTypes from "prop-types";
 
 export const Comments = (props) => {
   return (
-    <div className="media-block d-flex">
-      <button className="media-left" href="#">
-        <Avatar alt="Remy Sharp" />
+    <div className="media-block d-flex mt-4 bg-dark bordertext">
+      <button className="media-left BtnUserComment" href="#">
+        <Avatar alt="Remy Sharp" id="UserLink" />
       </button>
-      <div className="media-body ms-3">
+      <div className="media-body ms-3 bg-dark">
         <div className="mar-btm d-flex">
           <a
             href="#"
-            className="btn-link text-semibold media-heading box-inline"
+            className="btn-link text-semibold media-heading box-inline text-decoration-none"
           >
             {props.userName}
           </a>
@@ -24,20 +24,20 @@ export const Comments = (props) => {
         <div className="pad-ver">
           <div className="btn-group">
             <a className="btn btn-sm btn-default btn-hover-success" href="#">
-              <i style={{ color: "black" }} className="fa fa-thumbs-up"></i>
+              <i style={{ color: "white" }} className="fa fa-thumbs-up"></i>
             </a>
             <a
-              style={{ color: "black" }}
+              style={{ color: "white" }}
               className="btn btn-sm btn-default btn-hover-danger"
               href="#"
             >
-              <i style={{ color: "black" }} className="fa fa-thumbs-down"></i>
+              <i style={{ color: "white" }} className="fa fa-thumbs-down"></i>
             </a>
           </div>
           <a
             type={"button"}
-            style={{ color: "black" }}
-            className="btn btn-sm btn-default btn-hover-primary"
+            style={{ color: "white" }}
+            className="btn btn-sm btn-default btn-hover-primary text-decoration-none"
             href="#"
           >
             Reply

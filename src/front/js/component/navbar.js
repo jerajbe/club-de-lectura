@@ -27,10 +27,10 @@ export const Navbar = () => {
           ) : (
             <div className="d-flex">
               <Link
-                className="mx-2 profilepic d-flex align-items-center justify-content-center"
+                className="d-flex align-items-center justify-content-center"
                 to={`/user-profile/${store.singleUser.id}`}
               >
-                <Avatar />
+                <Avatar id="UserLink" />
               </Link>
               <Link className="btn button type1" to={"/search"}>
                 <i className="fa-solid fa-magnifying-glass"></i>

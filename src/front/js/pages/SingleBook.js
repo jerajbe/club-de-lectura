@@ -120,8 +120,8 @@ export const SingleBook = (props) => {
                 {/* {aqui termina la info del libro modal} */}
                 <div className="container bootdey">
                   <div className="col-md-12 bootstrap snippets">
-                    <div className="panel">
-                      <div className="panel-body">
+                    <div className="panel bg-dark">
+                      <div className="panel-body bg-dark">
                         <textarea
                           value={comment}
                           onChange={(e) => setComment(e.target.value)}
@@ -141,7 +141,7 @@ export const SingleBook = (props) => {
                       </div>
                     </div>
                     <div
-                      className="panel"
+                      className="panel bg-dark"
                       style={{
                         backgroundColor: "grey",
                         borderRadius: "10px",
