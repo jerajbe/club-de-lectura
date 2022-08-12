@@ -182,6 +182,13 @@ def get_exchange_visit(user_id):
     ))
     return jsonify(exchange_books), 200
 
+@api.route('/users/want_read/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_want_read(id):
+    messages = WantReadBook.query.filter_by(id=id).delete()
+    db.session.commit()
+    return jsonify(messages)
+
 @api.route('/users/want_read/<int:user_id>', methods=['GET'])
 @jwt_required()
 def get_want_read_visit(user_id):

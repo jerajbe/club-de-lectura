@@ -31,6 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       frases: [],
     },
     actions: {
+      deleteWantRead: async () => {},
       getSearchUser: async (param) => {
         try {
           const response = await fetch(
@@ -160,22 +161,40 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend ", error);
         }
       },
-      deleteFavoriteElement: (element) => {
+      deleteWantRead: async (userId) => {
         const store = getStore();
-        setStore({
-          favorites: [...store.favorites].filter((x) => x != element),
-        });
-      },
-      addFavoriteElement: (element) => {
-        const store = getStore();
-        const search = store.favorites.find((x) => x == element);
-        console.log(search, element);
-        if (search == undefined) {
+        try {
+          const options = {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${store.token}`,
+            },
+          };
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/api/users/want_read/${userId}`,
+            options
+          );
+          const data = await response.json();
+          console.log(data);
           setStore({
-            favorites: [...store.favorites, element],
+            getWantRead: [...store.getWantRead].filter((x) => x != element),
           });
+          return data;
+        } catch (error) {
+          console.log("hubo un error deleteWantRead");
         }
       },
+      // addFavoriteElement: (element) => {
+      //   const store = getStore();
+      //   const search = store.favorites.find((x) => x == element);
+      //   console.log(search, element);
+      //   if (search == undefined) {
+      //     setStore({
+      //       favorites: [...store.favorites, element],
+      //     });
+      //   }
+      // },
       getWantReadVisit: async (userId) => {
         const store = getStore();
         try {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { MapComponent } from "./MapComponent";
 import { useParams } from "react-router-dom";
@@ -22,7 +22,8 @@ export const UserProfile = (props) => {
       actions.getWantReadElement();
       actions.getExchangeBooks();
       actions.getProfile(params.userId);
-    }, [params.userId]);
+    }, [store.wantRead]);
+
   return (
     <>
       {/* <h1 style={{ color: "white" }}>{store.profile.user_name}</h1> */}
@@ -126,6 +127,14 @@ export const UserProfile = (props) => {
                               book_cover={book.book_cover}
                               book_name={book.book_name}
                             />
+                            <i
+                              type={"button"}
+                              onClick={() => {
+                                actions.deleteWantRead(book.id);
+                                actions.getWantReadElement();
+                              }}
+                              className="far fa-trash-alt"
+                            ></i>
                           </li>
                         );
                       })}
