@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   const GOOGLE_KEY = "AIzaSyAoVObEHLc3hsJ5Vac6jQKz3n48NnIoeMs";
   return {
     store: {
+      searchAddress: [],
       getExchangeVisit: [],
       getWantReadVisit: [],
       profile: [],
@@ -51,6 +52,31 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(body);
           setStore({
             bodySearch: body,
+          });
+        } catch (error) {
+          alert("error en getSearchUser");
+        }
+      },
+      getSearchAddress: async (param) => {
+        try {
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/api/search_address?name=${param}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${getStore().token}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const body = await response.json();
+          if (response.status !== 200) {
+            alert("No pudimos cargar los usuarios");
+            return;
+          }
+          console.log(body);
+          setStore({
+            searchAddress: body,
           });
         } catch (error) {
           alert("error en getSearchUser");

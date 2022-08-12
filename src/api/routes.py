@@ -106,6 +106,16 @@ def search():
     print(result)
     return jsonify(list(map(lambda user: user.serialize(), result))),200
 
+@api.route('/search_address', methods=['GET'])
+@jwt_required()
+def search_address():
+    user_id = get_jwt_identity()
+    args = request.args
+    name = args.get("name")
+    result = User.query.filter(User.address.like(f"%{name}%")).limit(5).all()
+    print(result)
+    return jsonify(list(map(lambda user: user.serialize(), result))),200
+
 # @api.route('/users/favorites', methods=['GET'])
 # def get_favorites():
 #     books = FavoriteBooks.query.all()
