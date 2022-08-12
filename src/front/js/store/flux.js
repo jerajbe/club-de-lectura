@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-  const GOOGLE_KEY = "AIzaSyAoVObEHLc3hsJ5Vac6jQKz3n48NnIoeMs";
+  const GOOGLE_KEY = "AIzaSyCS--0IpOf_rxyKoLNzSp6iv-vjRmsEy28";
   return {
     store: {
       searchAddress: [],
@@ -119,7 +119,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
           const body = await response.json();
           if (response.status !== 200) {
-            alert("No pudimos cargar los usuarios");
+            console.log("No pudimos cargar los usuarios");
             return;
           }
           console.log(body);

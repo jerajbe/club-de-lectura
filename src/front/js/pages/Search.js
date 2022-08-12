@@ -49,7 +49,7 @@ export const Search = () => {
             })}
         </form>
       </div>
-      <div>
+      <div className="d-flex justify-content-start">
         <SearchAddress />
       </div>
     </>
